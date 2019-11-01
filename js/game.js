@@ -25,8 +25,9 @@ export default class Game {
 
 	fontLoaded(){
 		if(this._container && this._container['micrio']) {
-			this.created(this.micrio = this._container['micrio']);
+			this.micrio = this._container['micrio'];
 			this.customShader();
+			this.created();
 		}
 		else window.addEventListener('micrio-created', this.created);
 		window.addEventListener('micrio-created', this.customShader.bind(this));
