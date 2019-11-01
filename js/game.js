@@ -18,6 +18,7 @@ export default class Game {
 		this.created = this.created.bind(this);
 		this.init = this.init.bind(this);
 		this.setLevel = this.setLevel.bind(this);
+		this.onclicked = this.onclicked.bind(this);
 
 		if(document.fonts && document.fonts.load)
 			document.fonts.load('10pt "Acme"').then(() => this.fontLoaded());
@@ -70,6 +71,7 @@ export default class Game {
 			this.levels[this.micrio.id] = new Level(this, micrio);
 
 		this.currentLevel = this.levels[this.micrio.id];
+		this.micrio['THREE']['onClickVR'] = this.onclicked;
 
 		this.currentLevel.activate();
 	}
@@ -102,20 +104,30 @@ export default class Game {
 		if(this.currentPopup) {
 			const hit = this.micrio['THREE']['getCast']([e.clientX, e.clientY], this.currentPopup.mesh.children)[0];
 			if(hit && hit['object'].onclick) {
-				hit['object'].onclick();
+				this.onclicked(hit);
 				return;
 			}
 		}
 
 		// Otherwise check for marker click
-		const hit = this.micrio['THREE']['getCast']([e.clientX, e.clientY])[0];
-		const marker = hit && hit['object']['marker'];
+		this.onclicked(this.micrio['THREE']['getCast']([e.clientX, e.clientY])[0]);
+	}
+
+	onclicked(hit) {
+		if(!hit || !hit['object']) return;
+
+		if(this.currentPopup) {
+			if(hit['object'].onclick) {
+				hit['object'].onclick();
+				return;
+			}
+		}
+
+		const marker = hit['object']['marker'];
 		if(marker) {
 			if(marker['link']) marker.open();
 			else this.currentLevel.clickedItem(marker);
 		}
-
-
 	}
 
 	mousemove(e) {

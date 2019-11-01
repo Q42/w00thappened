@@ -55,18 +55,20 @@ export default class ActionPopup {
 		this.opened = true;
 
 		this.level.game.currentPopup = this;
+		this.micrio['THREE']['intersect'] = this.mesh['children'];
 
 		const coo = this.micrio['THREE']['getPosition'](
-			this.item.x+.1,
-			this.item.y-.1,
-			50
+			this.item.x+.05,
+			this.item.y,
+			75
 		);
 
 		this.mesh['position']['set'](coo.x,coo.y,coo.z);
 		this.mesh['lookAt'](0,0,0);
 
-		this.micrio['THREE']['scene']['add'](this.mesh);
+		this.micrio['THREE']['_scene']['add'](this.mesh);
 		this.micrio['camera']['render']();
+
 	}
 
 	close() {
@@ -74,8 +76,9 @@ export default class ActionPopup {
 		this.opened = false;
 
 		this.level.game.currentPopup = null;
+		this.micrio['THREE']['intersect'] = null;
 
-		this.micrio['THREE']['scene']['remove'](this.mesh);
+		this.micrio['THREE']['_scene']['remove'](this.mesh);
 		this.micrio['camera']['render']();
 	}
 }
