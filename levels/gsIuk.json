@@ -1,0 +1,44 @@
+{
+    "name": "13 Zeta toilet",
+    "micrioId": "gsIuk",
+    "items":[
+        {
+            "micrioId": "d3ed2f8b-1a06-3d3b-66c1-3ffe3ef5629d",
+            "name":"door",
+            "actions":[
+                {
+                    "input": "Look at object",
+                    "output": "It's the door",
+                    "isDefault": true
+                },
+                {
+                    "input": "Lock the door",
+                    "output": "It's locked now",
+                    "isDefault": true
+                }
+            ]
+        },
+        {
+            "micrioId": "75e94059-b4a6-cae8-7598-140429cecd0f",
+            "name":"Flush",
+            "actions":[
+                {
+                    "input": "Look at object",
+                    "output": "I can flush the toilet with this button",
+                    "isDefault": true
+                }
+            ]
+        },
+        {
+            "micrioId": "ca4c6fe9-2a8d-537f-82f2-cfc607558b79",
+            "name":"toilet",
+            "actions":[
+                {
+                    "input": "Look at object",
+                    "output": "The toilet",
+                    "isDefault": true
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,83 @@
+{
+    "name": "10 Zeta Buiten",
+    "micrioId": "gKYFA",
+    "items":[
+        {
+            "micrioId": "8752f8b2-8a33-d555-66e0-a3b8783ddaa2",
+            "name":"Zeta Sign",
+            "actions":[
+                {
+                    "input": "Look at object",
+                    "output": "What the fuck is a ZETA",
+                    "isDefault": true
+                }
+            ]
+        },
+        {
+            "micrioId": "f2868189-76f5-1996-cdc6-9d2322d2f090",
+            "name":"Sign",
+            "actions":[
+                {
+                    "input": "Look at sign",
+                    "output": "Order your drinks inside.",
+                    "isDefault": true
+                }
+            ]
+        },
+        {
+            "micrioId": "c2e0f635-a3d2-fa62-9696-de25b09d7112",
+            "name":"Scooter",
+            "actions":[
+                {
+                    "input": "Look at object",
+                    "output": "I guess it's my scooter now",
+                    "isDefault": true
+                }
+            ]
+        },
+        {
+            "micrioId": "a1b1e159-a812-e73f-80a2-0a76b9636d95",
+            "name":"Bike",
+            "actions":[
+                {
+                    "input": "Look at object",
+                    "output": "It's a bike",
+                    "isDefault": true
+                }
+            ]
+        },
+        {
+            "micrioId": "374a6686-195e-8cea-a212-54955179850f",
+            "name":"Zeta door",
+            "actions":[
+                {
+                    "input": "Look at object",
+                    "output": "Door to the Zeta",
+                    "isDefault": true
+                }
+            ]
+        },
+        {
+            "micrioId": "c92488ca-fbd8-6945-9c45-b0aec89a6be7",
+            "name":"People at table",
+            "actions":[
+                {
+                    "input": "Look at people",
+                    "output": "Some friendly people at a table",
+                    "isDefault": true
+                }
+            ]
+        },
+        {
+            "micrioId": "70d36859-e970-b0fc-03de-7c31e86c75e7",
+            "name":"Free table",
+            "actions":[
+                {
+                    "input": "Set it table",
+                    "output": "I better first order some drinks inside",
+                    "isDefault": true
+                }
+            ]
+        }
+    ]
+}

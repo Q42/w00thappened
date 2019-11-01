@@ -1,0 +1,55 @@
+{
+    "name": "11 Zeta Downstairs",
+    "micrioId": "GUokj",
+    "items":[
+        {
+            "micrioId": "ff3ffcb6-69ac-0f20-a713-f6ba33d21f9a",
+            "name":"Stairs",
+            "actions":[
+                {
+                    "input": "Look at object",
+                    "output": "Looks like stairs to me",
+                    "isDefault": true
+                }
+            ]
+        },
+        {
+            "micrioId": "efafcf05-9bfc-5a79-c985-39ad86989eb4",
+            "name":"Door",
+            "actions":[
+                {
+                    "input": "Look at door",
+                    "output": "We can go back outside",
+                    "isDefault": true
+                }
+            ]
+        },
+        {
+            "micrioId": "ffb3b9cd-f764-ba47-b06a-48e5a11eecdf",
+            "name":"Bar",
+            "actions":[
+                {
+                    "input": "Look at bar",
+                    "output": "Maybe I can order drinks here",
+                    "isDefault": true
+                }
+            ]
+        },
+        {
+            "micrioId": "07a3c161-5776-966f-12ce-372788f1a10b",
+            "name":"Flowers",
+            "actions":[
+                {
+                    "input": "Look at flowers",
+                    "output": "Some nice looking flowers",
+                    "isDefault": true
+                },
+                {
+                    "input": "Smell flowers",
+                    "output": "So good",
+                    "isDefault": true
+                }
+            ]
+        }
+    ]
+}
