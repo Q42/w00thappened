@@ -5,6 +5,8 @@ export default class Level {
 	constructor(game, micrio) {
 		this.game = game;	
 		this.micrio = micrio;
+
+		this.level = null;
 	}
 
 	activate(){
@@ -60,34 +62,27 @@ export default class Level {
 	actionItem(marker, action) {
 		console.log('action item!', action, marker);
 
-		var itemId = marker.id;
-		var item = this.getItemForId(itemId);
-		if(item != null)
+		const itemId = marker.id;
+		const item = this.getItemForId(itemId);
+		const todo = item && item.actions.find(item => item.input == action);
+		if(todo != null)
 		{
-			var action = item.actions.find(function (item) {
-				return item.input == action;
-			});
+			console.log("Selected action", todo);
 
-			if(action != null)
-			{
-				console.log("Selected action", action);
+			//Render reply
+			this.printText(action.output, marker.x, marker.y);
 
-				//Render reply
-				this.printText(action.output, marker.x, marker.y);
+			if(todo.continue)
+				//this.renderActionOptions(marker, item, action.continue);
 
-				if(action.continue)
-					this.renderActionOptions(marker, item, action.continue);
+			if(todo.script){
+				//TODO: run custom script if available
+			}
 
-				if(action.script){
-					//TODO: run custom script if available
-				}
-
-				if(action.navigateTo) {
-					this.micrio.modules.navigator.goto(action.navigateTo);
-				}
+			if(todo.navigateTo) {
+				this.game.goto(todo.navigateTo);
 			}
 		}
-
 	}
 	
 	getItemForId(itemId) {

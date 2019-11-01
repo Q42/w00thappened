@@ -43,7 +43,7 @@ export default class Game {
 		}
 		if(this.micrio['isLoaded']) this.init();
 		else this._container.addEventListener('metadata', this.init);
-		this._container.addEventListener('pre-metadata', this.fixForVR.bind(this))
+		this._container.addEventListener('pre-metadata', this.fixForVR.bind(this));
 		this._container.addEventListener('click', this.onclick.bind(this));
 		this._container.addEventListener('mousemove', this.mousemove.bind(this));
 	}
@@ -76,6 +76,12 @@ export default class Game {
 		this.currentLevel.activate();
 	}
 
+	goto(id){
+		if(this.currentPopup) this.currentPopup.close();
+		this.micrio.camera.stop();
+		this.micrio.modules.navigator.goto(id, undefined, true);
+	}
+
 	// Create data of current game state and save to localStorage
 	saveGame(){
 
@@ -88,7 +94,7 @@ export default class Game {
 
 	// Make all markers rendered in WebGL and set custom shader
 	fixForVR() {
-		this._container.micrio['data']['forceGL'] = true;
+		this._container['micrio']['data']['forceGL'] = true;
 	}
 
 	// Set custom shader
@@ -103,14 +109,15 @@ export default class Game {
 		// First check if clicked action menu
 		if(this.currentPopup) {
 			const hit = this.micrio['THREE']['getCast']([e.clientX, e.clientY], this.currentPopup.mesh.children)[0];
-			if(hit && hit['object'].onclick) {
+			if(hit && hit['object']['onclick']) {
 				this.onclicked(hit);
 				return;
 			}
 		}
 
 		// Otherwise check for marker click
-		this.onclicked(this.micrio['THREE']['getCast']([e.clientX, e.clientY])[0]);
+		const marker = this.micrio['THREE']['getCast']([e.clientX, e.clientY])[0];
+		if(marker) this.onclicked(marker);
 	}
 
 	onclicked(hit) {
