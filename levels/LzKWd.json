@@ -1,5 +1,5 @@
 {
-    "name": "Bunker",
+    "name": "01 Bunker",
     "micrioId": "LzKWd",
     "items":[
         {
@@ -49,6 +49,12 @@
                     "input": "Look at sky",
                     "output": "It raining",
                     "isDefault": true
+                },
+                {
+                    "input": "Climb out",
+                    "output": "Let's do that",
+                    "isDefault": true,
+                    "navigateTo":"CXbqx"
                 }
             ]
         },

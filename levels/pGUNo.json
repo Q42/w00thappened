@@ -10,6 +10,12 @@
                     "input": "Look at object",
                     "output": "I just got out of that",
                     "isDefault": true
+                },
+                {
+                    "input": "Walk back",
+                    "output": "What a great idea!",
+                    "isDefault": true,
+                    "navigateTo":"nZdDS"
                 }
             ]
         },
@@ -21,6 +27,12 @@
                     "input": "Look at object",
                     "output": "It looks like my way to freedom.",
                     "isDefault": true
+                },
+                {
+                    "input": "Walk to the forrest",
+                    "output": "Go go go",
+                    "isDefault": true,
+                    "navigateTo":"ZTpNO"
                 }
             ]
         }

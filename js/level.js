@@ -81,6 +81,10 @@ export default class Level {
 				if(action.script){
 					//TODO: run custom script if available
 				}
+
+				if(action.navigateTo) {
+					this.micrio.modules.navigator.goto(action.navigateTo);
+				}
 			}
 		}
 

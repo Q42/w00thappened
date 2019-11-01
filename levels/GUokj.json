@@ -10,6 +10,12 @@
                     "input": "Look at object",
                     "output": "Looks like stairs to me",
                     "isDefault": true
+                },
+                {
+                    "input": "Go up the stairs",
+                    "output": "Ok",
+                    "isDefault": true,
+                    "navigateTo":"xmLny"
                 }
             ]
         },
@@ -21,6 +27,12 @@
                     "input": "Look at door",
                     "output": "We can go back outside",
                     "isDefault": true
+                },
+                {
+                    "input": "Go outside",
+                    "output": "Ok",
+                    "isDefault": true,
+                    "navigateTo":"gKYFA"
                 }
             ]
         },
