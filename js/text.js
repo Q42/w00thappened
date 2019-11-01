@@ -20,7 +20,7 @@ export default class Text {
 		this.image.onload = this.place.bind(this);
 		this.image.src = this.src;
 
-		this.oncreate = null;
+		this.onload = null;
 	}
 
 	place(){
@@ -52,7 +52,7 @@ export default class Text {
 			this.micrio['camera']['render']();
 		}
 
-		if(this.oncreate) this.oncreate();
+		if(this.onload) this.onload();
 
 	}
 

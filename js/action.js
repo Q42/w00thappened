@@ -4,14 +4,20 @@ import Text from './text.js';
 const THREE = self['THREE'];
 
 export default class ActionPopup {
-	constructor(level) {
+	constructor(level, item) {
 		this.level = level;
 		this.micrio = level.micrio;
+		this.item = item;
+
+		this.actions = ['use', 'pick up', 'talk to'];
 
 		this.opened = false;
 
+		const lineHeight = 5;
+		const height = lineHeight * this.actions.length;
+
 		this.mesh = new THREE['Mesh'](
-			new THREE['PlaneBufferGeometry'](30, 30),
+			new THREE['PlaneBufferGeometry'](20, height+5),
 			new THREE['MeshBasicMaterial']({
 				'color': 0x222222,
 				'depthWrite': false,
@@ -20,18 +26,35 @@ export default class ActionPopup {
 			})
 		);
 
-		this.mesh['renderOrder'] = 120;
+		let y = height/2;
+		this.actions.forEach(a => {
+			const text = new Text(this.micrio, a, null, null, '#ffffff', true);
+			text.onload = () => {
+				console.log('loaded!')
+				text.mesh.position.y = y - lineHeight/2;
+				this.mesh.add(text.mesh);
+				y -= lineHeight;
+			}
+		})
+
+		this.mesh['renderOrder'] = 119;
 	}
 
-	toggle(item){
+	toggle(){
 		if(this.opened) this.close();
-		else this.open(item);
+		else this.open();
 	}
 
-	open(item){
+	open(){
 		if(this.opened) return;
 		this.opened = true;
-		const coo = this.micrio['THREE']['getPosition'](item.x+.1,item.y-.1, 50);
+
+		const coo = this.micrio['THREE']['getPosition'](
+			this.item.x+.1,
+			this.item.y-.1,
+			50
+		);
+
 		this.mesh['position']['set'](coo.x,coo.y,coo.z);
 		this.mesh['lookAt'](0,0,0);
 

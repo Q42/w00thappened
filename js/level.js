@@ -5,8 +5,6 @@ export default class Level {
 	constructor(game, micrio) {
 		this.game = game;	
 		this.micrio = micrio;
-
-		this.actions = new ActionPopup(this);
 	}
 
 	activate(){
@@ -34,9 +32,12 @@ export default class Level {
 		var item = marker || this.getItemForId(itemId);
 		if(item != null)
 		{
-			this.actions.toggle(item);
 			//Render possible actions in item.actions
 
+			if(!item._actions)
+				item._actions = new ActionPopup(this, item);
+
+			item._actions.toggle(item);
 		}
 	}
 
