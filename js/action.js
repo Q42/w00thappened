@@ -4,12 +4,11 @@ import Text from './text.js';
 const THREE = self['THREE'];
 
 export default class ActionPopup {
-	constructor(level, item) {
+	constructor(level, item, actions) {
 		this.level = level;
 		this.micrio = level.micrio;
 		this.item = item;
-
-		this.actions = ['use', 'pick up', 'talk to'];
+		this.actions = actions;
 
 		this.opened = false;
 

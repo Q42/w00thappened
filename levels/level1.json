@@ -3,7 +3,7 @@
     "micrioId": "micrio-id",
     "items":[
         {
-            "micrioId": "id-from-micrio-editor",
+            "micrioId": "f09518f2-9772-2733-8744-700fa2fa0bb1",
             "defaultConversationOptions": [1,2],
             "actions":[
                 {
@@ -22,6 +22,10 @@
                     "output": "Thanks",
                     "inentoryFilter": ["key"],
                     "script": "custom-javascript-action??"
+                },
+                {
+                    "name": "Talk to",
+                    "script": "talkTo"
                 }
             ],
             "conversations":[

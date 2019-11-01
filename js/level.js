@@ -29,15 +29,18 @@ export default class Level {
 		console.log('clicked on item!', marker);
 
 		var itemId = marker.id;
-		var item = marker || this.getItemForId(itemId);
+		var item = this.getItemForId(itemId);
 		if(item != null)
 		{
 			//Render possible actions in item.actions
+			var actions = item.actions.map(function (action) {
+				return action.name
+			});
 
-			if(!item._actions)
-				item._actions = new ActionPopup(this, item);
+			if(!marker._actions)
+				marker._actions = new ActionPopup(this, marker, actions);
 
-			item._actions.toggle(item);
+			marker._actions.toggle(item);
 		}
 	}
 
@@ -58,27 +61,34 @@ export default class Level {
 	}
 
 	//Initiate a conversation with item
-	talkTo(itemId)
+	talkTo(marker)
 	{
+		var itemId = marker.id;
 		var item = this.getItemForId(itemId);
 		if(item != null)
 		{
 			//Render options
-			this.renderConversationOptions(item, item.defaultConversationOptions);
+			this.renderConversationOptions(marker, item, item.defaultConversationOptions);
 		}
 	}
 
 	//Renders a box to select a conversation item
-	renderConversationOptions(item, idList) {
+	renderConversationOptions(marker, item, idList) {
 		//TODO: Render dialog with all conversation options
 		if(item != null)
 		{
 			var replies = item.conversations.filter(function (item) {
 				//TODO: Also filter on inventory items
 				return idList.includes(item.id);
+			})
+			.map(function (reply) {
+				return reply.input
 			});
 			
 			console.log("Render replies", replies);
+
+			marker._actions = new ActionPopup(this, marker, replies);
+			marker._actions.toggle(item);
 		}
 
 	}
