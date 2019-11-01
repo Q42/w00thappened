@@ -9,13 +9,20 @@ export default class Game {
 		this.levels = {};
 		this.currentLevel = null;
 
+		// Main container
+		this._container = document.querySelector('micr-io');
+
 		// Function bindings
 		this.created = this.created.bind(this);
 		this.init = this.init.bind(this);
 		this.setLevel = this.setLevel.bind(this);
 
-		// Main micrio instance
-		this._container = document.querySelector('micr-io');
+		if(document.fonts && document.fonts.load)
+			document.fonts.load('10pt "Acme"').then(() => this.fontLoaded());
+		else this.fontLoaded();
+	}
+
+	fontLoaded(){
 		if(this._container && this._container['micrio'])
 			this.created(this.micrio = this._container['micrio']);
 		else window.addEventListener('micrio-created', this.created);
