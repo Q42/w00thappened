@@ -48,7 +48,7 @@ export default class Text {
 			const coo = this.micrio['THREE']['getPosition'](this.x,this.y, 50);
 			this.mesh['position']['set'](coo.x, coo.y, coo.z);
 			this.mesh['lookAt'](0,0,0);
-			this.micrio['THREE']['scene']['add'](this.mesh);
+			this.micrio['THREE']['_scene']['add'](this.mesh);
 			this.micrio['camera']['render']();
 		}
 
