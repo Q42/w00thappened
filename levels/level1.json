@@ -1,0 +1,36 @@
+{
+    "name": "Example level 1",
+    "micrioId": "micrio-id",
+    "items":[
+        {
+            "micrioId": "id-from-micrio-editor",
+            "actions":[
+                {
+                    "name": "Look at object",
+                    "output": "It doesn't look like anything to me",
+                    "script": "custom-javascript-action??"
+                },
+                {
+                    "name": "Pick up",
+                    "output": "Got it",
+                    "intentoryAdd": true,
+                    "script": "custom-javascript-action??"
+                }
+            ],
+            "conversations":[
+                {
+                    "id": 1,
+                    "input": "Whaaazaaaaap?",
+                    "output": "Go away",
+                    "continue": 2,
+                    "inentoryFilter": ["only show this conversation option when item is in inventory"],
+                    "script":"custom-javascript-action??"
+                },
+                {
+                    "id": 2,
+                    "input": "Nice talking to you"
+                }
+            ]
+        }
+    ]
+}
