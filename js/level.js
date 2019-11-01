@@ -26,6 +26,14 @@ export default class Level {
 
 	clickedItem(marker) {
 		console.log('clicked on item!', marker);
+
+		var itemId = marker.id;
+		var item = this.getItemForId(itemId);
+		if(item != null)
+		{
+			//Render possible actions in item.actions
+
+		}
 	}
 
 	getItemForId(itemId) {
@@ -38,16 +46,6 @@ export default class Level {
 
 	getMicrioObjectForId(itemId) {
 		//TODO: How to get Micrio object for id?
-	}
-
-	interactWith(itemId)
-	{
-		var item = this.getItemForId(itemId);
-		if(item != null)
-		{
-			//Render possible actions in item.actions
-
-		}
 	}
 
 	//Initiate a conversation with item
