@@ -1,0 +1,49 @@
+{
+    "name": "Example level 1",
+    "micrioId": "micrio-id",
+    "items":[
+        {
+            "micrioId": "f09518f2-9772-2733-8744-700fa2fa0bb1",
+            "actions":[
+                {
+                    "input": "Look at object",
+                    "output": "It doesn't look like anything to me",
+                    "isDefault": true
+                },
+                {
+                    "input": "Pick up",
+                    "output": "Got it",
+                    "intentoryAdd": true,
+                    "isDefault": true
+                },
+                {
+                    "input": "Give key",
+                    "output": "Thanks",
+                    "inentoryFilter": ["key"],
+                    "isDefault": true
+                },
+                {
+                    "id": 1,
+                    "input": "Whaaazaaaaap?",
+                    "output": "Go away",
+                    "continue": [2,3],
+                    "inentoryFilter": ["only show this conversation option when item is in inventory"],
+                    "isDefault": true
+                },
+                {
+                    "id": 2,
+                    "input": "Who are you?",
+                    "output": "Mr. X",
+                    "continue": [3],
+                    "inentoryFilter": ["key"],
+                    "script":"custom-javascript-action??"
+                },
+                {
+                    "id": 3,
+                    "input": "Nice talking to you",
+                    "isDefault": true
+                }
+            ]
+        }
+    ]
+}

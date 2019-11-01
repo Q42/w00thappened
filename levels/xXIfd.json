@@ -1,0 +1,28 @@
+{
+    "name": "16 Computer",
+    "micrioId": "xXIfd",
+    "items":[
+        {
+            "micrioId": "965c21b2-6959-1d4e-0dd2-6b1fa85e19c3",
+            "name":"Door",
+            "actions":[
+                {
+                    "input": "Look at object",
+                    "output": "It's the door, let's get out of here.",
+                    "isDefault": true
+                }
+            ]
+        },
+        {
+            "micrioId": "47f40987-830d-f0b8-3077-3a382f249f80",
+            "name":"computer",
+            "actions":[
+                {
+                    "input": "Look at object",
+                    "output": "It looks like a computer screen",
+                    "isDefault": true
+                }
+            ]
+        }
+    ]
+}

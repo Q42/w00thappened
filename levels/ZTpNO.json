@@ -1,0 +1,28 @@
+{
+    "name": "05 Bospad",
+    "micrioId": "ZTpNO",
+    "items":[
+        {
+            "micrioId": "8aa5125e-6c6c-9666-8a3a-d1b5a307ee2d",
+            "name":"Forrest",
+            "actions":[
+                {
+                    "input": "Look at object",
+                    "output": "I'm not going back there",
+                    "isDefault": true
+                }
+            ]
+        },
+        {
+            "micrioId": "5fb3b1b4-0d82-f31c-070b-72fa1c61f016",
+            "name":"Scooter",
+            "actions":[
+                {
+                    "input": "Look at object",
+                    "output": "It looks like some sort of transportation",
+                    "isDefault": true
+                }
+            ]
+        }
+    ]
+}

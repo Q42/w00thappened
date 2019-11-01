@@ -1,0 +1,28 @@
+{
+    "name": "04 Bos verder weg",
+    "micrioId": "pGUNo",
+    "items":[
+        {
+            "micrioId": "a03b391b-0d16-fc70-96df-bae475043607",
+            "name":"Bunker",
+            "actions":[
+                {
+                    "input": "Look at object",
+                    "output": "I just got out of that",
+                    "isDefault": true
+                }
+            ]
+        },
+        {
+            "micrioId": "44e8f34c-bd9d-e138-955b-2b79612e9599",
+            "name":"Forrest",
+            "actions":[
+                {
+                    "input": "Look at object",
+                    "output": "It looks like my way to freedom.",
+                    "isDefault": true
+                }
+            ]
+        }
+    ]
+}

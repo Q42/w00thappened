@@ -1,0 +1,28 @@
+{
+    "name": "12 Zeta upstairs",
+    "micrioId": "xmLny",
+    "items":[
+        {
+            "micrioId": "3df4dd66-56a9-5548-2d30-ed10f144fbcd",
+            "name":"toilet",
+            "actions":[
+                {
+                    "input": "Look at object",
+                    "output": "Looks like some toilets",
+                    "isDefault": true
+                }
+            ]
+        },
+        {
+            "micrioId": "aab0e6f9-a2b7-2944-8039-0cc5ec62d7c3",
+            "name":"stairs",
+            "actions":[
+                {
+                    "input": "Look at object",
+                    "output": "Maybe I can order a drink downstairs",
+                    "isDefault": true
+                }
+            ]
+        }
+    ]
+}

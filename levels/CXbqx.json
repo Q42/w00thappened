@@ -1,0 +1,50 @@
+{
+    "name": "Buiten de bunker",
+    "micrioId": "CXbqx",
+    "items":[
+        {
+            "micrioId": "dc634c7a-344d-ae06-1b84-d815b4382627",
+            "name":"Entrance",
+            "actions":[
+                {
+                    "input": "Look at object",
+                    "output": "I just got out of that hole",
+                    "isDefault": true
+                }
+            ]
+        },
+        {
+            "micrioId": "a8fcbea0-26d0-9cb1-0e4e-3c92ae90657f",
+            "name":"Saw",
+            "actions":[
+                {
+                    "input": "Look at object",
+                    "output": "It's a saw",
+                    "isDefault": true
+                }
+            ]
+        },
+        {
+            "micrioId": "d02531f3-c5c2-1361-4a9a-ac1aff9cd79d",
+            "name":"Rope",
+            "actions":[
+                {
+                    "input": "Look at object",
+                    "output": "It's a rope",
+                    "isDefault": true
+                }
+            ]
+        },
+        {
+            "micrioId": "3834d6cd-886b-9182-1f13-877c1b902801",
+            "name":"Forrest",
+            "actions":[
+                {
+                    "input": "Look at object",
+                    "output": "It looks like my way to freedom.",
+                    "isDefault": true
+                }
+            ]
+        }
+    ]
+}
