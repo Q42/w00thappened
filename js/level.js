@@ -1,3 +1,5 @@
+import Text from './text.js';
+
 export default class Level {
 	constructor(game, micrio) {
 		this.game = game;	
@@ -25,7 +27,9 @@ export default class Level {
 		var item = level.items
 	}
 
-	
+	printText(string, x, y) {
+		new Text(this.micrio, string, x, y);
+	}
 
 	deactivate(){
 		console.log('Deactivate level', this.micrio.id);
