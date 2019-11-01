@@ -11,7 +11,7 @@ export default class Level {
 		console.log('Activate level', this.micrio.id);
 
 		//TODO: Load level based on micrioId
-		fetch("/levels/level1.json")
+		fetch("/levels/" + this.micrio.id + ".json")
 			.then(response => response.json())
 			.then(json => this.startLevel(json));
 	}
@@ -23,7 +23,7 @@ export default class Level {
 
 	//From game logic, when micrio marker is clicked
 	clickedItem(marker) {
-		console.log('clicked on item!', marker);
+		console.log('clicked on item!', marker.id);
 
 		var itemId = marker.id;
 		var item = this.getItemForId(itemId);
@@ -95,7 +95,14 @@ export default class Level {
 	}
 
 	printText(string, x, y) {
-		new Text(this.micrio, string, x, y);
+		if(this.lastText)
+			this.lastText.remove();
+
+		this.lastText = new Text(this.micrio, string, x, y);
+		setTimeout(function(){ 
+			if(this.lastText)
+				this.lastText.remove(); 
+			}.bind(this), 5000);
 	}
 
 	deactivate(){
