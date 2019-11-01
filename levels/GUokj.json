@@ -44,6 +44,45 @@
                     "input": "Look at bar",
                     "output": "Maybe I can order drinks here",
                     "isDefault": true
+                },
+                {
+                    "input": "Talk to barman",
+                    "output": "Sup bro, seems like someone had a rough night! Ha!",
+                    "isDefault": true,
+                    "continue":[1,2,3]
+                },
+                {
+                    "id":1,
+                    "input": "Your mama told me to say hello",
+                    "output": "Wasted! And funny! I like that"
+                },
+                {
+                    "id":2,
+                    "input": "I need to pee",
+                    "output": "Toilet is upstairs bro."
+                },
+                {
+                    "id":3,
+                    "input": "Was I here yesterday?",
+                    "output": "Are you kidding me?",
+                    "continue":[4]
+                },
+                {
+                    "id":4,
+                    "input": "Why?",
+                    "output": "haha, good one. You almost had me. Hey listen Amy is really upset with you so I would move my ass if I were you",
+                    "continue":[5]
+                },
+                {
+                    "id":5,
+                    "input": "Uhmm Amy .. yeah right… sure… So what did she say?",
+                    "output": "Say! Well not so much, you know how Amy is.. Just fix this OK!",
+                    "continue":[6]
+                },
+                {
+                    "id":6,
+                    "input": "OK .. I guess",
+                    "output": "Call Amy nr 555-8039” She should be there right now"
                 }
             ]
         },

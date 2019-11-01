@@ -24,8 +24,8 @@
             "name":"Saw",
             "actions":[
                 {
-                    "input": "Look at object",
-                    "output": "It's a saw",
+                    "input": "Look at saw",
+                    "output": "I don’t think I can use it to take a tree down, but something smaller would be OK.. I think.. ",
                     "isDefault": true
                 }
             ]
@@ -35,15 +35,15 @@
             "name":"Rope",
             "actions":[
                 {
-                    "input": "Look at object",
-                    "output": "It's a rope",
+                    "input": "Look at rope",
+                    "output": "Great, I was afraid I had to live on this plateau forever",
                     "isDefault": true
                 }
             ]
         },
         {
             "micrioId": "3834d6cd-886b-9182-1f13-877c1b902801",
-            "name":"Forrest",
+            "name":"Forest",
             "actions":[
                 {
                     "input": "Look at object",
@@ -51,7 +51,7 @@
                     "isDefault": true
                 },
                 {
-                    "input": "Walk to the forrest",
+                    "input": "Walk to the forest",
                     "output": "Go go go",
                     "isDefault": true,
                     "navigateTo":"nZdDS"

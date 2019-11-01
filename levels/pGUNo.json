@@ -21,7 +21,7 @@
         },
         {
             "micrioId": "44e8f34c-bd9d-e138-955b-2b79612e9599",
-            "name":"Forrest",
+            "name":"Forest",
             "actions":[
                 {
                     "input": "Look at object",
@@ -29,7 +29,7 @@
                     "isDefault": true
                 },
                 {
-                    "input": "Walk to the forrest",
+                    "input": "Walk to the forest",
                     "output": "Go go go",
                     "isDefault": true,
                     "navigateTo":"ZTpNO"
