@@ -4,50 +4,44 @@
     "items":[
         {
             "micrioId": "f09518f2-9772-2733-8744-700fa2fa0bb1",
-            "defaultConversationOptions": [1,2],
             "actions":[
                 {
-                    "name": "Look at object",
+                    "input": "Look at object",
                     "output": "It doesn't look like anything to me",
-                    "script": "custom-javascript-action??"
+                    "isDefault": true
                 },
                 {
-                    "name": "Pick up",
+                    "input": "Pick up",
                     "output": "Got it",
                     "intentoryAdd": true,
-                    "script": "custom-javascript-action??"
+                    "isDefault": true
                 },
                 {
-                    "name": "Give key",
+                    "input": "Give key",
                     "output": "Thanks",
                     "inentoryFilter": ["key"],
-                    "script": "custom-javascript-action??"
+                    "isDefault": true
                 },
-                {
-                    "name": "Talk to",
-                    "script": "talkTo"
-                }
-            ],
-            "conversations":[
                 {
                     "id": 1,
                     "input": "Whaaazaaaaap?",
                     "output": "Go away",
-                    "continue": [4],
+                    "continue": [2,3],
                     "inentoryFilter": ["only show this conversation option when item is in inventory"],
-                    "script":"custom-javascript-action??"
+                    "isDefault": true
                 },
                 {
                     "id": 2,
                     "input": "Who are you?",
                     "output": "Mr. X",
-                    "continue": [2],
+                    "continue": [3],
                     "inentoryFilter": ["key"],
                     "script":"custom-javascript-action??"
                 },
                 {
                     "id": 3,
-                    "input": "Nice talking to you"
+                    "input": "Nice talking to you",
+                    "isDefault": true
                 }
             ]
         }
