@@ -1,5 +1,5 @@
 {
-    "name": "Buiten de bunker",
+    "name": "02 Buiten de bunker",
     "micrioId": "CXbqx",
     "items":[
         {
@@ -10,6 +10,12 @@
                     "input": "Look at object",
                     "output": "I just got out of that hole",
                     "isDefault": true
+                },
+                {
+                    "input": "Climb back in",
+                    "output": "Pfffff",
+                    "isDefault": true,
+                    "navigateTo":"LzKWd"
                 }
             ]
         },
@@ -43,6 +49,12 @@
                     "input": "Look at object",
                     "output": "It looks like my way to freedom.",
                     "isDefault": true
+                },
+                {
+                    "input": "Walk to the forrest",
+                    "output": "Go go go",
+                    "isDefault": true,
+                    "navigateTo":"nZdDS"
                 }
             ]
         }

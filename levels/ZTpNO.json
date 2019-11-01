@@ -9,7 +9,14 @@
                 {
                     "input": "Look at object",
                     "output": "I'm not going back there",
-                    "isDefault": true
+                    "isDefault": true,
+                    "continue":[1]
+                },
+                {
+                    "id": 1,
+                    "input": "Yes you are",
+                    "output": "*****",
+                    "navigateTo":"pGUNo"
                 }
             ]
         },
@@ -21,6 +28,12 @@
                     "input": "Look at object",
                     "output": "It looks like some sort of transportation",
                     "isDefault": true
+                },
+                {
+                    "input": "Walk to scooter",
+                    "output": "My mother used to have one just like that",
+                    "isDefault": true,
+                    "navigateTo":"JrBOL"
                 }
             ]
         }

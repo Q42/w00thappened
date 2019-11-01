@@ -10,6 +10,12 @@
                     "input": "Look at object",
                     "output": "Looks like some toilets",
                     "isDefault": true
+                },
+                {
+                    "input": "Go to the toilet",
+                    "output": "Ok",
+                    "isDefault": true,
+                    "navigateTo":"gsIuk"
                 }
             ]
         },
@@ -21,6 +27,12 @@
                     "input": "Look at object",
                     "output": "Maybe I can order a drink downstairs",
                     "isDefault": true
+                },
+                {
+                    "input": "Go downstairs",
+                    "output": "Ok",
+                    "isDefault": true,
+                    "navigateTo":"GUokj"
                 }
             ]
         }

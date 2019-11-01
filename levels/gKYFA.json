@@ -54,6 +54,12 @@
                     "input": "Look at object",
                     "output": "Door to the Zeta",
                     "isDefault": true
+                },
+                {
+                    "input": "Go inside",
+                    "output": "Oh yeah, let's order some drinks",
+                    "isDefault": true,
+                    "navigateTo":"GUokj"
                 }
             ]
         },

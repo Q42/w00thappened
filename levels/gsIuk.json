@@ -15,6 +15,12 @@
                     "input": "Lock the door",
                     "output": "It's locked now",
                     "isDefault": true
+                },
+                {
+                    "input": "Walk out",
+                    "output": "Ok",
+                    "isDefault": true,
+                    "navigateTo":"xmLny"
                 }
             ]
         },
