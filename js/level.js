@@ -97,9 +97,12 @@ export default class Level {
 	printText(string, x, y) {
 		if(this.lastText)
 			this.lastText.remove();
-			
+
 		this.lastText = new Text(this.micrio, string, x, y);
-		setTimeout(function(){ this.lastText.remove(); }, 5000);
+		setTimeout(function(){ 
+			if(this.lastText)
+				this.lastText.remove(); 
+			}.bind(this), 5000);
 	}
 
 	deactivate(){
