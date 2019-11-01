@@ -22,6 +22,10 @@ export default class Level {
 
 	}
 
+	clickedItem(marker) {
+		console.log('clicked on item!', marker);
+	}
+
 	getItemForId(itemId) {
 		var item = level.items.filter(function (item) {
 			return item.micrioId == itemId;
