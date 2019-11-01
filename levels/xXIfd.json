@@ -9,7 +9,14 @@
                 {
                     "input": "Look at object",
                     "output": "It's the door, let's get out of here.",
-                    "isDefault": true
+                    "isDefault": true,
+                    "continue":[1]
+                },
+                {
+                    "id": 1,
+                    "input": "Open door",
+                    "output": "That's better.",
+                    "navigateTo":"LzKWd"
                 }
             ]
         },
