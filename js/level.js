@@ -47,7 +47,9 @@ export default class Level {
 			});
 			
 			console.log("Render replies", replies);
-
+			if(marker._actions)
+				marker._actions.toggle(item);
+			
 			marker._actions = new ActionPopup(this, marker, replies);
 			marker._actions.toggle(item);
 		}
