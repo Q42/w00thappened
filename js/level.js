@@ -63,8 +63,7 @@ export default class Level {
 				console.log("Selected action", action);
 
 				//Render reply
-				//TODO: get X Y for micrio item: getMicrioObjectForId(itemId) implementeren
-				this.printText(action.output, 0, 0);
+				this.printText(action.output, marker.x, marker.y);
 
 				if(action.continue)
 					this.renderConversationOptions(marker, item, action.continue);
@@ -81,10 +80,6 @@ export default class Level {
 		});
 
 		return item[0];
-	}
-
-	getMicrioObjectForId(itemId) {
-		//TODO: How to get Micrio object for id?
 	}
 
 	//Renders a box to select a conversation item
