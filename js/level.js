@@ -53,11 +53,10 @@ export default class Level {
 		var item = this.getItemForId(itemId);
 		if(item != null)
 		{
-			var actions = item.actions.filter(function (item) {
+			var action = item.actions.find(function (item) {
 				return item.input == action;
 			});
 
-			var action = actions[0];
 			if(action != null)
 			{
 				console.log("Selected action", action);
@@ -68,18 +67,20 @@ export default class Level {
 				if(action.continue)
 					this.renderConversationOptions(marker, item, action.continue);
 
-				//TODO: run custom script if available
+				if(action.script){
+					//TODO: run custom script if available
+				}
 			}
 		}
 
 	}
 
 	getItemForId(itemId) {
-		var item = this.level.items.filter(function (item) {
+		var item = this.level.items.find(function (item) {
 			return item.micrioId == itemId;
 		});
 
-		return item[0];
+		return item;
 	}
 
 	//Renders a box to select a conversation item
