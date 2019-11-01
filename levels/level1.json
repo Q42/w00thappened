@@ -4,6 +4,7 @@
     "items":[
         {
             "micrioId": "id-from-micrio-editor",
+            "defaultConversationOptions": [1],
             "actions":[
                 {
                     "name": "Look at object",
@@ -15,6 +16,12 @@
                     "output": "Got it",
                     "intentoryAdd": true,
                     "script": "custom-javascript-action??"
+                },
+                {
+                    "name": "Give key",
+                    "output": "Thanks",
+                    "inentoryFilter": ["key"],
+                    "script": "custom-javascript-action??"
                 }
             ],
             "conversations":[
@@ -22,8 +29,16 @@
                     "id": 1,
                     "input": "Whaaazaaaaap?",
                     "output": "Go away",
-                    "continue": 2,
+                    "continue": [2],
                     "inentoryFilter": ["only show this conversation option when item is in inventory"],
+                    "script":"custom-javascript-action??"
+                },
+                {
+                    "id": 1,
+                    "input": "Who are you?",
+                    "output": "Mr. X",
+                    "continue": [2],
+                    "inentoryFilter": ["key"],
                     "script":"custom-javascript-action??"
                 },
                 {

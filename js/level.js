@@ -22,10 +22,35 @@ export default class Level {
 
 	talkTo(itemId)
 	{
-		var item = level.items
+		var item = level.items.filter(function (item) {
+			return item.micrioId == itemId;
+		});
+
+		if(item != null)
+		{
+			//Render options
+		}
 	}
 
-	
+	reply(itemId, selectedId)
+	{
+		var item = level.items.filter(function (item) {
+			return item.micrioId == itemId;
+		});
+
+		if(item != null)
+		{
+			var reply = item.conversations.filter(function (item) {
+				return item.id == selectedId;
+			});
+
+			if(reply != null)
+			{
+				//Render reply
+			}
+		}
+	}
+
 
 	deactivate(){
 		console.log('Deactivate level', this.micrio.id);
