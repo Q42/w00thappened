@@ -1,0 +1,122 @@
+{
+    "name": "Bunker",
+    "micrioId": "LzKWd",
+    "items":[
+        {
+            "micrioId": "ebe82a23-0f81-0493-8179-632b3ea87a51",
+            "name":"Buttons",
+            "actions":[
+                {
+                    "input": "Look at object",
+                    "output": "It looks like buttons, maybe I can press them",
+                    "isDefault": true,
+                    "continue": [1,2,3]
+                },
+                {
+                    "id":1,
+                    "input": "Press the green button",
+                    "output": "Nothing happens"
+                },
+                {
+                    "id":2,
+                    "input": "Press the orange button",
+                    "output": "Nothing happens"
+                },
+                {
+                    "id":3,
+                    "input": "Press the red button",
+                    "output": "Nothing happens"
+                }
+
+            ]
+        },
+        {
+            "micrioId": "6a39aedb-f55d-9060-5d78-6b8a949b938f",
+            "name":"Sky",
+            "actions":[
+                {
+                    "input": "Look at sky",
+                    "output": "It raining",
+                    "isDefault": true
+                }
+            ]
+        },
+        {
+            "micrioId": "27384ed2-023e-5678-1b97-d0c673f87769",
+            "name":"Bunker door",
+            "actions":[
+                {
+                    "input": "Look",
+                    "output": "It doesn't look like anything to me",
+                    "isDefault": true
+                }
+            ]
+        },
+        {
+            "micrioId": "70326b66-8ee2-2a24-8869-238f611a5132",
+            "name":"Bag",
+            "actions":[
+                {
+                    "input": "Look at object",
+                    "output": "It's a bag",
+                    "isDefault": true
+                }
+            ]
+        },
+        {
+            "micrioId": "3adc28fc-6890-91bc-39b8-3422f448848e",
+            "name":"Bottle",
+            "actions":[
+                {
+                    "input": "Look at object",
+                    "output": "A bottle of whiskey",
+                    "isDefault": true,
+                    "continue": [1]
+                },
+                {
+                    "id": 1,
+                    "input": "Drink whiskey",
+                    "output": "Just what I needed"
+                }
+            ]
+        },
+        {
+            "micrioId": "0396805d-b4a4-bed5-293e-adb6538f0aa7",
+            "name":"Note",
+            "actions":[
+                {
+                    "input": "Look at object",
+                    "output": "It's a piece of paper",
+                    "isDefault": true
+                },
+                {
+                    "input": "Look at object",
+                    "output": "It's a piece of paper",
+                    "isDefault": true
+                }
+            ]
+        },
+        {
+            "micrioId": "7dea9d15-28bd-b416-3a10-c90a9727ab0f",
+            "name":"Beer coaster",
+            "actions":[
+                {
+                    "input": "Look at object",
+                    "output": "It's a beer coaster",
+                    "isDefault": true
+                }
+            ]
+        },
+        {
+            "micrioId": "087faf64-90c6-4296-d930-ebc6de307ae9",
+            "name":"Slipper",
+            "actions":[
+                {
+                    "input": "Look at object",
+                    "output": "Only one slipper",
+                    "isDefault": true
+                }
+            ]
+        }
+    ]
+}
