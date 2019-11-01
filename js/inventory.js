@@ -17,7 +17,7 @@ export default class Inventory {
 			sprite: 1,
 			description: 2,
 			useSound: 3,
-			popupSound: 4,
+			popupSprite: 4,
 			amount: 5,
 			length: 6,
 		}
@@ -27,23 +27,21 @@ export default class Inventory {
 		this.itemDefinitions = [];
 
 		this.init();
-		this.addItemToInv("key", 4);
-		this.removeItemFromInv("key", 2);
-		console.log('Inventory: ', this.inventory);
-		console.log('Definitions', this.itemDefinitions);
+		//this.addItemToInv("key", 4);
+		//this.removeItemFromInv("key", 2);
 		this.drawCanvas();
 	}
 
 	init() {
 		// Add the empty slot as item definition
-		this.addItemDef('none', 'red', '', '', '', 0);
+		this.addItemDef('none', 'black', '', '', '', 0);
 		// Fill all inventory slots with item none.
 		this.inventory[this.inventorySize - 1] = this.itemTypes[0];
 		this.inventory.fill(this.itemTypes[0]);
 	}
 
 	// Dit komt straks uit Micrio
-	addItemToInv(itemType, amount) {
+	addItemToInv(itemType, sprite, description, useSound, popupSprite, amount) {
 		const inventoryIndex = this.inventory.findIndex(type => type === itemType); // Returns -1 if item is not in inventory
 		if (inventoryIndex == -1) {
 			// If item is not in inventory
@@ -51,13 +49,16 @@ export default class Inventory {
 			// Add to inventory
 			this.inventory[emptySlotIndex] = itemType;
 			// Add new definition
-			this.addItemDef('key', 'green', '', '', '', 0); // Waardes uit Micrio
+			this.addItemDef(itemType, sprite, description, useSound, popupSprite, 0); // Waardes uit Micrio
 			this.itemDefinitions[this.itemTypes.length - 1][this.ItemProperties.amount] = amount;
 		} else {
 			// If item was already in inventory then we increase the amount
 			const itemDefIndex = this.itemTypes.findIndex(type => type === itemType);
 			this.itemDefinitions[itemDefIndex][this.ItemProperties.amount] += amount;
 		}
+		this.drawCanvas();
+		console.log('Inventory: ', this.inventory);
+		console.log('Definitions', this.itemDefinitions);
 	}
 
 	removeItemFromInv(itemType, amount) {
@@ -74,7 +75,7 @@ export default class Inventory {
 		}
 	}
 
-	addItemDef(itemType, sprite, description, useSound, popupSound, amount) {
+	addItemDef(itemType, sprite, description, useSound, popupSprite, amount) {
 		// Update ItemType list
 		this.itemTypes.push(itemType);
 		const itemDefIndex = this.itemTypes.length -1;
@@ -84,12 +85,13 @@ export default class Inventory {
 		this.itemDefinitions[itemDefIndex][this.ItemProperties.sprite] = sprite;
 		this.itemDefinitions[itemDefIndex][this.ItemProperties.description] = description;
 		this.itemDefinitions[itemDefIndex][this.ItemProperties.useSound] = useSound;
-		this.itemDefinitions[itemDefIndex][this.ItemProperties.popupSound] = popupSound;
+		this.itemDefinitions[itemDefIndex][this.ItemProperties.popupSprite] = popupSprite;
 		this.itemDefinitions[itemDefIndex][this.ItemProperties.amount] = amount;
 	}
 
 	// Drawing logic
 	drawCanvas() {
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		const size = drawSize();
 		const boxSize = 16;
 		const scale = 4;
@@ -98,16 +100,17 @@ export default class Inventory {
 		ctx.fillStyle = 'brown';
 		ctx.fillRect(0, 0, size.width * scale, size.height * scale);
 		// Draw boxes
-		ctx.fillStyle = 'black';
 		let pos = {x: 0, y: padding * scale};
 		for (let index = 0; index < this.inventory.length; index++) {
-			const item = this.inventory[index];
+			const itemDefIndex = this.itemTypes.findIndex(type => type === this.inventory[index]);
+			const item = this.itemDefinitions[itemDefIndex];
 			pos.x += boxSize * scale + padding * scale;
 			if (index % 5 == 0) {
 				// New row
 				pos.x = padding * scale;
 				if (index != 0) pos.y += boxSize * scale + padding * scale;
 			}
+			ctx.fillStyle = item[this.ItemProperties.sprite];
 			ctx.fillRect(pos.x, pos.y, boxSize * scale, boxSize * scale);
 		}
 	}

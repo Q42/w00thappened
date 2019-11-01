@@ -7,7 +7,7 @@
             "name":"Entrance",
             "actions":[
                 {
-                    "input": "Look at object",
+                    "input": "Look",
                     "output": "I just got out of that hole",
                     "isDefault": true
                 },
@@ -46,7 +46,7 @@
             "name":"Forest",
             "actions":[
                 {
-                    "input": "Look at object",
+                    "input": "Look down",
                     "output": "It looks like my way to freedom.",
                     "isDefault": true
                 },

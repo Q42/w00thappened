@@ -66,6 +66,12 @@
                     "input": "Look",
                     "output": "It doesn't look like anything to me",
                     "isDefault": true
+                },
+                {
+                    "input": "Open door",
+                    "output": "Easy",
+                    "isDefault": true,
+                    "navigateTo":"xXIfd"
                 }
             ]
         },
