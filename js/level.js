@@ -29,20 +29,29 @@ export default class Level {
 		var item = this.getItemForId(itemId);
 		if(item != null)
 		{
-			//Render possible actions in item.actions
-			var actions = item.actions
-			.filter(function (action) {
-				return action.isDefault == true;
+			this.renderActionOptions(marker, item, null);
+		}
+	}
+
+	//Renders a box to select a conversation item
+	renderActionOptions(marker, item, idList) {
+		//TODO: Render dialog with all conversation options
+		if(item != null)
+		{
+			var replies = item.actions.filter(function (action) {
+				//TODO: Also filter on inventory items
+				return (idList != null && idList.includes(action.id)) || (idList == null && action.isDefault);
 			})
-			.map(function (action) {
-				return action.input
+			.map(function (reply) {
+				return reply.input
 			});
+			
+			console.log("Render replies", replies);
 
-			if(!marker._actions)
-				marker._actions = new ActionPopup(this, marker, actions);
-
+			marker._actions = new ActionPopup(this, marker, replies);
 			marker._actions.toggle(item);
 		}
+
 	}
 
 	//Reply to item with a selected reply
@@ -65,7 +74,7 @@ export default class Level {
 				this.printText(action.output, marker.x, marker.y);
 
 				if(action.continue)
-					this.renderConversationOptions(marker, item, action.continue);
+					this.renderActionOptions(marker, item, action.continue);
 
 				if(action.script){
 					//TODO: run custom script if available
@@ -75,33 +84,13 @@ export default class Level {
 
 	}
 
+	
 	getItemForId(itemId) {
 		var item = this.level.items.find(function (item) {
 			return item.micrioId == itemId;
 		});
 
 		return item;
-	}
-
-	//Renders a box to select a conversation item
-	renderConversationOptions(marker, item, idList) {
-		//TODO: Render dialog with all conversation options
-		if(item != null)
-		{
-			var replies = item.actions.filter(function (action) {
-				//TODO: Also filter on inventory items
-				return idList.includes(action.id);
-			})
-			.map(function (reply) {
-				return reply.input
-			});
-			
-			console.log("Render replies", replies);
-
-			marker._actions = new ActionPopup(this, marker, replies);
-			marker._actions.toggle(item);
-		}
-
 	}
 
 	printText(string, x, y) {
