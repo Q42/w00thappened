@@ -1,5 +1,6 @@
 import Level from './level.js';
 import Inventory from './inventory.js';
+import { fragmentShader } from './shader.js';
 
 export default class Game {
 	constructor(){
@@ -23,9 +24,12 @@ export default class Game {
 	}
 
 	fontLoaded(){
-		if(this._container && this._container['micrio'])
+		if(this._container && this._container['micrio']) {
 			this.created(this.micrio = this._container['micrio']);
+			this.customShader();
+		}
 		else window.addEventListener('micrio-created', this.created);
+		window.addEventListener('micrio-created', this.customShader.bind(this));
 	}
 
 	created(e){
@@ -36,6 +40,9 @@ export default class Game {
 		}
 		if(this.micrio['isLoaded']) this.init();
 		else this._container.addEventListener('metadata', this.init);
+		this._container.addEventListener('pre-metadata', this.fixForVR.bind(this))
+		this._container.addEventListener('click', this.onclick.bind(this));
+		this._container.addEventListener('mousemove', this.mousemove.bind(this));
 	}
 
 	init(){
@@ -73,6 +80,37 @@ export default class Game {
 	// Load saved data and set game to loaded state
 	loadGame(){
 
+	}
+
+	// Make all markers rendered in WebGL and set custom shader
+	fixForVR() {
+		this._container.micrio['data']['forceGL'] = true;
+	}
+
+	// Set custom shader
+	customShader(e) {
+		(e ? e.detail : this.micrio)['data']['fragmentShader'] = fragmentShader;
+	}
+
+	// For in browser
+	onclick(e) {
+		if(!this.micrio || !this.micrio['THREE']) return;
+		const hit = this.micrio['THREE']['getCast']([e.clientX, e.clientY])[0];
+		const marker = hit && hit['object']['marker'];
+		if(marker) {
+			if(marker['link']) marker.open();
+			else this.currentLevel.clickedItem(marker);
+		}
+	}
+
+	mousemove(e) {
+		if(!this.micrio || !this.micrio['THREE']) return;
+		const hit = this.micrio['THREE']['getCast']([e.clientX, e.clientY])[0];
+		const marker = hit && hit['object']['marker'];
+		const c = this.micrio['el'].classList;
+		this._container.title = marker && marker.title || '';
+		if(marker) { if(!c.contains('hover')) c.add('hover') }
+		else if(c.contains('hover')) c.remove('hover');
 	}
 
 }
