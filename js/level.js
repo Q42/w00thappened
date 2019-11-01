@@ -1,9 +1,12 @@
 import Text from './text.js';
+import ActionPopup from './action.js';
 
 export default class Level {
 	constructor(game, micrio) {
 		this.game = game;	
-		this.micrio = micrio;	
+		this.micrio = micrio;
+
+		this.actions = new ActionPopup(this);
 	}
 
 	activate(){
@@ -28,9 +31,10 @@ export default class Level {
 		console.log('clicked on item!', marker);
 
 		var itemId = marker.id;
-		var item = this.getItemForId(itemId);
+		var item = marker || this.getItemForId(itemId);
 		if(item != null)
 		{
+			this.actions.toggle(item);
 			//Render possible actions in item.actions
 
 		}
