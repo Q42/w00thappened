@@ -63,12 +63,12 @@ export default class Game {
 	}
 
 	setLevel(eventOrMicrio) {
-		const micrio = eventOrMicrio.detail ? eventOrMicrio.detail : eventOrMicrio;
+		const micrio = this.micrio = eventOrMicrio.detail ? eventOrMicrio.detail : eventOrMicrio;
 
 		if(this.currentLevel) this.currentLevel.deactivate();
 
 		if(!this.levels[micrio.id])
-			this.levels[this.micrio.id] = new Level(this, micrio);
+			this.levels[micrio.id] = new Level(this, micrio);
 
 		this.currentLevel = this.levels[this.micrio.id];
 		this.micrio['THREE']['onClickVR'] = this.onclicked;
