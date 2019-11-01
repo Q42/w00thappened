@@ -11,17 +11,19 @@ export default class ActionPopup {
 		this.actions = actions;
 
 		this.opened = false;
+		this.hovered = null;
 
 		const lineHeight = 5;
 		const height = lineHeight * this.actions.length;
 
 		this.mesh = new THREE['Mesh'](
-			new THREE['PlaneBufferGeometry'](20, height+5),
+			new THREE['PlaneBufferGeometry'](25, height+5),
 			new THREE['MeshBasicMaterial']({
 				'color': 0x222222,
 				'depthWrite': false,
 				'depthTest': false,
 				'transparent': true,
+				'opacity': .5
 			})
 		);
 
@@ -29,7 +31,8 @@ export default class ActionPopup {
 		this.actions.forEach(a => {
 			const text = new Text(this.micrio, a, null, null, '#ffffff', true);
 			text.onload = () => {
-				text.mesh.position.y = y - lineHeight/2;
+				text.mesh['position'].y = y - lineHeight/2;
+				text.mesh['material']['opacity'] = .75;
 				this.mesh.add(text.mesh);
 				y -= lineHeight;
 				text.mesh.onclick = () => {

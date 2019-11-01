@@ -123,8 +123,19 @@ export default class Game {
 		let hit = this.micrio['THREE']['getCast']([e.clientX, e.clientY])[0];
 
 		// Try hoverstate for popup
-		if(!hit && this.currentPopup)
+		if(!hit && this.currentPopup) {
 			hit = this.micrio['THREE']['getCast']([e.clientX, e.clientY], this.currentPopup.mesh.children)[0];
+
+			if(hit != this.currentPopup.hovered) {
+				if(this.currentPopup.hovered)
+					this.currentPopup.hovered['object']['material']['opacity'] = .75;
+
+				if(hit) hit['object']['material']['opacity'] = 1;
+			}
+			this.currentPopup.hovered = hit;
+			this.micrio['camera']['render']();
+
+		}
 
 		const marker = hit && hit['object']['marker'];
 		const c = this.micrio['el'].classList;
