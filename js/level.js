@@ -1,3 +1,5 @@
+import Text from './text.js';
+
 export default class Level {
 	constructor(game, micrio) {
 		this.game = game;	
@@ -32,6 +34,9 @@ export default class Level {
 		}
 	}
 
+	printText(string, x, y) {
+		new Text(this.micrio, string, x, y);
+	}
 	reply(itemId, selectedId)
 	{
 		var item = level.items.filter(function (item) {
