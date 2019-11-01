@@ -4,7 +4,7 @@
     "items":[
         {
             "micrioId": "id-from-micrio-editor",
-            "defaultConversationOptions": [1],
+            "defaultConversationOptions": [1,2],
             "actions":[
                 {
                     "name": "Look at object",
@@ -29,12 +29,12 @@
                     "id": 1,
                     "input": "Whaaazaaaaap?",
                     "output": "Go away",
-                    "continue": [2],
+                    "continue": [4],
                     "inentoryFilter": ["only show this conversation option when item is in inventory"],
                     "script":"custom-javascript-action??"
                 },
                 {
-                    "id": 1,
+                    "id": 2,
                     "input": "Who are you?",
                     "output": "Mr. X",
                     "continue": [2],
@@ -42,7 +42,7 @@
                     "script":"custom-javascript-action??"
                 },
                 {
-                    "id": 2,
+                    "id": 3,
                     "input": "Nice talking to you"
                 }
             ]

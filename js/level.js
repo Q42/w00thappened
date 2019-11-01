@@ -20,6 +20,8 @@ export default class Level {
 		console.log("Start level:" + level.name);
 		this.level = level;
 
+		this.talkTo("id-from-micrio-editor");
+		this.say("id-from-micrio-editor", 1);
 	}
 
 	clickedItem(marker) {
@@ -27,7 +29,7 @@ export default class Level {
 	}
 
 	getItemForId(itemId) {
-		var item = level.items.filter(function (item) {
+		var item = this.level.items.filter(function (item) {
 			return item.micrioId == itemId;
 		});
 
@@ -55,16 +57,13 @@ export default class Level {
 		if(item != null)
 		{
 			//Render options
-			renderConversationOptions(item, item.defaultConversationOptions);
-
+			this.renderConversationOptions(item, item.defaultConversationOptions);
 		}
 	}
 
 	//Renders a box to select a conversation item
 	renderConversationOptions(item, idList) {
 		//TODO: Render dialog with all conversation options
-
-		var item = this.getItemForId(itemId);
 		if(item != null)
 		{
 			var replies = item.conversations.filter(function (item) {
@@ -72,6 +71,7 @@ export default class Level {
 				return idList.includes(item.id);
 			});
 			
+			console.log("Render replies", replies);
 		}
 
 	}
@@ -81,7 +81,7 @@ export default class Level {
 	}
 
 	//Reply to item with a selected reply
-	reply(itemId, selectedId)
+	say(itemId, selectedId)
 	{
 		var item = this.getItemForId(itemId);
 		if(item != null)
@@ -90,14 +90,17 @@ export default class Level {
 				return item.id == selectedId;
 			});
 
-			if(replies[0] != null)
+			var reply = replies[0];
+			if(reply != null)
 			{
+				console.log("Using reply", reply);
+
 				//Render reply
 				//TODO: get X Y for micrio item: getMicrioObjectForId(itemId) implementeren
-				printText(reply.output, 0, 0);
+				this.printText(reply.output, 0, 0);
 
 				if(reply.continue)
-					renderConversationOptions(item, reply.continue);
+					this.renderConversationOptions(item, reply.continue);
 
 				//TODO: run custom script if available
 			}
