@@ -1,8 +1,11 @@
 const canvas = document.createElement("canvas");
 canvas.id = 'inventory';
-const scale = 4;
-canvas.width = drawSize().width * scale;
-canvas.height = drawSize().height * scale;
+const size = drawSize();
+const height = size.height
+const width = size.width;
+const scale = size.scale;
+canvas.width = width * scale;
+canvas.height = height * scale;
 document.body.appendChild(canvas);
 const ctx = canvas.getContext("2d");
 
@@ -29,7 +32,7 @@ export default class Inventory {
 		this.init();
 		//this.addItemToInv("key", 4);
 		//this.removeItemFromInv("key", 2);
-		this.drawCanvas();
+		this.drawInventory();
 	}
 
 	init() {
@@ -56,7 +59,7 @@ export default class Inventory {
 			const itemDefIndex = this.itemTypes.findIndex(type => type === itemType);
 			this.itemDefinitions[itemDefIndex][this.ItemProperties.amount] += amount;
 		}
-		this.drawCanvas();
+		this.drawInventory();
 		console.log('Inventory: ', this.inventory);
 		console.log('Definitions', this.itemDefinitions);
 	}
@@ -90,15 +93,17 @@ export default class Inventory {
 	}
 
 	// Drawing logic
-	drawCanvas() {
+	drawInventory() {
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		const size = drawSize();
-		const boxSize = 16;
-		const scale = 4;
-		const padding = 4;
+		const height = size.height
+		const width = size.width;
+		const boxSize = size.boxSize;
+		const scale = size.scale;
+		const padding = size.padding;
 
 		ctx.fillStyle = 'brown';
-		ctx.fillRect(0, 0, size.width * scale, size.height * scale);
+		ctx.fillRect(0, 0, width * scale, height * scale);
 		// Draw boxes
 		let pos = {x: 0, y: padding * scale};
 		for (let index = 0; index < this.inventory.length; index++) {
@@ -112,13 +117,41 @@ export default class Inventory {
 			}
 			ctx.fillStyle = item[this.ItemProperties.sprite];
 			ctx.fillRect(pos.x, pos.y, boxSize * scale, boxSize * scale);
+			// Draw image
+			if (item[this.ItemProperties.sprite] != 'black') {
+				const img = new Image;
+				img.src = item[this.ItemProperties.sprite];
+				img.onload = function() {
+					ctx.drawImage(img, 4 * scale, 4 * scale, boxSize * scale, boxSize * scale);
+				}
+			}
 		}
 	}
+
+	drawItemInspect() {
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		const size = drawSize();
+		const height = size.height
+		const width = size.width;
+		const boxSize = size.boxSize;
+		const scale = size.scale;
+		const padding = size.padding;
+
+
+	}
+
 }
 function drawSize() {
 	const boxSize = 16;
 	const padding = 4;
+	const scale = 4;
 	const _width = 5 * boxSize + 6 * padding;
 	const _height = 4 * boxSize + 5 * padding;
-	return {width: _width, height: _height};
+	return {
+		width: _width, 
+		height: _height,
+		boxSize: boxSize,
+		padding: padding,
+		scale: scale,
+	};
 }

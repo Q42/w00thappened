@@ -116,11 +116,11 @@ export default class Level {
 
 	pickUpItem(data) {
 		const title = data.title;
-		const sprite = data.images[0];
+		const sprite = (data.images[1].src) ? data.images[1].src : 'white';
 		const description = 'dsafdsaf';
 		const useSound = 'dafasd';
-		const popupSprite = data.images[1];
+		const popupSprite = data.images[1].src;
 		const amount = 1;
-		this.game.inventory.addItemToInv(title, 'white', description, useSound, popupSprite, amount);
+		this.game.inventory.addItemToInv(title, sprite, description, useSound, popupSprite, amount);
 	}
 }
