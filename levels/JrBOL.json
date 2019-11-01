@@ -25,7 +25,7 @@
             "actions":[
                 {
                     "input": "Look at object",
-                    "output": "A road out of the forrest",
+                    "output": "A road out of the forest",
                     "isDefault": true
                 },
                 {
@@ -43,7 +43,7 @@
             "actions":[
                 {
                     "input": "Look at object",
-                    "output": "A road out of the forrest",
+                    "output": "A road out of the forest",
                     "isDefault": true
                 },
                 {
