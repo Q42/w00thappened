@@ -4,7 +4,7 @@ body {
   padding: 0;
   background: #000;
   height: 100%;
-  font-family: Arial;
+  font-family: 'Acme', sans-serif;
 }
 .micrio-container {
   width: 100%;
