@@ -71,6 +71,7 @@ export default class Level {
 			if(action != null)
 			{
 				console.log("Selected action", action);
+				this.pickUpItem(marker.json);
 
 				//Render reply
 				this.printText(action.output, marker.x, marker.y);
@@ -111,5 +112,15 @@ export default class Level {
 
 	deactivate(){
 		console.log('Deactivate level', this.micrio.id);
+	}
+
+	pickUpItem(data) {
+		const title = data.title;
+		const sprite = data.images[0];
+		const description = 'dsafdsaf';
+		const useSound = 'dafasd';
+		const popupSprite = data.images[1];
+		const amount = 1;
+		this.game.inventory.addItemToInv(title, 'white', description, useSound, popupSprite, amount);
 	}
 }
