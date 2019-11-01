@@ -22,36 +22,76 @@ export default class Level {
 
 	}
 
-	talkTo(itemId)
-	{
+	getItemForId(itemId) {
 		var item = level.items.filter(function (item) {
 			return item.micrioId == itemId;
 		});
 
+		return item[0];
+	}
+
+	interactWith(itemId)
+	{
+		var item = this.getItemForId(itemId);
+		if(item != null)
+		{
+			//Render possible actions in item.actions
+
+		}
+	}
+
+	//Initiate a conversation with item
+	talkTo(itemId)
+	{
+		var item = this.getItemForId(itemId);
 		if(item != null)
 		{
 			//Render options
+			renderConversationOptions(item, item.defaultConversationOptions);
+
 		}
+	}
+
+	//Renders a box to select a conversation item
+	renderConversationOptions(item, idList) {
+		//TODO: Render dialog with all conversation options
+
+		var item = this.getItemForId(itemId);
+		if(item != null)
+		{
+			var replies = item.conversations.filter(function (item) {
+				//TODO: Also filter on inventory items
+				return idList.includes(item.id);
+			});
+			
+		}
+
 	}
 
 	printText(string, x, y) {
 		new Text(this.micrio, string, x, y);
 	}
+
+	//Reply to item with a selected reply
 	reply(itemId, selectedId)
 	{
-		var item = level.items.filter(function (item) {
-			return item.micrioId == itemId;
-		});
-
+		var item = this.getItemForId(itemId);
 		if(item != null)
 		{
-			var reply = item.conversations.filter(function (item) {
+			var replies = item.conversations.filter(function (item) {
 				return item.id == selectedId;
 			});
 
-			if(reply != null)
+			if(replies[0] != null)
 			{
 				//Render reply
+				//TODO: get X Y for item
+				printText(reply.output, 0, 0);
+
+				if(reply.continue)
+					renderConversationOptions(item, reply.continue);
+
+				//TODO: run custom script if available
 			}
 		}
 	}
