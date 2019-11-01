@@ -30,6 +30,10 @@ export default class Level {
 		return item[0];
 	}
 
+	getMicrioObjectForId(itemId) {
+		//TODO: How to get Micrio object for id?
+	}
+
 	interactWith(itemId)
 	{
 		var item = this.getItemForId(itemId);
@@ -85,7 +89,7 @@ export default class Level {
 			if(replies[0] != null)
 			{
 				//Render reply
-				//TODO: get X Y for item
+				//TODO: get X Y for micrio item: getMicrioObjectForId(itemId) implementeren
 				printText(reply.output, 0, 0);
 
 				if(reply.continue)
