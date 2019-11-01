@@ -14,7 +14,6 @@ export default class Level {
 		fetch("/levels/level1.json")
 			.then(response => response.json())
 			.then(json => this.startLevel(json));
-
 	}
 
 	startLevel(level) {
@@ -22,6 +21,7 @@ export default class Level {
 		this.level = level;
 	}
 
+	//From game logic, when micrio marker is clicked
 	clickedItem(marker) {
 		console.log('clicked on item!', marker);
 
@@ -54,7 +54,7 @@ export default class Level {
 
 	}
 
-	//Reply to item with a selected reply
+	//Selected item from action options
 	actionItem(marker, action) {
 		console.log('action item!', action, marker);
 
@@ -83,7 +83,6 @@ export default class Level {
 		}
 
 	}
-
 	
 	getItemForId(itemId) {
 		var item = this.level.items.find(function (item) {
