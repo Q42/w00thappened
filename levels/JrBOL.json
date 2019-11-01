@@ -8,12 +8,12 @@
             "actions":[
                 {
                     "input": "Look at object",
-                    "output": "It's an old scooter",
+                    "output": "It's an old scooter. I should probably not drive being this wasted",
                     "isDefault": true
                 },
                 {
                     "input": "Start scooter",
-                    "output": "This smells bad",
+                    "output": "Buckle Up Buckaroo!",
                     "isDefault": true,
                     "navigateTo":"dAoIB"
                 }

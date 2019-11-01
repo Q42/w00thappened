@@ -36,7 +36,7 @@
             "actions":[
                 {
                     "input": "Look at object",
-                    "output": "Not sure what this is",
+                    "output": "Some sort of storage device it seems...",
                     "isDefault": true
                 }
             ]
@@ -75,7 +75,7 @@
             "actions":[
                 {
                     "input": "Look at object",
-                    "output": "It's a bag",
+                    "output": "It's a medkit. This seems untouched, might come in handy..",
                     "isDefault": true
                 }
             ]
@@ -119,8 +119,14 @@
             "actions":[
                 {
                     "input": "Look at object",
-                    "output": "It's a beer coaster",
-                    "isDefault": true
+                    "output": "You look at a beer coaster with a message on the back",
+                    "isDefault": true,
+                    "continue":[1]
+                },
+                {
+                    "id": 1,
+                    "input": "Read message on the back",
+                    "output": "CU at our Gig, Love Amy. || Amy, Should I know you? I should, probably…. This is weird… "
                 }
             ]
         },
@@ -130,7 +136,7 @@
             "actions":[
                 {
                     "input": "Look at object",
-                    "output": "Only one slipper",
+                    "output": "You never walk alone, well I guess that wasn’t true, was it.. ",
                     "isDefault": true
                 }
             ]

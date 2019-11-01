@@ -24,8 +24,8 @@
             "name":"Saw",
             "actions":[
                 {
-                    "input": "Look at object",
-                    "output": "It's a saw",
+                    "input": "Look at saw",
+                    "output": "I don’t think I can use it to take a tree down, but something smaller would be OK.. I think.. ",
                     "isDefault": true
                 }
             ]
@@ -35,8 +35,8 @@
             "name":"Rope",
             "actions":[
                 {
-                    "input": "Look at object",
-                    "output": "It's a rope",
+                    "input": "Look at rope",
+                    "output": "Great, I was afraid I had to live on this plateau forever",
                     "isDefault": true
                 }
             ]
