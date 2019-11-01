@@ -41,6 +41,10 @@ export default class Level {
 		}
 	}
 
+	actionItem(marker, action) {
+		console.log('action item!', action, marker);
+	}
+
 	getItemForId(itemId) {
 		var item = this.level.items.filter(function (item) {
 			return item.micrioId == itemId;

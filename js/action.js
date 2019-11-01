@@ -30,10 +30,13 @@ export default class ActionPopup {
 		this.actions.forEach(a => {
 			const text = new Text(this.micrio, a, null, null, '#ffffff', true);
 			text.onload = () => {
-				console.log('loaded!')
 				text.mesh.position.y = y - lineHeight/2;
 				this.mesh.add(text.mesh);
 				y -= lineHeight;
+				text.mesh.onclick = () => {
+					this.level.actionItem(this.item, a);
+					this.close();
+				}
 			}
 		})
 
@@ -48,6 +51,8 @@ export default class ActionPopup {
 	open(){
 		if(this.opened) return;
 		this.opened = true;
+
+		this.level.game.currentPopup = this;
 
 		const coo = this.micrio['THREE']['getPosition'](
 			this.item.x+.1,
@@ -65,6 +70,9 @@ export default class ActionPopup {
 	close() {
 		if(!this.opened) return;
 		this.opened = false;
+
+		this.level.game.currentPopup = null;
+
 		this.micrio['THREE']['scene']['remove'](this.mesh);
 		this.micrio['camera']['render']();
 	}

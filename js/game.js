@@ -9,6 +9,7 @@ export default class Game {
 		this.inventory = null;
 		this.levels = {};
 		this.currentLevel = null;
+		this.currentPopup = null;
 
 		// Main container
 		this._container = document.querySelector('micr-io');
@@ -96,21 +97,40 @@ export default class Game {
 	// For in browser
 	onclick(e) {
 		if(!this.micrio || !this.micrio['THREE']) return;
+
+		// First check if clicked action menu
+		if(this.currentPopup) {
+			const hit = this.micrio['THREE']['getCast']([e.clientX, e.clientY], this.currentPopup.mesh.children)[0];
+			if(hit && hit['object'].onclick) {
+				hit['object'].onclick();
+				return;
+			}
+		}
+
+		// Otherwise check for marker click
 		const hit = this.micrio['THREE']['getCast']([e.clientX, e.clientY])[0];
 		const marker = hit && hit['object']['marker'];
 		if(marker) {
 			if(marker['link']) marker.open();
 			else this.currentLevel.clickedItem(marker);
 		}
+
+
 	}
 
 	mousemove(e) {
 		if(!this.micrio || !this.micrio['THREE']) return;
-		const hit = this.micrio['THREE']['getCast']([e.clientX, e.clientY])[0];
+		let hit = this.micrio['THREE']['getCast']([e.clientX, e.clientY])[0];
+
+		// Try hoverstate for popup
+		if(!hit && this.currentPopup)
+			hit = this.micrio['THREE']['getCast']([e.clientX, e.clientY], this.currentPopup.mesh.children)[0];
+
 		const marker = hit && hit['object']['marker'];
 		const c = this.micrio['el'].classList;
+
 		this._container.title = marker && marker.title || '';
-		if(marker) { if(!c.contains('hover')) c.add('hover') }
+		if(hit) { if(!c.contains('hover')) c.add('hover') }
 		else if(c.contains('hover')) c.remove('hover');
 	}
 
