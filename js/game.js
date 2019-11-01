@@ -12,6 +12,7 @@ export default class Game {
 		// Function bindings
 		this.created = this.created.bind(this);
 		this.init = this.init.bind(this);
+		this.setLevel = this.setLevel.bind(this);
 
 		// Main micrio instance
 		this._container = document.querySelector('micr-io');
@@ -27,15 +28,15 @@ export default class Game {
 			this._container = this.micrio['container'];
 		}
 		if(this.micrio['isLoaded']) this.init();
-		else this._container.addEventListener('load', this.init);
+		else this._container.addEventListener('metadata', this.init);
 	}
 
 	init(){
 		console.log('Init game!', this.micrio)
 
 		// For each micrio image loaded, set a level
-		this._container.removeEventListener('load', this.init);
-		this._container.addEventListener('load', this.setLevel);
+		this._container.removeEventListener('metadata', this.init);
+		this._container.addEventListener('metadata', this.setLevel);
 
 		// Create inventory
 		this.inventory = new Inventory(this);
@@ -50,7 +51,7 @@ export default class Game {
 		if(this.currentLevel) this.currentLevel.deactivate();
 
 		if(!this.levels[micrio.id])
-			this.levels[this.micrio.id] = new Level(this, this.micrio);
+			this.levels[this.micrio.id] = new Level(this, micrio);
 
 		this.currentLevel = this.levels[this.micrio.id];
 
