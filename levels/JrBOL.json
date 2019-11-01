@@ -1,0 +1,40 @@
+{
+    "name": "06 Bos scooter",
+    "micrioId": "JrBOL",
+    "items":[
+        {
+            "micrioId": "6b74fe98-c459-09a9-a190-28603665264f",
+            "name":"Scooter",
+            "actions":[
+                {
+                    "input": "Look at object",
+                    "output": "It's an old scooter",
+                    "isDefault": true
+                }
+            ]
+        },
+        {
+            "micrioId": "9aac4cba-a08d-4d79-8061-cc5c6215ee6",
+            "name":"Road left",
+            "actions":[
+                {
+                    "input": "Look at object",
+                    "output": "A road out of the forrest",
+                    "isDefault": true
+                }
+            ]
+        }
+        ,
+        {
+            "micrioId": "d4852764-5ce0-afe3-e7e6-3ec83c13500a",
+            "name":"Road right",
+            "actions":[
+                {
+                    "input": "Look at object",
+                    "output": "A road out of the forrest",
+                    "isDefault": true
+                }
+            ]
+        }
+    ]
+}

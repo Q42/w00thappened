@@ -1,0 +1,39 @@
+{
+    "name": "03 Bos onder bunker",
+    "micrioId": "nZdDS",
+    "items":[
+        {
+            "micrioId": "5bdf8951-31f7-b7d0-a3c4-8b49a46a84c1",
+            "name":"Bunker",
+            "actions":[
+                {
+                    "input": "Look at object",
+                    "output": "I just got out of that",
+                    "isDefault": true
+                }
+            ]
+        },
+        {
+            "micrioId": "f2897d5d-7c4c-ad60-358c-bb4ec6b1b96a",
+            "name":"Rope",
+            "actions":[
+                {
+                    "input": "Look at object",
+                    "output": "It's the rope I used to climb down",
+                    "isDefault": true
+                }
+            ]
+        },
+        {
+            "micrioId": "3f1d8f39-70c6-d2f7-f578-bc5416bdb8eb",
+            "name":"Forrest",
+            "actions":[
+                {
+                    "input": "Look at object",
+                    "output": "It looks like my way to freedom.",
+                    "isDefault": true
+                }
+            ]
+        }
+    ]
+}
