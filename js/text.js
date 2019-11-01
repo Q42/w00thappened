@@ -56,6 +56,10 @@ export default class Text {
 
 	}
 
+	remove(){
+		if(this.mesh['parent']) this.mesh['parent']['remove'](this.mesh);
+	}
+
 	// Canvas rendering
 	drawCanvas() {
 		// Font settings
