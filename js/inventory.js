@@ -1,3 +1,11 @@
+const canvas = document.createElement("canvas");
+canvas.id = 'inventory';
+const scale = 4;
+canvas.width = drawSize().width * scale;
+canvas.height = drawSize().height * scale;
+document.body.appendChild(canvas);
+const ctx = canvas.getContext("2d");
+
 export default class Inventory {
 	constructor(game) {
 		this.game = game;
@@ -20,13 +28,13 @@ export default class Inventory {
 		}
 
 		this.inventorySize = 20;
-
 		this.inventory = [];
 		this.itemDefinitions = [];
 
 		this.init();
 		console.log(this.inventory);
 		console.log(this.itemDefinitions);
+		this.drawCanvas();
 	}
 
 	init() {
@@ -91,4 +99,36 @@ export default class Inventory {
 			}
 		}
 	}
+
+	// Drawing logic
+	drawCanvas() {
+		const size = drawSize();
+		const boxSize = 16;
+		const scale = 4;
+		const padding = 4;
+
+		ctx.fillStyle = 'brown';
+		ctx.fillRect(0, 0, size.width * scale, size.height * scale);
+		// Draw boxes
+		ctx.fillStyle = 'black';
+		let pos = {x: 0, y: padding * scale};
+		for (let index = 0; index < this.inventory.length; index++) {
+			const item = this.inventory[index];
+			pos.x += boxSize * scale + padding * scale;
+			if (index % 5 == 0) {
+				// New row
+				console.log(index);
+				pos.x = padding * scale;
+				if (index != 0) pos.y += boxSize * scale + padding * scale;
+			}
+			ctx.fillRect(pos.x, pos.y, boxSize * scale, boxSize * scale);
+		}
+	}
+}
+function drawSize() {
+	const boxSize = 16;
+	const padding = 4;
+	const _width = 5 * boxSize + 6 * padding;
+	const _height = 4 * boxSize + 5 * padding;
+	return {width: _width, height: _height};
 }
