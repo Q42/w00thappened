@@ -11,12 +11,6 @@
                     "input": "Look at object",
                     "output": "I just got out of that",
                     "isDefault": true
-                },
-                {
-                    "input": "Walk back",
-                    "output": "Yeah let's do that",
-                    "isDefault": true,
-                    "navigateTo":"CXbqx"
                 }
             ]
         },
@@ -28,6 +22,12 @@
                     "input": "Look at object",
                     "output": "It's the rope I used to climb down",
                     "isDefault": true
+                },
+                {
+                    "input": "Climb up the bunker",
+                    "output": "My arms are killing me",
+                    "isDefault": true,
+                    "navigateTo":"CXbqx"
                 }
             ]
         },

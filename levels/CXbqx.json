@@ -46,25 +46,7 @@
                     "isDefault": true
                 },
                 {
-                    "input": "Pick up",
-                    "output": "I can use this to get down",
-                    "intentoryAdd": true,
-                    "isDefault": true
-                }
-            ]
-        },
-        {
-            "micrioId": "3834d6cd-886b-9182-1f13-877c1b902801",
-            "name":"Forest",
-            "actions":[
-                {
-                    "input": "Look down",
-                    "output": "It looks like my way to freedom.",
-                    "isDefault": true
-                },
-                {
-                    "input": "Walk to the forest",
-                    "output": "Go go go",
+                    "input": "Climb down the rope",
                     "isDefault": true,
                     "navigateTo":"nZdDS"
                 }
