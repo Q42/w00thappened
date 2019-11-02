@@ -58,7 +58,7 @@
                 },
                 {
                     "input": "Pick up",
-                    "output": "I should give that a proper burial...",
+                    "output": "Jeffrey Lebowski",
                     "intentoryAdd": true,
                     "isDefault": true
                 }
@@ -134,35 +134,18 @@
             ]
         },
         {
-            "micrioId": "0396805d-b4a4-bed5-293e-adb6538f0aa7",
-            "name": "Photo",
-            "actions":[
-                {
-                    "input": "Look at object",
-                    "output": "It's a polaroid picture of a girl, there is message written on the back",
-                    "isDefault": true
-                },
-                {
-                    "input": "Pick up",
-                    "output": "CU at our gig, Love Amy “Amy.. Should I know you? This is weird…",
-                    "intentoryAdd": true,
-                    "isDefault": true
-                }
-            ]
-        },
-        {
             "micrioId": "7dea9d15-28bd-b416-3a10-c90a9727ab0f",
             "name": "Beer coaster",
             "actions":[
                 {
                     "input": "Look at object",
-                    "output": "It's a coaster with a message on the back",
+                    "output": "A coaster from a bar named ZETA, there is a number written on the back",
                     "isDefault": true,
                     "continue":[1]
                 },
                 {
                     "input": "Pick up",
-                    "output": "The coaster belongs to a bar named Zeta, hmm I know where this place is",
+                    "output": "CU at our gig, Love Amy “ Who? ..hmm I know where this place is",
                     "intentoryAdd": true,
                     "isDefault": true
                 }
@@ -175,6 +158,12 @@
                 {
                     "input": "Look at object",
                     "output": "You never walk alone, well I guess that wasn’t true, was it.. ",
+                    "isDefault": true
+                },
+                {
+                    "input": "Pick up",
+                    "output": "CU at our gig, Love Amy “Amy.. Should I know you? This is weird…",
+                    "intentoryAdd": true,
                     "isDefault": true
                 }
             ]
