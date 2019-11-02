@@ -3,11 +3,11 @@
     "micrioId": "LzKWd",
     "dialog": [
         "W00-tf! No way!",
-        "what is this place!?, I’m gonna kill the one who did this to me!",
+        "what is this place!?\nI’m gonna kill the one who did this to me!",
         "my head! Feels like I've been hit by a ton of bricks",
         "I am within a ton of bricks!",
         "the Irony",
-        "Where am I! …., I’m cold…. Better get my ass moving!"
+        "Where am I! …., I’m cold….\nBetter get my ass moving!"
     ],
     "items":[
         {
@@ -147,13 +147,13 @@
             "actions":[
                 {
                     "input": "Look at object",
-                    "output": "A coaster from a bar named ZETA, there is a number written on the back",
+                    "output": "A coaster from a bar named ZETA\nthere is a number written on the back",
                     "isDefault": true,
                     "continue":[1]
                 },
                 {
                     "input": "Pick up",
-                    "output": "CU at Zeta, Love Amy\nAmy.. Doesn't ring a bell. I do know Zeta, might be worth checking out",
+                    "output": "CU at Zeta, Love Amy\nAmy.. Doesn't ring a bell.\nI do know Zeta, might be worth checking out",
                     "intentoryAdd": true,
                     "isDefault": true
                 }
@@ -165,12 +165,12 @@
             "actions":[
                 {
                     "input": "Look at object",
-                    "output": "You never walk alone, well I guess that wasn’t true, was it.. ",
+                    "output": "You never walk alone\nwell I guess that wasn’t true, was it.. ",
                     "isDefault": true
                 },
                 {
                     "input": "Pick up",
-                    "output": "CU at our gig, Love Amy “Amy.. Should I know you? This is weird…",
+                    "output": "CU at our gig, Love Amy\nAmy.. Should I know you? This is weird…",
                     "intentoryAdd": true,
                     "isDefault": true
                 }

@@ -26,7 +26,7 @@
             "actions":[
                 {
                     "input": "Look at object",
-                    "output": "It’s printing out some gibberish. I don’t think I’m supposed to mess with this..",
+                    "output": "It’s printing out some gibberish.\nI don’t think I’m supposed to mess with this..",
                     "isDefault": true,
                     "continue":[1]
                 },
