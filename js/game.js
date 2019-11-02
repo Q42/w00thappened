@@ -30,7 +30,7 @@ export default class Game {
 
 	create(){
 		this.micrio = new window['Micrio']({
-			'id': 'LzKWd',
+			'id': 'UkwTz',
 			'forceGL': true,
 			'fragmentShader': fragmentShader,
 			'minimap': false,
