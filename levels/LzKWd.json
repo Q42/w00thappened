@@ -100,9 +100,10 @@
                 },
                 {
                     "input": "Enter bunker",
-                    "output": "It's so dark here",
+                    "output": "That saw went through the lock like butter!",
                     "isDefault": true,
-                    "navigateTo":"xXIfd"
+                    "navigateTo":"xXIfd",
+                    "inventoryFilter": "a8fcbea0-26d0-9cb1-0e4e-3c92ae90657f"
                 }
             ]
         },
