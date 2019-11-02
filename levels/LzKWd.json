@@ -144,6 +144,12 @@
                     "input": "Look at object",
                     "output": "You never walk alone, well I guess that wasn’t true, was it.. ",
                     "isDefault": true
+                },
+                {
+                    "input": "Pick up",
+                    "output": "It won't fit",
+                    "intentoryAdd": true,
+                    "isDefault": true
                 }
             ]
         }

@@ -30,9 +30,6 @@ export default class Inventory {
 		this.itemDefinitions = [];
 
 		this.init();
-		//this.addItemToInv("key", 4);
-		//this.removeItemFromInv("key", 2);
-		this.drawInventory();
 	}
 
 	init() {
@@ -59,9 +56,8 @@ export default class Inventory {
 			const itemDefIndex = this.itemTypes.findIndex(type => type === itemType);
 			this.itemDefinitions[itemDefIndex][this.ItemProperties.amount] += amount;
 		}
-		this.drawInventory();
-		console.log('Inventory: ', this.inventory);
-		console.log('Definitions', this.itemDefinitions);
+		const itemDefIndex = this.itemTypes.findIndex(type => type === itemType);
+		this.drawInventory(this.itemDefinitions[itemDefIndex]);
 	}
 
 	removeItemFromInv(itemType, amount) {
@@ -122,22 +118,28 @@ export default class Inventory {
 				const img = new Image;
 				img.src = item[this.ItemProperties.sprite];
 				img.onload = function() {
-					ctx.drawImage(img, 4 * scale, 4 * scale, boxSize * scale, boxSize * scale);
+					ctx.drawImage(img, padding * scale, padding * scale, boxSize * scale, boxSize * scale);
 				}
 			}
 		}
 	}
 
-	drawItemInspect() {
+	drawItemInspect(item) {
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		const size = drawSize();
 		const height = size.height
 		const width = size.width;
-		const boxSize = size.boxSize;
 		const scale = size.scale;
 		const padding = size.padding;
 
-
+		ctx.fillStyle = 'brown';
+		ctx.fillRect(padding * scale, padding * scale, width / 2 * scale, height * scale - 2 * padding * scale);
+		const img = new Image;
+		img.src = item[this.ItemProperties.popupSprite];
+		console.log(width, height);
+		img.onload = function() {
+			ctx.drawImage(img, padding * scale, padding * scale, width / 2 * scale, height * scale - 2 * padding * scale);
+		}
 	}
 
 }
