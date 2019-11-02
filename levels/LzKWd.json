@@ -48,6 +48,23 @@
             ]
         },
         {
+            "micrioId": "76ec868c-cf0b-f36c-a10e-fedc04617d77",
+            "name":"Badge",
+            "actions":[
+                {
+                    "input": "Look at object",
+                    "output": "It's a name tag",
+                    "isDefault": true
+                },
+                {
+                    "input": "Pick up",
+                    "output": "I should give that a proper burial...",
+                    "intentoryAdd": true,
+                    "isDefault": true
+                }
+            ]
+        },
+        {
             "micrioId": "6a39aedb-f55d-9060-5d78-6b8a949b938f",
             "name":"Sky",
             "actions":[
