@@ -13,7 +13,7 @@ export default class ActionPopup {
 		this.opened = false;
 		this.hovered = null;
 
-		const lineHeight = 5;
+		const lineHeight = 10;
 		const height = lineHeight * this.actions.length;
 
 		this.mesh = new THREE['Mesh'](
@@ -32,6 +32,7 @@ export default class ActionPopup {
 			const text = new Text(this.micrio, a, null, null, '#ff0000', true);
 			text.onload = () => {
 				text.mesh['position'].y = y - lineHeight/2;
+				text.mesh['position'].z = -10;
 				text.mesh['material']['opacity'] = .75;
 				this.mesh.add(text.mesh);
 				y -= lineHeight;
