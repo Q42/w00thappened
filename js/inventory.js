@@ -57,7 +57,7 @@ export default class Inventory {
 			this.itemDefinitions[itemDefIndex][this.ItemProperties.amount] += amount;
 		}
 		const itemDefIndex = this.itemTypes.findIndex(type => type === itemType);
-		this.drawInventory(this.itemDefinitions[itemDefIndex]);
+		this.drawItemInspect(this.itemDefinitions[itemDefIndex]);
 	}
 
 	removeItemFromInv(itemType, amount) {

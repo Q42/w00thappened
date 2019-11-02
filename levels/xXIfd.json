@@ -49,6 +49,23 @@
                     "continue":[2,3]
                 }
             ]
+        },
+        {
+            "micrioId": "b416df2d-7727-1d70-9fdd-33b592aaa082",
+            "name":"Keys",
+            "actions":[
+                {
+                    "input": "Look at object",
+                    "output": "In the flickering lights I see something laying around",
+                    "isDefault": true
+                },
+                {
+                    "input": "Pick up",
+                    "output": "It's a pair of keys, seem like they belong to some vehicle",
+                    "intentoryAdd": true,
+                    "isDefault": true
+                }
+            ]
         }
     ]
 }
