@@ -107,7 +107,8 @@
                 {
                     "input": "Look at object",
                     "output": "Damn I'm lookin' good!",
-                    "isDefault": true
+                    "isDefault": true,
+                    "navigateTo":"UPbPS"
                 }
             ]
         },
@@ -122,7 +123,6 @@
                 },
                 {
                     "input": "Go downstairs",
-                    "output": "Ok",
                     "isDefault": true,
                     "navigateTo":"GUokj"
                 }
