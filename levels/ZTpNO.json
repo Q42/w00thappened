@@ -26,7 +26,7 @@
             "actions":[
                 {
                     "input": "Look at object",
-                    "output": "It looks like some sort of transportation",
+                    "output": "It looks like my way to get out of here",
                     "isDefault": true
                 },
                 {

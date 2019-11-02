@@ -1,0 +1,18 @@
+{
+    "name": "14 Zeta Mirror",
+    "micrioId": "UPbPS",
+    "items":[
+        {
+            "micrioId": "b8982357-588b-615d-a05c-fdc1f82ba0ed",
+            "name":"Back to seat",
+            "actions":[
+                {
+                    "input": "I better return to my seat",
+                    "navigateTo":"xmLny",
+                    "isDefault": true
+
+                }
+            ]
+        }
+    ]
+}

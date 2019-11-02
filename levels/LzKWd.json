@@ -100,7 +100,7 @@
                 },
                 {
                     "input": "Enter bunker",
-                    "output": "Easy",
+                    "output": "It's so dark here",
                     "isDefault": true,
                     "navigateTo":"xXIfd"
                 }

@@ -14,7 +14,7 @@
                 },
                 {
                     "input": "Go up the stairs",
-                    "output": "Ok",
+                    "output": "I'm so tired",
                     "isDefault": true,
                     "navigateTo":"xmLny"
                 }
