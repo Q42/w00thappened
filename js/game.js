@@ -59,6 +59,7 @@ export default class Game {
 		const micrio = this.micrio = eventOrMicrio.detail ? eventOrMicrio.detail : eventOrMicrio;
 
 		if(this.currentLevel) this.currentLevel.deactivate();
+		if(this.currentPopup) this.currentPopup.close();
 
 		if(!this.levels[micrio.id])
 			this.levels[micrio.id] = new Level(this, micrio);
