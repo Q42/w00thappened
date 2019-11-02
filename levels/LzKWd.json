@@ -94,12 +94,12 @@
             "name":"Bunker door",
             "actions":[
                 {
-                    "input": "Look",
-                    "output": "It doesn't look like anything to me",
+                    "input": "Look into bunker",
+                    "output": "You find a door that's bolted with a chain.\nDoesn’t seem too sturdy though...",
                     "isDefault": true
                 },
                 {
-                    "input": "Open door",
+                    "input": "Enter bunker",
                     "output": "Easy",
                     "isDefault": true,
                     "navigateTo":"xXIfd"
@@ -153,7 +153,7 @@
                 },
                 {
                     "input": "Pick up",
-                    "output": "CU at our gig, Love Amy “ Who? ..hmm I know where this place is",
+                    "output": "CU at Zeta, Love Amy\nAmy.. Doesn't ring a bell. I do know Zeta, might be worth checking out",
                     "intentoryAdd": true,
                     "isDefault": true
                 }

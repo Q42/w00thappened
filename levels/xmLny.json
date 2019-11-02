@@ -13,7 +13,6 @@
                 },
                 {
                     "input": "Go to the toilet",
-                    "output": "Ok",
                     "isDefault": true,
                     "navigateTo":"gsIuk"
                 }

@@ -31,7 +31,6 @@
                 },
                 {
                     "input": "Go outside",
-                    "output": "Ok",
                     "isDefault": true,
                     "navigateTo":"gKYFA"
                 }
@@ -50,7 +49,12 @@
                     "input": "Talk to barman",
                     "output": "Sup bro, seems like someone had a rough night! Ha!",
                     "isDefault": true,
-                    "continue":[1,2,3]
+                    "continue":[1,2,3,0]
+                },
+                {
+                    "id":0,
+                    "input": "One beer please",
+                    "output": "No problem."
                 },
                 {
                     "id":1,
@@ -83,7 +87,7 @@
                 {
                     "id":6,
                     "input": "OK .. I guess",
-                    "output": "Call Amy nr 555-8039” She should be there right now"
+                    "output": "Call Amy nr 555-8039. She should be there right now"
                 }
             ]
         },
@@ -98,7 +102,7 @@
                 },
                 {
                     "input": "Smell flowers",
-                    "output": "So good",
+                    "output": "Soooo good",
                     "isDefault": true
                 }
             ]
