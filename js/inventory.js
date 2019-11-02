@@ -1,17 +1,18 @@
 const canvas = document.createElement("canvas");
-canvas.id = 'inventory';
 const size = drawSize();
 const height = size.height
 const width = size.width;
 const scale = size.scale;
 canvas.width = width * scale;
 canvas.height = height * scale;
-document.body.appendChild(canvas);
 const ctx = canvas.getContext("2d");
+
+const THREE = window['THREE'];
 
 export default class Inventory {
 	constructor(game) {
 		this.game = game;
+		this.micrio = game.micrio;
 
 		this.itemTypes = []; // Fill with 'none', 'key' etc.
 
@@ -38,6 +39,36 @@ export default class Inventory {
 		// Fill all inventory slots with item none.
 		this.inventory[this.inventorySize - 1] = this.itemTypes[0];
 		this.inventory.fill(this.itemTypes[0]);
+		this.drawInventory();
+
+		const ratio = width / height;
+
+		this.texture = new THREE['Texture'](canvas);
+		this.mesh = new THREE['Mesh'](
+			new THREE['PlaneBufferGeometry'](10 * ratio, 10),
+			new THREE['MeshBasicMaterial']({
+				'map': this.texture,
+				'color': 0xff0000,
+				'depthWrite': false,
+				'depthTest': false,
+				'transparent': true,
+			})
+		);
+		this.texture['needsUpdate'] = true;
+		this.mesh['renderOrder'] = 119;
+
+		this.mesh['position']['set'](0,-5,-15);
+
+		this.show();
+	}
+
+	show(){
+		this.micrio['THREE']['_camera']['add'](this.mesh);
+		this.micrio['camera']['render']();
+	}
+
+	hide(){
+		if(this.mesh['parent']) this.mesh['parent'].remove(this.mesh);
 	}
 
 	// Dit komt straks uit Micrio
