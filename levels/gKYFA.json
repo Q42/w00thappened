@@ -33,6 +33,12 @@
                     "input": "Look at object",
                     "output": "I guess it's my scooter now",
                     "isDefault": true
+                },
+                {
+                    "input": "Drive to forest",
+                    "output": "Good idea, let's retrace my steps...",
+                    "isDefault": true,
+                    "navigateTo": "JrBOL"
                 }
             ]
         },
@@ -42,7 +48,7 @@
             "actions":[
                 {
                     "input": "Look at object",
-                    "output": "It's a bike",
+                    "output": "Another bike. This is probably Amsterdam...",
                     "isDefault": true
                 }
             ]

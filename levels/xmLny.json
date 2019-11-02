@@ -106,7 +106,7 @@
             "actions":[
                 {
                     "input": "Look at object",
-                    "output": "It's a mirror",
+                    "output": "Damn I'm lookin' good!",
                     "isDefault": true
                 }
             ]
