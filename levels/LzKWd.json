@@ -23,17 +23,17 @@
                 {
                     "id":1,
                     "input": "Press the green button",
-                    "output": "Nothing happens"
+                    "output": "This one says: 'BEEP'"
                 },
                 {
                     "id":2,
                     "input": "Press the orange button",
-                    "output": "Nothing happens"
+                    "output": "This one says: 'BOOP'"
                 },
                 {
                     "id":3,
                     "input": "Press the red button",
-                    "output": "Nothing happens"
+                    "output": "NEVER PRESS THE RED BUTTON!!!"
                 }
 
             ]
