@@ -8,6 +8,7 @@ export default class Level {
 
 		this.level = null;
 		this.lastText = null;
+		this.tos = [];
 	}
 
 	activate(){
@@ -44,10 +45,10 @@ export default class Level {
 	showDialog(dialog) {
 		console.log('start dialog');
 		dialog.forEach(function(obj,index) {
-			setTimeout(function(){
+			this.tos.push(setTimeout(function(){
 				console.log(dialog[index]);
 				this.printText(dialog[index], 0.5,0.5);
-			}.bind(this), 3000 * (index));
+			}.bind(this), 3000 * (index)));
 		}.bind(this));
 	}
 
@@ -142,14 +143,16 @@ export default class Level {
 			this.lastText.remove();
 
 		this.lastText = new Text(this.micrio, string, x, y);
-		setTimeout(function(){ 
+		this.tos.push(setTimeout(function(){ 
 			if(this.lastText)
 				this.lastText.remove(); 
-			}.bind(this), 5000);
+			}.bind(this), 5000));
 	}
 
 	deactivate(){
 		console.log('Deactivate level', this.micrio.id);
+		if(this.lastText) this.lastText.remove(); 
+		while(this.tos.length) clearTimeout(this.tos.shift());
 	}
 
 }
