@@ -55,6 +55,12 @@
                     "input": "Look at text",
                     "output": "“Ken sent me” Seriously!? How original..",
                     "isDefault": true
+                },
+                {
+                    "input": "Pick up",
+                    "output": "It might be some kind of code",
+                    "intentoryAdd": true,
+                    "isDefault": true
                 }
             ]
         }
