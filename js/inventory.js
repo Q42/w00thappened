@@ -39,9 +39,6 @@ export default class Inventory {
 		this.mesh['renderOrder'] = 119;
 
 		this.mesh['position']['set'](0,-5,-15);
-
-		this.draw();
-		this.show();
 	}
 
 	show(){
@@ -64,16 +61,21 @@ export default class Inventory {
 		// Cast any images to real image
 		marker._images = marker['images'].map(img => {
 			const image = new Image;
-			image.src = img.src;
+			image.src = img.src.replace(/\.(jpg|png)/,'.64.$1');
 			image.crossOrigin = true;
 			return image;
 		})
 
 		if(marker._images[0]) marker._images[0].onload = () => {
-			this.draw();
+			this.showHide();
 		}
-		else this.draw();
+		else this.showHide();
+	}
 
+	showHide(){
+		this.draw();
+		this.show();
+		setTimeout(() => this.hide(), 4000);
 	}
 
 	removeItem(id) {
@@ -114,12 +116,12 @@ export default class Inventory {
 
 			// Draw image
 			if(item && item._images[0]) {
-				console.log('draw item!',item._images[0]);
 				ctx.drawImage(item._images[0], pos.x, pos.y, boxSize * scale, boxSize * scale);
 			}
 
-			this.texture.needsUpdate = true;
 		}
+
+		this.texture['needsUpdate'] = true;
 	}
 
 	drawItemInspect(item) {
