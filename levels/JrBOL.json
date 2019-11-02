@@ -1,6 +1,7 @@
 {
     "name": "06 Bos scooter",
     "micrioId": "JrBOL",
+    "dialog":["My legs, I’m so wasted, I can’t go any further"],
     "items":[
         {
             "micrioId": "6b74fe98-c459-09a9-a190-28603665264f",

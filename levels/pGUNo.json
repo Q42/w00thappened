@@ -1,6 +1,7 @@
 {
     "name": "04 Bos verder weg",
     "micrioId": "pGUNo",
+    "dialog":["This place... It gives me the chills!", "I’m exhausted"],
     "items":[
         {
             "micrioId": "a03b391b-0d16-fc70-96df-bae475043607",
