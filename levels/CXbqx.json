@@ -25,7 +25,13 @@
             "actions":[
                 {
                     "input": "Look at saw",
-                    "output": "I don’t think I can use it to take a tree down, but something smaller would be OK.. I think.. ",
+                    "output": "I don’t think I can use it to take down a tree, but this might be useful.. I think.. ",
+                    "isDefault": true
+                },
+                {
+                    "input": "Pick up",
+                    "output": "I once saw a bunch of these in a store",
+                    "intentoryAdd": true,
                     "isDefault": true
                 }
             ]
@@ -37,6 +43,12 @@
                 {
                     "input": "Look at rope",
                     "output": "Great, I was afraid I had to live on this plateau forever",
+                    "isDefault": true
+                },
+                {
+                    "input": "Pick up",
+                    "output": "I can use this to get down",
+                    "intentoryAdd": true,
                     "isDefault": true
                 }
             ]

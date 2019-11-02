@@ -20,7 +20,7 @@
             "actions":[
                 {
                     "input": "Look at sign",
-                    "output": "Order your drinks inside.",
+                    "output": "This is the place!",
                     "isDefault": true
                 }
             ]
@@ -48,7 +48,7 @@
             "actions":[
                 {
                     "input": "Look at object",
-                    "output": "Another bike. This is probably Amsterdam...",
+                    "output": "It's a bike, I rather use my scooter",
                     "isDefault": true
                 }
             ]
@@ -101,7 +101,7 @@
             "name":"Free table",
             "actions":[
                 {
-                    "input": "Set it table",
+                    "input": "Sit at table",
                     "output": "I better first order some drinks inside",
                     "isDefault": true
                 }
