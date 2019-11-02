@@ -1,6 +1,7 @@
 {
     "name": "03 Bos onder bunker",
     "micrioId": "nZdDS",
+    "dialog":["Now I officially hit rock bottom!"],
     "items":[
         {
             "micrioId": "5bdf8951-31f7-b7d0-a3c4-8b49a46a84c1",
@@ -35,7 +36,7 @@
             "name":"Forest",
             "actions":[
                 {
-                    "input": "Look at object",
+                    "input": "Look",
                     "output": "It looks like my way to freedom.",
                     "isDefault": true
                 },

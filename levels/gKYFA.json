@@ -1,6 +1,7 @@
 {
     "name": "10 Zeta Buiten",
     "micrioId": "gKYFA",
+    "dialog":["Feew: we got to live another day.", "I definitely know this place, but very vaguely…. What’s wrong with my brain! "],
     "items":[
         {
             "micrioId": "8752f8b2-8a33-d555-66e0-a3b8783ddaa2",
@@ -51,7 +52,7 @@
             "name":"Zeta door",
             "actions":[
                 {
-                    "input": "Look at object",
+                    "input": "Look",
                     "output": "Door to the Zeta",
                     "isDefault": true
                 },
@@ -71,6 +72,22 @@
                     "input": "Look at people",
                     "output": "Some friendly people at a table",
                     "isDefault": true
+                },
+                {
+                    "input": "Talk to people",
+                    "output": "You're a bunch of foul-smelling, grog-swilling pigs!",
+                    "isDefault": true,
+                    "continue":[1,2]
+                },
+                {
+                    "id":1,
+                    "input": "I've spoken with apes more polite than you!",
+                    "output": "I'm glad to hear you attended your family reunion!"
+                },
+                {
+                    "id":2,
+                    "input": "I'll just be running along now.",
+                    "output": "OK, sounds good."
                 }
             ]
         },

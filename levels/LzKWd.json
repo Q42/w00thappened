@@ -1,6 +1,14 @@
 {
     "name": "01 Bunker",
     "micrioId": "LzKWd",
+    "dialog": [
+        "W00-tf!” “No way!",
+        "what is this place!?” , “I’m gonna kill the one who did this to me!",
+        "my head! Feels like I've been hit by a ton of bricks",
+        "I am within a ton of bricks!",
+        "the Irony",
+        "Where am I! …., I’m cold…. Better get my ass moving!"
+    ],
     "items":[
         {
             "micrioId": "ebe82a23-0f81-0493-8179-632b3ea87a51",

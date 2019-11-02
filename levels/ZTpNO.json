@@ -7,7 +7,7 @@
             "name":"Forest",
             "actions":[
                 {
-                    "input": "Look at object",
+                    "input": "Look",
                     "output": "I'm not going back there",
                     "isDefault": true,
                     "continue":[1]

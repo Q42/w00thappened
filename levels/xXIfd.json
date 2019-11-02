@@ -26,8 +26,27 @@
             "actions":[
                 {
                     "input": "Look at object",
-                    "output": "It looks like a computer screen",
-                    "isDefault": true
+                    "output": "It’s printing out some gibberish. I don’t think I’m supposed to mess with this..",
+                    "isDefault": true,
+                    "continue":[1]
+                },
+                {
+                    "id":1,
+                    "input": "Interact with terminal",
+                    "output": "It’s asking for a password…",
+                    "continue":[2,3]
+                },
+                {
+                    "id":2,
+                    "input": "Enter your birthday",
+                    "output": "“I definitely didn’t set this up… I use this as my password all the time!",
+                    "continue":[2,3]
+                },
+                {
+                    "id":3,
+                    "input": "Enter your mother's name",
+                    "output": "“Something error happend",
+                    "continue":[2,3]
                 }
             ]
         },

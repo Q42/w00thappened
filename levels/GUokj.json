@@ -1,6 +1,7 @@
 {
     "name": "11 Zeta Downstairs",
     "micrioId": "GUokj",
+    "dialog":["Comfortable, yet disturbing. I need to know what happened. Maybe the bar personnel know something"],
     "items":[
         {
             "micrioId": "ff3ffcb6-69ac-0f20-a713-f6ba33d21f9a",

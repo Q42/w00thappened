@@ -7,6 +7,7 @@ export default class Level {
 		this.micrio = micrio;
 
 		this.level = null;
+		this.lastText = null;
 	}
 
 	activate(){
@@ -21,6 +22,19 @@ export default class Level {
 	startLevel(level) {
 		console.log("Start level:" + level.name);
 		this.level = level;
+
+		if(level.dialog)
+			this.showDialog(level.dialog);
+	}
+
+	showDialog(dialog) {
+		console.log('start dialog');
+		dialog.forEach(function(obj,index) {
+			setTimeout(function(){
+				console.log(dialog[index]);
+				this.printText(dialog[index], 0.5,0.5);
+			}.bind(this), 3000 * (index));
+		}.bind(this));
 	}
 
 	//From game logic, when micrio marker is clicked
@@ -83,7 +97,7 @@ export default class Level {
 			this.printText(action.output, marker.x, marker.y);
 
 			if(todo.continue)
-				//this.renderActionOptions(marker, item, action.continue);
+				this.renderActionOptions(marker, item, action.continue);
 
 			if(todo.script){
 				//TODO: run custom script if available

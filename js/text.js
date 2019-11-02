@@ -4,13 +4,14 @@ canvas.height = 512;
 const ctx = canvas.getContext('2d');
 
 export default class Text {
-	constructor(micrio, text='', x=.5, y=.5, color='#ff0000', independent=false) {
+	constructor(micrio, text='', x=.5, y=.5, color='#ff0000', independent=false, isStatic=true) {
 		this.micrio = micrio;
 		this.text = text;
 		this.x = x;
 		this.y = y;
 		this.color = color;
 		this.independent = independent;
+		this.static = isStatic;
 
 		this.mesh = null;
 		this.texture = null;
@@ -44,7 +45,13 @@ export default class Text {
 		this.texture['needsUpdate'] = true;
 		this.mesh['renderOrder'] = 120;
 
-		if(!this.independent) {
+		if(this.static) {
+			this.mesh['position']['set'](0,0,-50);
+			this.micrio['THREE']['_camera']['add'](this.mesh);
+			this.micrio['camera']['render']();
+		}
+
+		else if(!this.independent) {
 			const coo = this.micrio['THREE']['getPosition'](this.x,this.y, 50);
 			this.mesh['position']['set'](coo.x, coo.y, coo.z);
 			this.mesh['lookAt'](0,0,0);

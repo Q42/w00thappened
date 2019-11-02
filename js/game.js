@@ -2,6 +2,8 @@ import Level from './level.js';
 import Inventory from './inventory.js';
 import { fragmentShader } from './shader.js';
 
+window['Micrio'].prototype['forceGL'] = true;
+
 export default class Game {
 	constructor(){
 		console.log('New game!');
@@ -12,48 +14,43 @@ export default class Game {
 		this.currentPopup = null;
 
 		// Main container
-		this._container = document.querySelector('micr-io');
+		this.micrio = null;
+		this._container = null;
 
 		// Function bindings
-		this.created = this.created.bind(this);
+		this.create = this.create.bind(this);
 		this.init = this.init.bind(this);
 		this.setLevel = this.setLevel.bind(this);
 		this.onclicked = this.onclicked.bind(this);
 
 		if(document.fonts && document.fonts.load)
-			document.fonts.load('10pt "Acme"').then(() => this.fontLoaded());
-		else this.fontLoaded();
+			document.fonts.load('10pt "Acme"').then(this.create);
+		else this.create();
 	}
 
-	fontLoaded(){
-		if(this._container && this._container['micrio']) {
-			this.micrio = this._container['micrio'];
-			this.customShader();
-			this.created();
-		}
-		else window.addEventListener('micrio-created', this.created);
-		window.addEventListener('micrio-created', this.customShader.bind(this));
-	}
+	create(){
+		this.micrio = new window['Micrio']({
+			'id': 'LzKWd',
+			'forceGL': true,
+			'fragmentShader': fragmentShader,
+			'minimap': false,
+			'loaderbar': false
+		});
 
-	created(e){
-		window.removeEventListener('micrio-created', this.created);
-		if(e && e.detail) {
-			this.micrio = e.detail;
-			this._container = this.micrio['container'];
-		}
-		if(this.micrio['isLoaded']) this.init();
-		else this._container.addEventListener('metadata', this.init);
-		this._container.addEventListener('pre-metadata', this.fixForVR.bind(this));
+		this._container = this.micrio['container'];
+
 		this._container.addEventListener('click', this.onclick.bind(this));
 		this._container.addEventListener('mousemove', this.mousemove.bind(this));
+		this._container.addEventListener('load', this.init);
 	}
 
 	init(){
 		console.log('Init game!', this.micrio)
 
 		// For each micrio image loaded, set a level
-		this._container.removeEventListener('metadata', this.init);
+		this._container.removeEventListener('load', this.init);
 		this._container.addEventListener('metadata', this.setLevel);
+		this._container.addEventListener('pre-metadata', this.setShader);
 
 		// Create inventory
 		this.inventory = new Inventory(this);
@@ -66,6 +63,7 @@ export default class Game {
 		const micrio = this.micrio = eventOrMicrio.detail ? eventOrMicrio.detail : eventOrMicrio;
 
 		if(this.currentLevel) this.currentLevel.deactivate();
+		if(this.currentPopup) this.currentPopup.close();
 
 		if(!this.levels[micrio.id])
 			this.levels[micrio.id] = new Level(this, micrio);
@@ -90,16 +88,6 @@ export default class Game {
 	// Load saved data and set game to loaded state
 	loadGame(){
 
-	}
-
-	// Make all markers rendered in WebGL and set custom shader
-	fixForVR() {
-		this._container['micrio']['data']['forceGL'] = true;
-	}
-
-	// Set custom shader
-	customShader(e) {
-		(e ? e.detail : this.micrio)['data']['fragmentShader'] = fragmentShader;
 	}
 
 	// For in browser
