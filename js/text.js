@@ -36,7 +36,6 @@ export default class Text {
 			new THREE['PlaneBufferGeometry'](w, h),
 			new THREE['MeshBasicMaterial']({
 				'map': this.texture,
-				'color': 0xff0000,
 				'depthWrite': false,
 				'depthTest': false,
 				'transparent': true,
@@ -46,7 +45,7 @@ export default class Text {
 		this.mesh['renderOrder'] = 120;
 
 		if(this.static) {
-			this.mesh['position']['set'](0,0,-50);
+			this.mesh['position']['set'](this.x,this.y,-50);
 			this.micrio['THREE']['_camera']['add'](this.mesh);
 			this.micrio['camera']['render']();
 		}
@@ -64,7 +63,7 @@ export default class Text {
 	}
 
 	remove(){
-		if(this.mesh['parent']) this.mesh['parent']['remove'](this.mesh);
+		if(this.mesh && this.mesh['parent']) this.mesh['parent']['remove'](this.mesh);
 	}
 
 	// Canvas rendering
@@ -89,7 +88,6 @@ export default class Text {
 
 		ctx.font = font;
 		ctx.textAlign = 'center';
-		ctx.fillStyle = this.color;
 		ctx.strokeStyle = '#000000';
 		ctx.lineWidth = 8;
 		ctx.miterLimit = 2;
@@ -97,6 +95,7 @@ export default class Text {
 		lines.forEach((l,i) => {
 			const y = (i+1) * lineHeight - lineHeight + fontSize;
 			ctx.strokeText(l, x, y);
+			ctx.fillStyle = this.color;
 			ctx.fillText(l, x, y);
 		});
 
