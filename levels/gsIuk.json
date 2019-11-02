@@ -53,7 +53,7 @@
             "actions":[
                 {
                     "input": "Look at text",
-                    "output": "“Ken sent me” “Seriously!? ” “How original..",
+                    "output": "“Ken sent me” Seriously!? How original..",
                     "isDefault": true
                 }
             ]

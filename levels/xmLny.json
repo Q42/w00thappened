@@ -13,7 +13,6 @@
                 },
                 {
                     "input": "Go to the toilet",
-                    "output": "Ok",
                     "isDefault": true,
                     "navigateTo":"gsIuk"
                 }
@@ -27,6 +26,77 @@
                     "input": "Look at object",
                     "output": "It's a phone",
                     "isDefault": true
+                },
+                {
+                    "input": "Call Amy",
+                    "output": "What's her number?",
+                    "isDefault": true,
+                    "continue":[1,2,3]
+                },
+                {
+                    "id":1,
+                    "input": "555-8049",
+                    "output": "No one answers",
+                    "continue":[1,2,3]
+
+                },
+                {
+                    "id":2,
+                    "input": "555-8029",
+                    "output": "No one answers",
+                    "continue":[1,2,3]
+
+                },
+                {
+                    "id":3,
+                    "input": "555-8039",
+                    "output": "How you doin'?"
+                },
+                {
+                    "input": "Answer the phone",
+                    "output": "Disco Discotheka, how can I help you?",
+                    "isDefault": true,
+                    "continue":[4,7]
+                },
+                {
+                    "id":4,
+                    "input": "Hello?",
+                    "output": "Yes, hello. How can I help?",
+                    "continue":[5]
+                },
+                {
+                    "id":5,
+                    "input": "Is this Amy?",
+                    "output": "Amy?! Who is this!?",
+                    "continue":[6]
+                },
+                {
+                    "id":6,
+                    "input": "I, I… I...",
+                    "output": "Don’t use this number! Moron!"
+                },
+                {
+                    "id":7,
+                    "input": "Ken sent me",
+                    "output": "Seriously… whoever comes up with this shit",
+                    "continue":[8]
+                },
+                {
+                    "id":8,
+                    "input": "Ken sent me",
+                    "output": "Alright. So yeah. You want Amy I guess, well bad luck... She left like an hour ago, but left a message",
+                    "continue":[9]
+                },
+                {
+                    "id":9,
+                    "input": "What message?",
+                    "output": "Come here, and collect it. You know the way or did it happen to you? ",
+                    "continue":[10]
+                },
+                {
+                    "id":10,
+                    "input": "did what happen to me?",
+                    "output": "Ah I see, poor thing. Address is Sir Lefty’s Road Avenue 42. Be careful!"
                 }
             ]
         },

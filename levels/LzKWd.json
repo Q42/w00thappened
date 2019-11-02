@@ -66,7 +66,7 @@
                 },
                 {
                     "input": "Pick up",
-                    "output": "I should give that a proper burial...",
+                    "output": "Jeffrey Lebowski",
                     "intentoryAdd": true,
                     "isDefault": true
                 }
@@ -147,7 +147,7 @@
             "actions":[
                 {
                     "input": "Look at object",
-                    "output": "It's a coaster with a message on the back",
+                    "output": "A coaster from a bar named ZETA, there is a number written on the back",
                     "isDefault": true,
                     "continue":[1]
                 },
@@ -166,6 +166,12 @@
                 {
                     "input": "Look at object",
                     "output": "You never walk alone, well I guess that wasn’t true, was it.. ",
+                    "isDefault": true
+                },
+                {
+                    "input": "Pick up",
+                    "output": "CU at our gig, Love Amy “Amy.. Should I know you? This is weird…",
+                    "intentoryAdd": true,
                     "isDefault": true
                 }
             ]
