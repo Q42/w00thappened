@@ -37,6 +37,23 @@
             ]
         },
         {
+            "micrioId": "aeced0d4-deba-5ac5-2f96-d2c9bcace1b4",
+            "name":"suit",
+            "actions":[
+                {
+                    "input": "Look at object",
+                    "output": "It's an outfit from a videogame character",
+                    "isDefault": true
+                },
+                {
+                    "input": "Pick up",
+                    "output": "It's-a-me!",
+                    "intentoryAdd": true,
+                    "isDefault": true
+                }
+            ]
+        },
+        {
             "micrioId": "ffb3b9cd-f764-ba47-b06a-48e5a11eecdf",
             "name":"Bar",
             "actions":[
