@@ -32,11 +32,17 @@
         },
         {
             "micrioId": "76ec868c-cf0b-f36c-a10e-fedc04617d77",
-            "name":"Badge",
+            "name":"Device",
             "actions":[
                 {
                     "input": "Look at object",
                     "output": "Some sort of storage device it seems...",
+                    "isDefault": true
+                },
+                {
+                    "input": "Pick up",
+                    "output": "There might some insightful data on this",
+                    "intentoryAdd": true,
                     "isDefault": true
                 }
             ]
@@ -77,11 +83,17 @@
         },
         {
             "micrioId": "70326b66-8ee2-2a24-8869-238f611a5132",
-            "name":"Bag",
+            "name":"Medkit",
             "actions":[
                 {
                     "input": "Look at object",
-                    "output": "It's a medkit. This seems untouched, might come in handy..",
+                    "output": "It's a medkit, it seems untouched",
+                    "isDefault": true
+                },
+                {
+                    "input": "Pick up",
+                    "output": "Might come in handy..",
+                    "intentoryAdd": true,
                     "isDefault": true
                 }
             ]
@@ -97,42 +109,45 @@
                     "continue": [1]
                 },
                 {
-                    "id": 1,
-                    "input": "Drink whiskey",
-                    "output": "Just what I needed"
+                    "input": "Pick up",
+                    "output": "I have a problem with alcohol",
+                    "intentoryAdd": true,
+                    "isDefault": true
                 }
             ]
         },
         {
             "micrioId": "0396805d-b4a4-bed5-293e-adb6538f0aa7",
-            "name":"Note",
+            "name": "Photo",
             "actions":[
                 {
                     "input": "Look at object",
-                    "output": "It's a piece of paper",
+                    "output": "It's a polaroid picture of a girl, there is message written on the back",
                     "isDefault": true
                 },
                 {
-                    "input": "Look at object",
-                    "output": "It's a piece of paper",
+                    "input": "Pick up",
+                    "output": "CU at our gig, Love Amy “Amy.. Should I know you? This is weird…",
+                    "intentoryAdd": true,
                     "isDefault": true
                 }
             ]
         },
         {
             "micrioId": "7dea9d15-28bd-b416-3a10-c90a9727ab0f",
-            "name":"Beer coaster",
+            "name": "Beer coaster",
             "actions":[
                 {
                     "input": "Look at object",
-                    "output": "You look at a beer coaster with a message on the back",
+                    "output": "It's a coaster with a message on the back",
                     "isDefault": true,
                     "continue":[1]
                 },
                 {
-                    "id": 1,
-                    "input": "Read message on the back",
-                    "output": "CU at our Gig, Love Amy. || Amy, Should I know you? I should, probably…. This is weird… "
+                    "input": "Pick up",
+                    "output": "The coaster belongs to a bar named Zeta, hmm I know where this place is",
+                    "intentoryAdd": true,
+                    "isDefault": true
                 }
             ]
         },
@@ -143,12 +158,6 @@
                 {
                     "input": "Look at object",
                     "output": "You never walk alone, well I guess that wasn’t true, was it.. ",
-                    "isDefault": true
-                },
-                {
-                    "input": "Pick up",
-                    "output": "It won't fit",
-                    "intentoryAdd": true,
                     "isDefault": true
                 }
             ]
