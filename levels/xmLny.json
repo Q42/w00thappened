@@ -20,6 +20,28 @@
             ]
         },
         {
+            "micrioId": "dc0f87df-5aff-cb97-a1e1-c8b1d32f98c9",
+            "name":"phone",
+            "actions":[
+                {
+                    "input": "Look at object",
+                    "output": "It's a phone",
+                    "isDefault": true
+                }
+            ]
+        },
+        {
+            "micrioId": "89dc81d5-89a5-e521-02fc-82783445ecfc",
+            "name":"mirror",
+            "actions":[
+                {
+                    "input": "Look at object",
+                    "output": "It's a mirror",
+                    "isDefault": true
+                }
+            ]
+        },
+        {
             "micrioId": "aab0e6f9-a2b7-2944-8039-0cc5ec62d7c3",
             "name":"stairs",
             "actions":[

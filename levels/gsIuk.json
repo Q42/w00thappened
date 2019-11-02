@@ -1,6 +1,7 @@
 {
     "name": "13 Zeta toilet",
     "micrioId": "gsIuk",
+    "dialog":["What’s that aroma?"],
     "items":[
         {
             "micrioId": "d3ed2f8b-1a06-3d3b-66c1-3ffe3ef5629d",
@@ -42,6 +43,17 @@
                 {
                     "input": "Look at object",
                     "output": "The toilet",
+                    "isDefault": true
+                }
+            ]
+        },
+        {
+            "micrioId": "1616a415-4204-58db-a8b5-5911b55220c7",
+            "name":"ken sent me",
+            "actions":[
+                {
+                    "input": "Look at text",
+                    "output": "“Ken sent me” “Seriously!? ” “How original..",
                     "isDefault": true
                 }
             ]
