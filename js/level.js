@@ -17,6 +17,17 @@ export default class Level {
 		fetch("/levels/" + this.micrio.id + ".json")
 			.then(response => response.json())
 			.then(json => this.startLevel(json));
+
+		if(this.micrio.id == 'UPbPS') {
+			this.micrio['THREE']['embeds']['add'](
+				'https://b.micr.io/LzKWd/video/mario_1.mp4',
+				.99, .51, .018, {
+					isVideo: true,
+					greenScreen: true,
+					fade: true
+				}
+			);
+		}
 	}
 
 	startLevel(level) {
