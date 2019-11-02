@@ -7,6 +7,7 @@ export default class Level {
 		this.micrio = micrio;
 
 		this.level = null;
+		this.lastText = null;
 	}
 
 	activate(){
@@ -83,7 +84,7 @@ export default class Level {
 			this.printText(action.output, marker.x, marker.y);
 
 			if(todo.continue)
-				//this.renderActionOptions(marker, item, action.continue);
+				this.renderActionOptions(marker, item, action.continue);
 
 			if(todo.script){
 				//TODO: run custom script if available
