@@ -123,7 +123,6 @@
                 },
                 {
                     "input": "Go downstairs",
-                    "output": "Ok",
                     "isDefault": true,
                     "navigateTo":"GUokj"
                 }
