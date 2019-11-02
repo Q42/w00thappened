@@ -25,7 +25,7 @@
             "name":"Forest",
             "actions":[
                 {
-                    "input": "Look at object",
+                    "input": "Look",
                     "output": "It looks like my way to freedom.",
                     "isDefault": true
                 },
