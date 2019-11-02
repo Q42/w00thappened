@@ -8,6 +8,8 @@ export default class Game {
 	constructor(){
 		console.log('New game!');
 
+		this.hasPlayedIntroTexts = [];
+
 		this.inventory = null;
 		this.levels = {};
 		this.currentLevel = null;
