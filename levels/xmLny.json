@@ -107,7 +107,8 @@
                 {
                     "input": "Look at object",
                     "output": "Damn I'm lookin' good!",
-                    "isDefault": true
+                    "isDefault": true,
+                    "navigateTo":"UPbPS"
                 }
             ]
         },
