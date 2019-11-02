@@ -54,6 +54,8 @@ export default class ActionPopup {
 		if(this.opened) return;
 		this.opened = true;
 
+		if(this.level.game.currentPopup) this.level.game.currentPopup.close();
+
 		this.level.game.currentPopup = this;
 		this.micrio['THREE']['intersect'] = this.mesh['children'];
 
