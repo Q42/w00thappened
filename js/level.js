@@ -88,7 +88,7 @@ export default class Level {
 			if(action != null)
 			{
 				console.log("Selected action", action);
-				if (action.input == 'Pick up') {
+				if (action.input.toLowerCase() == 'pick up') {
 					this.pickUpItem(marker.json);
 				}
 			}
@@ -134,11 +134,12 @@ export default class Level {
 
 	pickUpItem(data) {
 		const title = data.title;
-		const sprite = (data.images[0].src) ? data.images[0].src : 'white';
+		const sprite = data.images[0] ? data.images[0].src : 'white';
 		const description = 'dsafdsaf';
 		const useSound = 'dafasd';
-		const popupSprite = (data.images[1].src) ? data.images[1].src : 'white';
+		const popupSprite = data.images[1] ? data.images[1].src : 'white';
 		const amount = 1;
+		console.log('pick up??',data);
 		this.game.inventory.addItemToInv(title, sprite, description, useSound, popupSprite, amount);
 	}
 }
