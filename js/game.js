@@ -103,6 +103,14 @@ export default class Game {
 			}
 		}
 
+		if(this.inventory.opened) {
+			const hit = this.micrio['THREE']['getCast']([e.clientX, e.clientY], [this.inventory.mesh])[0];
+			if(hit) {
+				this.inventory.clicked(hit['uv'].x,1-hit['uv'].y);
+				return;
+			}
+		}
+
 		// Otherwise check for marker click
 		const marker = this.micrio['THREE']['getCast']([e.clientX, e.clientY])[0];
 		if(marker) this.onclicked(marker);

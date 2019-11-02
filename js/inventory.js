@@ -3,6 +3,7 @@ const size = drawSize();
 const height = size.height
 const width = size.width;
 const scale = size.scale;
+const boxSize = scale * (size.boxSize + size.padding);
 canvas.width = width * scale;
 canvas.height = height * scale;
 const ctx = canvas.getContext("2d");
@@ -14,8 +15,10 @@ export default class Inventory {
 		this.game = game;
 		this.micrio = game.micrio;
 
+		this.opened = false;
+
 		this.inventorySize = 20;
-		this.inventory = new Array(this.inventorySize);
+		this.items = new Array(this.inventorySize);
 
 		this.init();
 	}
@@ -42,18 +45,30 @@ export default class Inventory {
 	}
 
 	show(){
+		this.opened = true;
 		this.micrio['THREE']['_camera']['add'](this.mesh);
 		this.micrio['camera']['render']();
 	}
 
 	hide(){
+		this.opened = false;
 		if(this.mesh['parent']) this.mesh['parent'].remove(this.mesh);
+	}
+
+	clicked(x,y) {
+		const _x = Math.floor(x * canvas.width / boxSize);
+		const _y = Math.floor(y * canvas.height / boxSize);
+		const item = this.items[_y * 5 + _x];
+
+		if(item) {
+			console.log('use item!!')
+		}
 	}
 
 	// Dit komt straks uit Micrio
 	addItem(marker) {
-		const emptySlotIndex = this.inventory.findIndex(item => !item); // Find the first empty slots
-		this.inventory[emptySlotIndex] = marker;
+		const emptySlotIndex = this.items.findIndex(item => !item); // Find the first empty slots
+		this.items[emptySlotIndex] = marker;
 
 		// Remove marker from game world
 		marker.remove();
@@ -75,13 +90,13 @@ export default class Inventory {
 	showHide(){
 		this.draw();
 		this.show();
-		setTimeout(() => this.hide(), 4000);
+		//setTimeout(() => this.hide(), 4000);
 	}
 
 	removeItem(id) {
-		const index = this.inventory.findIndex(m => m.id == id);
+		const index = this.items.findIndex(m => m.id == id);
 		if(index >= 0) {
-			this.inventory.splice(index, 1);
+			this.items.splice(index, 1);
 			this.draw();
 		}
 	}
@@ -100,8 +115,8 @@ export default class Inventory {
 		ctx.fillRect(0, 0, width * scale, height * scale);
 		// Draw boxes
 		let pos = {x: 0, y: padding * scale};
-		for (let index = 0; index < this.inventory.length; index++) {
-			const item = this.inventory[index];
+		for (let index = 0; index < this.items.length; index++) {
+			const item = this.items[index];
 
 			pos.x += boxSize * scale + padding * scale;
 			if (index % 5 == 0) {
