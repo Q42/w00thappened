@@ -1,3 +1,5 @@
+import Text from './text.js';
+
 const canvas = document.createElement("canvas");
 const size = drawSize();
 const height = size.height
@@ -71,6 +73,11 @@ export default class Inventory {
 		const emptySlotIndex = this.items.findIndex(item => !item); // Find the first empty slots
 		this.items[emptySlotIndex] = marker;
 
+		if(marker.title) {
+			const txt = new Text(this.micrio, 'Picked up ' + marker.title, 0, 5, '#00ff00');
+			setTimeout(() => txt.remove(), 4000);
+		}
+
 		if(marker['audio'] && marker['audio']['fileUrl']) {
 			this._audio.src = marker['audio']['fileUrl'];
 			this._audio.play();
@@ -96,7 +103,7 @@ export default class Inventory {
 	showHide(){
 		this.draw();
 		this.show();
-		//setTimeout(() => this.hide(), 4000);
+		setTimeout(() => this.hide(), 4000);
 	}
 
 	removeItem(id) {
