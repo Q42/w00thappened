@@ -1,17 +1,5 @@
 {
     "name": "00 Start Screen",
     "micrioId": "UkwTz",
-    "items":[
-        {
-            "micrioId": "8aa5125e-6c6c-9666-8a3a-d1b5a307ee2d",
-            "name":"Forest",
-            "actions":[
-                {
-                    "input": "Find out",
-                    "output": "*****",
-                    "navigateTo":"pGUNo"
-                }
-            ]
-        }
-    ]
+    "items":[]
 }
