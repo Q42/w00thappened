@@ -36,8 +36,7 @@ export default class Game {
 			'forceGL': true,
 			'fragmentShader': fragmentShader,
 			'minimap': false,
-			'loaderbar': false,
-			'path': 'https://storage.googleapis.com/micrio-dotnet/'
+			'loaderbar': false
 		});
 
 		this._container = this.micrio['container'];
