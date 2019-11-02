@@ -16,6 +16,7 @@ export default class Inventory {
 		this.micrio = game.micrio;
 
 		this.opened = false;
+		this._audio = new Audio;
 
 		this.inventorySize = 20;
 		this.items = new Array(this.inventorySize);
@@ -69,6 +70,11 @@ export default class Inventory {
 	addItem(marker) {
 		const emptySlotIndex = this.items.findIndex(item => !item); // Find the first empty slots
 		this.items[emptySlotIndex] = marker;
+
+		if(marker['audio'] && marker['audio']['fileUrl']) {
+			this._audio.src = marker['audio']['fileUrl'];
+			this._audio.play();
+		}
 
 		// Remove marker from game world
 		marker.remove();
