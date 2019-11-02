@@ -2,6 +2,8 @@ import Level from './level.js';
 import Inventory from './inventory.js';
 import { fragmentShader } from './shader.js';
 
+window['Micrio'].prototype['forceGL'] = true;
+
 export default class Game {
 	constructor(){
 		console.log('New game!');
