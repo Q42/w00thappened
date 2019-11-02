@@ -39,13 +39,13 @@
                 {
                     "id":2,
                     "input": "Enter your birthday",
-                    "output": "“I definitely didn’t set this up… I use this as my password all the time!",
+                    "output": "I definitely didn’t set this up… I use this as my password all the time!",
                     "continue":[2,3]
                 },
                 {
                     "id":3,
                     "input": "Enter your mother's name",
-                    "output": "“Something error happend",
+                    "output": "Something error happened",
                     "continue":[2,3]
                 }
             ]
