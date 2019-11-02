@@ -1,95 +1,91 @@
 const canvas = document.createElement("canvas");
-canvas.id = 'inventory';
 const size = drawSize();
 const height = size.height
 const width = size.width;
 const scale = size.scale;
 canvas.width = width * scale;
 canvas.height = height * scale;
-document.body.appendChild(canvas);
 const ctx = canvas.getContext("2d");
+
+const THREE = window['THREE'];
 
 export default class Inventory {
 	constructor(game) {
 		this.game = game;
-
-		this.itemTypes = []; // Fill with 'none', 'key' etc.
-
-		this.ItemProperties = {
-			name: 0,
-			sprite: 1,
-			description: 2,
-			useSound: 3,
-			popupSprite: 4,
-			amount: 5,
-			length: 6,
-		}
+		this.micrio = game.micrio;
 
 		this.inventorySize = 20;
-		this.inventory = [];
-		this.itemDefinitions = [];
+		this.inventory = new Array(this.inventorySize);
 
 		this.init();
 	}
 
 	init() {
-		// Add the empty slot as item definition
-		this.addItemDef('none', 'black', '', '', '', 0);
-		// Fill all inventory slots with item none.
-		this.inventory[this.inventorySize - 1] = this.itemTypes[0];
-		this.inventory.fill(this.itemTypes[0]);
+		const ratio = width / height;
+
+		// Create 3d mesh
+		this.texture = new THREE['Texture'](canvas);
+		this.mesh = new THREE['Mesh'](
+			new THREE['PlaneBufferGeometry'](10 * ratio, 10),
+			new THREE['MeshBasicMaterial']({
+				'map': this.texture,
+				'color': 0xff0000,
+				'depthWrite': false,
+				'depthTest': false,
+				'transparent': true,
+			})
+		);
+		this.texture['needsUpdate'] = true;
+		this.mesh['renderOrder'] = 119;
+
+		this.mesh['position']['set'](0,-5,-15);
+
+		this.draw();
+		this.show();
+	}
+
+	show(){
+		this.micrio['THREE']['_camera']['add'](this.mesh);
+		this.micrio['camera']['render']();
+	}
+
+	hide(){
+		if(this.mesh['parent']) this.mesh['parent'].remove(this.mesh);
 	}
 
 	// Dit komt straks uit Micrio
-	addItemToInv(itemType, sprite, description, useSound, popupSprite, amount) {
-		const inventoryIndex = this.inventory.findIndex(type => type === itemType); // Returns -1 if item is not in inventory
-		if (inventoryIndex == -1) {
-			// If item is not in inventory
-			const emptySlotIndex = this.inventory.findIndex(type => type === this.itemTypes[0]); // Find the first empty slots
-			// Add to inventory
-			this.inventory[emptySlotIndex] = itemType;
-			// Add new definition
-			this.addItemDef(itemType, sprite, description, useSound, popupSprite, 0); // Waardes uit Micrio
-			this.itemDefinitions[this.itemTypes.length - 1][this.ItemProperties.amount] = amount;
-		} else {
-			// If item was already in inventory then we increase the amount
-			const itemDefIndex = this.itemTypes.findIndex(type => type === itemType);
-			this.itemDefinitions[itemDefIndex][this.ItemProperties.amount] += amount;
+	addItem(marker) {
+		const emptySlotIndex = this.inventory.findIndex(item => !item); // Find the first empty slots
+		this.inventory[emptySlotIndex] = marker;
+
+		// Remove marker from game world
+		marker.remove();
+
+		// Cast any images to real image
+		marker._images = marker['images'].map(img => {
+			const image = new Image;
+			image.src = img.src;
+			image.crossOrigin = true;
+			return image;
+		})
+
+		if(marker._images[0]) marker._images[0].onload = () => {
+			this.draw();
 		}
-		const itemDefIndex = this.itemTypes.findIndex(type => type === itemType);
-		this.drawItemInspect(this.itemDefinitions[itemDefIndex]);
+		else this.draw();
+
 	}
 
-	removeItemFromInv(itemType, amount) {
-		const itemIndex = this.inventory.findIndex(type => type === itemType); // Returns -1 if item is not in inventory
-		if (itemIndex != -1) {
-			// If item is is inventory
-			const itemDefIndex = this.itemTypes.findIndex(type => type === itemType);
-			this.itemDefinitions[itemDefIndex][this.ItemProperties.amount] -= amount;
-			if (this.itemDefinitions[itemDefIndex][this.ItemProperties.amount] <= 0) {
-				// Remove item from inventory and definitionlist if amount <= 0
-				this.inventory[itemIndex] = this.itemTypes[0];
-				this.itemDefinitions.splice(itemDefIndex, 1);
-			}
+	removeItem(id) {
+		const index = this.inventory.findIndex(m => m.id == id);
+		if(index >= 0) {
+			this.inventory.splice(index, 1);
+			this.draw();
 		}
-	}
-
-	addItemDef(itemType, sprite, description, useSound, popupSprite, amount) {
-		// Update ItemType list
-		this.itemTypes.push(itemType);
-		const itemDefIndex = this.itemTypes.length -1;
-		// Add an itemdefinition to the itemDefinitions array
-		this.itemDefinitions[itemDefIndex] = [];
-		this.itemDefinitions[itemDefIndex][this.ItemProperties.name] = itemType;
-		this.itemDefinitions[itemDefIndex][this.ItemProperties.sprite] = sprite;
-		this.itemDefinitions[itemDefIndex][this.ItemProperties.description] = description;
-		this.itemDefinitions[itemDefIndex][this.ItemProperties.useSound] = useSound;
-		this.itemDefinitions[itemDefIndex][this.ItemProperties.popupSprite] = popupSprite;
-		this.itemDefinitions[itemDefIndex][this.ItemProperties.amount] = amount;
 	}
 
 	// Drawing logic
-	drawInventory() {
+	draw() {
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		const size = drawSize();
 		const height = size.height
@@ -103,24 +99,26 @@ export default class Inventory {
 		// Draw boxes
 		let pos = {x: 0, y: padding * scale};
 		for (let index = 0; index < this.inventory.length; index++) {
-			const itemDefIndex = this.itemTypes.findIndex(type => type === this.inventory[index]);
-			const item = this.itemDefinitions[itemDefIndex];
+			const item = this.inventory[index];
+
 			pos.x += boxSize * scale + padding * scale;
 			if (index % 5 == 0) {
 				// New row
 				pos.x = padding * scale;
 				if (index != 0) pos.y += boxSize * scale + padding * scale;
 			}
-			ctx.fillStyle = item[this.ItemProperties.sprite];
+
+			// Draw box
+			ctx.fillStyle = 'black';
 			ctx.fillRect(pos.x, pos.y, boxSize * scale, boxSize * scale);
+
 			// Draw image
-			if (item[this.ItemProperties.sprite] != 'black') {
-				const img = new Image;
-				img.src = item[this.ItemProperties.sprite];
-				img.onload = function() {
-					ctx.drawImage(img, padding * scale, padding * scale, boxSize * scale, boxSize * scale);
-				}
+			if(item && item._images[0]) {
+				console.log('draw item!',item._images[0]);
+				ctx.drawImage(item._images[0], pos.x, pos.y, boxSize * scale, boxSize * scale);
 			}
+
+			this.texture.needsUpdate = true;
 		}
 	}
 
