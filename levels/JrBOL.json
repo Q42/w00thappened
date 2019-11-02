@@ -16,7 +16,8 @@
                     "input": "Start scooter",
                     "output": "Buckle Up Buckaroo!",
                     "isDefault": true,
-                    "navigateTo":"dAoIB"
+                    "navigateTo":"dAoIB",
+                    "inventoryFilter":"b416df2d-7727-1d70-9fdd-33b592aaa082"
                 }
             ]
         },

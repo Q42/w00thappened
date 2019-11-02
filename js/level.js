@@ -58,12 +58,12 @@ export default class Level {
 				//TODO: Also filter on inventory items
 
 				// game.inventory.items = [MicrioMarker]
-				//this.game.inventory.items.filter(marker => {
-				//	return true;
-				//})
-
-				return (idList != null && idList.includes(action.id)) || (idList == null && action.isDefault);
-			})
+				var myitems =  this.game.inventory.items.map(marker => {
+					return marker.id;
+				})
+				return (action.inventoryFilter == undefined || myitems.includes(action.inventoryFilter))
+				&& ((idList != null && idList.includes(action.id)) || (idList == null && action.isDefault));
+			}.bind(this))
 			.map(function (reply) {
 				return reply.input
 			});
