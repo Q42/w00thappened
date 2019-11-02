@@ -45,7 +45,7 @@ export default class Text {
 		this.mesh['renderOrder'] = 120;
 
 		if(this.static) {
-			this.mesh['position']['set'](this.x,this.y,-50);
+			this.mesh['position']['set'](this.x,this.y,-100);
 			this.micrio['THREE']['_camera']['add'](this.mesh);
 			this.micrio['camera']['render']();
 		}
