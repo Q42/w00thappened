@@ -152,7 +152,9 @@ export default class Level {
 
 	deactivate(){
 		console.log('Deactivate level', this.micrio.id);
-		if(this.lastText) this.lastText.remove(); 
+		if(this.lastText) this.lastText.remove();
+		this.micrio.destroy();
+
 		while(this.tos.length) clearTimeout(this.tos.shift());
 	}
 

@@ -70,7 +70,7 @@ export default class ActionPopup {
 		this.mesh['lookAt'](0,0,0);
 
 		this.micrio['THREE']['_scene']['add'](this.mesh);
-		this.micrio['camera']['render']();
+		//this.micrio['camera']['render']();
 
 	}
 
@@ -82,6 +82,6 @@ export default class ActionPopup {
 		this.micrio['THREE']['intersect'] = null;
 
 		this.micrio['THREE']['_scene']['remove'](this.mesh);
-		this.micrio['camera']['render']();
+		//this.micrio['camera']['render']();
 	}
 }
