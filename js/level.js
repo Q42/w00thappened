@@ -120,9 +120,9 @@ export default class Level {
 			if(todo.continue)
 				this.renderActionOptions(marker, item, action.continue);
 
-			if(todo.script){
+			/*if(todo.script){
 				//TODO: run custom script if available
-			}
+			}*/
 
 			if(todo.navigateTo) {
 				this.game.goto(todo.navigateTo);
