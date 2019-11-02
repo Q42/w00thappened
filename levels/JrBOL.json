@@ -9,7 +9,7 @@
             "actions":[
                 {
                     "input": "Look at object",
-                    "output": "It's an old scooter. I should probably not drive being this wasted",
+                    "output": "It's an old scooter.\nI should probably not drive being this wasted",
                     "isDefault": true
                 },
                 {
