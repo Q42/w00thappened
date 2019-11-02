@@ -105,10 +105,17 @@
             "name":"mirror",
             "actions":[
                 {
-                    "input": "Look at object",
+                    "input": "Look in mirror",
                     "output": "Damn I'm lookin' good!",
                     "isDefault": true,
-                    "navigateTo":"UPbPS"
+                    "notInInventoryFilter": "aeced0d4-deba-5ac5-2f96-d2c9bcace1b4"
+                },
+                {
+                    "input": "Look at yourself",
+                    "output": "Look at me,\nI'm a plumber!",
+                    "isDefault": true,
+                    "navigateTo": "UPbPS",
+                    "inventoryFilter": "aeced0d4-deba-5ac5-2f96-d2c9bcace1b4"
                 }
             ]
         },
@@ -139,7 +146,7 @@
                 },
                 {
                     "input": "Pick up",
-                    "output": "It's-a-me!",
+                    "output": "It's-a-me!\nI wonder how I look wearing it...",
                     "intentoryAdd": true,
                     "isDefault": true
                 }

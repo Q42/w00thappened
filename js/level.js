@@ -76,8 +76,9 @@ export default class Level {
 				var myitems =  this.game.inventory.items.map(marker => {
 					return marker.id;
 				})
-				return (action.inventoryFilter == undefined || myitems.includes(action.inventoryFilter))
-				&& ((idList != null && idList.includes(action.id)) || (idList == null && action.isDefault));
+				return (action.notInInventoryFilter == undefined || !myitems.includes(action.notInInventoryFilter))
+					&& (action.inventoryFilter == undefined || myitems.includes(action.inventoryFilter))
+					&& ((idList != null && idList.includes(action.id)) || (idList == null && action.isDefault));
 			}.bind(this))
 			.map(function (reply) {
 				return reply.input
