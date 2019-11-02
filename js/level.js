@@ -89,7 +89,7 @@ export default class Level {
 			{
 				console.log("Selected action", action);
 				if (action.input.toLowerCase() == 'pick up') {
-					this.pickUpItem(marker.json);
+					this.game.inventory.addItem(marker);
 				}
 			}
 
@@ -132,14 +132,4 @@ export default class Level {
 		console.log('Deactivate level', this.micrio.id);
 	}
 
-	pickUpItem(data) {
-		const title = data.title;
-		const sprite = data.images[0] ? data.images[0].src : 'white';
-		const description = 'dsafdsaf';
-		const useSound = 'dafasd';
-		const popupSprite = data.images[1] ? data.images[1].src : 'white';
-		const amount = 1;
-		console.log('pick up??',data);
-		this.game.inventory.addItemToInv(title, sprite, description, useSound, popupSprite, amount);
-	}
 }
