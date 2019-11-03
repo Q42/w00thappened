@@ -112,6 +112,9 @@ export default class Game {
 		// Otherwise check for marker click
 		const marker = this.micrio['THREE']['getCast']([e.clientX, e.clientY])[0];
 		if(marker) this.onclicked(marker);
+
+		// Otherwise clicked outside -> close any open popup
+		else if(this.currentPopup) this.currentPopup.close();
 	}
 
 	onclicked(hit) {

@@ -32,7 +32,7 @@ export default class ActionPopup {
 			const text = new Text(this.micrio, a, null, null, '#ff0000', true);
 			text.onload = () => {
 				text.mesh['position'].y = y - lineHeight/2;
-				text.mesh['position'].z = -10;
+				text.mesh['position'].z = -20;
 				text.mesh['material']['opacity'] = .75;
 				this.mesh.add(text.mesh);
 				y -= lineHeight;

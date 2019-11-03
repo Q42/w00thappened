@@ -52,8 +52,12 @@ export default class Level {
 	clickedItem(marker) {
 		var itemId = marker.id;
 		var item = this.getItemForId(itemId);
-		if(item != null)
-			this.renderActionOptions(marker, item, null);
+		if(item != null) {
+			if(marker._actions && marker._actions.opened)
+				marker._actions.close();
+
+			else this.renderActionOptions(marker, item, null);
+		}
 	}
 
 	//Renders a box to select a conversation item
@@ -80,7 +84,7 @@ export default class Level {
 				marker._actions.close();
 			
 			marker._actions = new ActionPopup(this, marker, replies);
-			marker._actions.toggle();
+			marker._actions.open();
 		}
 
 	}
