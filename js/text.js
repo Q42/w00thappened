@@ -15,6 +15,7 @@ export default class Text {
 
 		this.mesh = null;
 		this.texture = null;
+		this.measuredWidth = 0;
 
 		this.src = this.drawCanvas();
 		this.image = new Image;
@@ -29,7 +30,7 @@ export default class Text {
 
 		this.texture = new THREE['Texture'](this.image);
 
-		const w = 100;
+		const w = canvas.width / 8;
 		const h = w * (canvas.height / canvas.width);
 
 		this.mesh = new THREE['Mesh'](
@@ -69,11 +70,17 @@ export default class Text {
 	// Canvas rendering
 	drawCanvas() {
 		// Font settings
-		const scale = canvas.width / 1024;
+		const scale = 1;
 		const fontSize = 38 * scale;
 		const lineHeight = 50 * scale;
 		const fontWeight = 600;
 		const font = 'normal '+fontWeight+' '+fontSize+'px / '+lineHeight+'px Acme';
+
+		ctx.font = font;
+		ctx.textAlign = 'center';
+		ctx.strokeStyle = '#000000';
+		ctx.lineWidth = 8;
+		ctx.miterLimit = 2;
 
 		const lines = this.text.split('\n');
 
@@ -83,6 +90,13 @@ export default class Text {
 				[i, 1, ...this.resizeLine(lines[i])]
 			);
 
+		this.measuredWidth = 0;
+
+		lines.forEach(l => {
+			this.measuredWidth = Math.max(ctx.measureText(l).width, this.measuredWidth);
+		})
+
+		canvas.width = this.measuredWidth;
 		const x = canvas.width/2;
 		canvas.height = lineHeight * lines.length;
 
@@ -110,7 +124,7 @@ export default class Text {
 
 		for(;num>=0;num--) {
 			first = words.slice(0,num);
-			if(num == 1 || ctx.measureText(first.join(' ')).width < canvas.width-60) break;
+			if(num == 1 || ctx.measureText(first.join(' ')).width < 1024) break;
 		}
 
 		return [first, words.slice(num)]
