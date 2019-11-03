@@ -44,7 +44,7 @@ export default class Inventory {
 		this.texture['needsUpdate'] = true;
 		this.mesh['renderOrder'] = 119;
 
-		this.mesh['position']['set'](0,-5,-15);
+		this.mesh['position']['set'](0,-8,-15);
 	}
 
 	show(){
@@ -74,7 +74,7 @@ export default class Inventory {
 		this.items[emptySlotIndex] = marker;
 
 		if(marker.title) {
-			const txt = new Text(this.micrio, 'Picked up ' + marker.title, 0, 5, '#00ff00');
+			const txt = new Text(this.micrio, 'Picked up ' + marker.title, 0, -12, '#00ff00');
 			setTimeout(() => txt.remove(), 4000);
 		}
 
