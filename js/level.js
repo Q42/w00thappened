@@ -35,6 +35,10 @@ export default class Level {
 		console.log("Start level:" + level.name);
 		this.level = level;
 
+		setTimeout(() => {
+			this.micrio['camera']['render']();
+		},100)
+
 		// only show intro text first time you enter the scene
 		if (level.dialog && this.game.hasPlayedIntroTexts.indexOf(this.micrio.id) === -1) {
 			this.showDialog(level.dialog);
