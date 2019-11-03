@@ -6,8 +6,6 @@ window['Micrio'].prototype['forceGL'] = true;
 
 export default class Game {
 	constructor(){
-		console.log('New game!');
-
 		this.hasPlayedIntroTexts = [];
 
 		this.inventory = null;
@@ -47,8 +45,6 @@ export default class Game {
 	}
 
 	init(){
-		console.log('Init game!', this.micrio)
-
 		// For each micrio image loaded, set a level
 		this._container.removeEventListener('load', this.init);
 		this._container.addEventListener('metadata', this.setLevel);

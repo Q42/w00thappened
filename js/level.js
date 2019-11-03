@@ -12,7 +12,6 @@ export default class Level {
 	}
 
 	activate(){
-		console.log('Activate level', this.micrio.id);
 
 		//TODO: Load level based on micrioId
 		fetch("/levels/" + this.micrio.id + ".json")
@@ -32,7 +31,6 @@ export default class Level {
 	}
 
 	startLevel(level) {
-		console.log("Start level:" + level.name);
 		this.level = level;
 
 		// only show intro text first time you enter the scene
@@ -43,10 +41,8 @@ export default class Level {
 	}
 
 	showDialog(dialog) {
-		console.log('start dialog');
 		dialog.forEach(function(obj,index) {
 			this.tos.push(setTimeout(function(){
-				console.log(dialog[index]);
 				this.printText(dialog[index], 0.5,0.5);
 			}.bind(this), 3000 * (index)));
 		}.bind(this));
@@ -54,14 +50,10 @@ export default class Level {
 
 	//From game logic, when micrio marker is clicked
 	clickedItem(marker) {
-		console.log('clicked on item!', marker.id);
-
 		var itemId = marker.id;
 		var item = this.getItemForId(itemId);
 		if(item != null)
-		{
 			this.renderActionOptions(marker, item, null);
-		}
 	}
 
 	//Renders a box to select a conversation item
@@ -84,7 +76,6 @@ export default class Level {
 				return reply.input
 			});
 			
-			console.log("Render replies", replies);
 			if(marker._actions)
 				marker._actions.close();
 			
@@ -96,7 +87,6 @@ export default class Level {
 
 	//Selected item from action options
 	actionItem(marker, action) {
-		console.log('action item!', action, marker);
 
 		const itemId = marker.id;
 		const item = this.getItemForId(itemId);
@@ -109,7 +99,6 @@ export default class Level {
 
 			if(action != null)
 			{
-				console.log("Selected action", action);
 				if (action.input.toLowerCase() == 'pick up') {
 					this.game.inventory.addItem(marker);
 				}
@@ -151,7 +140,6 @@ export default class Level {
 	}
 
 	deactivate(){
-		console.log('Deactivate level', this.micrio.id);
 		if(this.lastText) this.lastText.remove();
 
 		while(this.tos.length) clearTimeout(this.tos.shift());
