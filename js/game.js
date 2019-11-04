@@ -34,7 +34,8 @@ export default class Game {
 			'forceGL': true,
 			'fragmentShader': fragmentShader,
 			'minimap': false,
-			'loaderbar': false
+			'loaderbar': false,
+			'noToolbar': true
 		});
 
 		this._container = this.micrio['container'];
