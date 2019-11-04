@@ -24,9 +24,9 @@ export default class Level {
 			this.micrio['THREE']['embeds']['add'](
 				'https://b.micr.io/LzKWd/video/mario_1.mp4',
 				.99, .51, .018, {
-					isVideo: true,
-					greenScreen: true,
-					fade: true
+					'isVideo': true,
+					'greenScreen': true,
+					'fade': true
 				}
 			);
 		}
