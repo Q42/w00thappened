@@ -56,13 +56,13 @@ export const fragmentShader = `
 		vec3 rgb = hsl2rgb(vec3(0.2, 0.4, contrasted));
 		gl_FragColor = vec4(vec3(rgb), 1.0) * .09 + rgba * .93;
 
-		float darkness = .5 - (rgb.r+rgb.g+rgb.b)/3.;
+		//float darkness = .5 - (rgb.r+rgb.g+rgb.b)/3.;
 
-		gl_FragColor.rgb *= 1.-darkness;
+		//gl_FragColor.rgb *= 1.-darkness;
 
 		float grey2 = 0.21 * rgba.r + 0.71 * rgba.g + 0.07 * rgba.b;
 
-		gl_FragColor.rgb *= grey2;
+		gl_FragColor.rgb *= .25 + .75 * grey2;
 
 
 		gl_FragColor.a = opacity;
