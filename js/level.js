@@ -13,8 +13,6 @@ export default class Level {
 	}
 
 	activate(){
-
-		//TODO: Load level based on micrioId
 		fetch("/levels/" + this.micrio.id + ".json")
 			.then(response => response.json())
 			.then(json => this.startLevel(json));
@@ -45,17 +43,16 @@ export default class Level {
 	}
 
 	showDialog(dialog) {
-		dialog.forEach(function(obj,index) {
+		dialog.forEach((obj,index) => {
 			this.tos.push(setTimeout(function(){
 				this.printText(dialog[index], 0.5,0.5);
 			}.bind(this), 3000 * (index)));
-		}.bind(this));
+		});
 	}
 
 	//From game logic, when micrio marker is clicked
 	clickedItem(marker) {
-		var itemId = marker.id;
-		var item = this.getItemForId(itemId);
+		const item = this.getItemForId(marker.id);
 		if(item != null) {
 			if(marker._actions && marker._actions.opened)
 				marker._actions.close();
@@ -66,74 +63,49 @@ export default class Level {
 
 	//Renders a box to select a conversation item
 	renderActionOptions(marker, item, idList) {
+		if(!item) return;
+
 		//TODO: Render dialog with all conversation options
-		if(item != null)
-		{
-			var replies = item.actions.filter(function (action) {
-				//TODO: Also filter on inventory items
+		const replies = item['actions'].filter(action => {
+			// game.inventory.items = [MicrioMarker]
+			const myitems =  this.game.inventory.items.map(marker => marker.id);
 
-				// game.inventory.items = [MicrioMarker]
-				var myitems =  this.game.inventory.items.map(marker => {
-					return marker.id;
-				})
-				return (action.notInInventoryFilter == undefined || !myitems.includes(action.notInInventoryFilter))
-					&& (action.inventoryFilter == undefined || myitems.includes(action.inventoryFilter))
-					&& ((idList != null && idList.includes(action.id)) || (idList == null && action.isDefault));
-			}.bind(this))
-			.map(function (reply) {
-				return reply.input
-			});
-			
-			if(marker._actions)
-				marker._actions.close();
-			
-			marker._actions = new ActionPopup(this, marker, replies);
-			marker._actions.open();
-		}
+			return (action['notInInventoryFilter'] == undefined || !myitems.includes(action['notInInventoryFilter']))
+				&& (action['inventoryFilter'] == undefined || myitems.includes(action['inventoryFilter']))
+				&& ((idList != null && idList.includes(action.id)) || (idList == null && action['isDefault']));
+		})
+		.map(reply => reply['input']);
 
+		if(marker._actions)
+			marker._actions.close();
+
+		marker._actions = new ActionPopup(this, marker, replies);
+		marker._actions.open();
 	}
 
 	//Selected item from action options
 	actionItem(marker, action) {
-
 		const itemId = marker.id;
 		const item = this.getItemForId(itemId);
-		const todo = item && item.actions.find(item => item.input == action);
+		const todo = item && item['actions'].find(item => item['input'] == action);
 		if(todo != null)
 		{
-			var action = item.actions.find(function (item) {
-				return item.input == action;
-			});
-
-			if(action != null)
-			{
-				if (action.input.toLowerCase() == 'pick up') {
-					this.game.inventory.addItem(marker);
-				}
-			}
+			if (todo['input'].toLowerCase() == 'pick up')
+				this.game.inventory.addItem(marker);
 
 			//Render reply
-			this.printText(action.output, marker.x, marker.y);
+			this.printText(todo['output'], marker.x, marker.y);
 
-			if(todo.continue)
-				this.renderActionOptions(marker, item, action.continue);
+			if(todo['continue'])
+				this.renderActionOptions(marker, item, todo['continue']);
 
-			/*if(todo.script){
-				//TODO: run custom script if available
-			}*/
-
-			if(todo.navigateTo) {
-				this.game.goto(todo.navigateTo);
-			}
+			if(todo['navigateTo'])
+				this.game.goto(todo['navigateTo']);
 		}
 	}
 	
 	getItemForId(itemId) {
-		var item = this.level.items.find(function (item) {
-			return item.micrioId == itemId;
-		});
-
-		return item;
+		return this.level['items'].find(item => item['micrioId'] == itemId);
 	}
 
 	printText(string, x, y) {

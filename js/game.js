@@ -24,7 +24,7 @@ export default class Game {
 		this.onclicked = this.onclicked.bind(this);
 
 		if(document.fonts && document.fonts.load)
-			document.fonts.load('10pt "Acme"').then(this.create);
+			document.fonts.load('10pt "Acme"').then(() => this.create());
 		else this.create();
 	}
 
@@ -49,7 +49,6 @@ export default class Game {
 		// For each micrio image loaded, set a level
 		this._container.removeEventListener('load', this.init);
 		this._container.addEventListener('metadata', this.setLevel);
-		this._container.addEventListener('pre-metadata', this.setShader);
 
 		// Create inventory
 		this.inventory = new Inventory(this);
@@ -75,8 +74,8 @@ export default class Game {
 
 	goto(id){
 		if(this.currentPopup) this.currentPopup.close();
-		this.micrio.camera.stop();
-		this.micrio.modules.navigator.goto(id, undefined, true);
+		this.micrio['camera'].stop();
+		this.micrio['modules']['navigator']['goto'](id, undefined, true);
 	}
 
 	// Create data of current game state and save to localStorage
@@ -157,7 +156,9 @@ export default class Game {
 		const marker = hit && hit['object']['marker'];
 		const c = this.micrio['el'].classList;
 
-		this._container.title = marker && marker.title || '';
+		if(marker && marker.title) this._container.title = marker.title;
+		else this._container.removeAttribute('title');
+
 		if(hit) { if(!c.contains('hover')) c.add('hover') }
 		else if(c.contains('hover')) c.remove('hover');
 	}

@@ -20,6 +20,10 @@ export default class Inventory {
 		this.opened = false;
 		this._audio = new Audio;
 
+		// Internals
+		this.mesh = null;
+		this.texture = null;
+
 		this.inventorySize = 20;
 		this.items = new Array(this.inventorySize);
 
@@ -94,7 +98,7 @@ export default class Inventory {
 		marker._images = marker['images'].map(img => {
 			const image = new Image;
 			image.src = img.src.replace(/\.(jpg|png)/,'.64.$1');
-			image.crossOrigin = true;
+			image.crossOrigin = 'anonymous';
 			return image;
 		})
 
@@ -156,25 +160,8 @@ export default class Inventory {
 		this.texture['needsUpdate'] = true;
 	}
 
-	drawItemInspect(item) {
-		ctx.clearRect(0, 0, canvas.width, canvas.height);
-		const size = drawSize();
-		const height = size.height
-		const width = size.width;
-		const scale = size.scale;
-		const padding = size.padding;
-
-		ctx.fillStyle = 'brown';
-		ctx.fillRect(padding * scale, padding * scale, width / 2 * scale, height * scale - 2 * padding * scale);
-		const img = new Image;
-		img.src = item[this.ItemProperties.popupSprite];
-		console.log(width, height);
-		img.onload = function() {
-			ctx.drawImage(img, padding * scale, padding * scale, width / 2 * scale, height * scale - 2 * padding * scale);
-		}
-	}
-
 }
+
 function drawSize() {
 	const boxSize = 16;
 	const padding = 4;
