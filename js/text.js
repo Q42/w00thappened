@@ -1,7 +1,3 @@
-const canvas = document.createElement('canvas');
-canvas.width = 1024;
-canvas.height = 512;
-const ctx = canvas.getContext('2d');
 
 export default class Text {
 	constructor(micrio, text='', x=.5, y=.5, color='#ff0000', independent=false, isStatic=true) {
@@ -13,25 +9,27 @@ export default class Text {
 		this.independent = independent;
 		this.static = isStatic;
 
+		this.canvas = document.createElement('canvas');
+		this.ctx = this.canvas.getContext('2d');
+
 		this.mesh = null;
 		this.texture = null;
 		this.measuredWidth = 0;
 
-		this.src = this.drawCanvas();
-		this.image = new Image;
-		this.image.onload = this.place.bind(this);
-		this.image.src = this.src;
-
 		this.onload = null;
+
+		this.drawCanvas();
+		this.place();
+
 	}
 
 	place(){
 		const THREE = self['THREE'];
 
-		this.texture = new THREE['Texture'](this.image);
+		this.texture = new THREE['Texture'](this.canvas);
 
-		const w = canvas.width / 8;
-		const h = w * (canvas.height / canvas.width);
+		const w = this.canvas.width / 8;
+		const h = w * (this.canvas.height / this.canvas.width);
 
 		this.mesh = new THREE['Mesh'](
 			new THREE['PlaneBufferGeometry'](w, h),
@@ -59,12 +57,13 @@ export default class Text {
 			this.micrio['camera']['render']();
 		}
 
-		if(this.onload) this.onload();
-
 	}
 
 	remove(){
 		if(this.mesh && this.mesh['parent']) this.mesh['parent']['remove'](this.mesh);
+		delete this.mesh;
+		delete this.ctx;
+		delete this.canvas;
 	}
 
 	// Canvas rendering
@@ -75,6 +74,7 @@ export default class Text {
 		const lineHeight = 50 * scale;
 		const fontWeight = 600;
 		const font = 'normal '+fontWeight+' '+fontSize+'px / '+lineHeight+'px Acme';
+		const ctx = this.ctx;
 
 		ctx.font = font;
 		ctx.textAlign = 'center';
@@ -96,9 +96,10 @@ export default class Text {
 			this.measuredWidth = Math.max(ctx.measureText(l).width, this.measuredWidth);
 		})
 
-		canvas.width = this.measuredWidth;
-		const x = canvas.width/2;
-		canvas.height = lineHeight * lines.length;
+		this.canvas.width = this.measuredWidth;
+		this.canvas.height = lineHeight * lines.length;
+
+		const x = this.canvas.width/2;
 
 		ctx.font = font;
 		ctx.textAlign = 'center';
@@ -113,11 +114,11 @@ export default class Text {
 			ctx.fillText(l, x, y);
 		});
 
-		return canvas.toDataURL()
 	}
 
 	resizeLine(text) {
 		const words = text.split(' ');
+		const ctx = this.ctx;
 
 		let num=words.length;
 		let first=null;
