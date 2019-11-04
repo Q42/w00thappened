@@ -1,67 +1,61 @@
-export const fragmentShader = `
-	varying vec2 vUv;
+export const fragmentShader = `varying vec2 vUv; uniform float opacity; uniform sampler2D map;
+vec3 hsl2rgb(vec3 c)
+{
+float t = c.y * ((c.z < 0.5) ? c.z : (1.0 - c.z));
+vec4 K = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
+vec3 p = abs(fract(c.xxx + K.xyz) * 6.0 - K.www);
+return (c.z + t) * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), 2.0*t / c.z);
+}
+void main(void)
+{`
 
-	uniform float opacity;
-	uniform sampler2D map;
+/* Read a group of texels, doing a box blur */
 
-	vec3 hsl2rgb(vec3 c)
-	{
-		float t = c.y * ((c.z < 0.5) ? c.z : (1.0 - c.z));
-		vec4 K = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
-		vec3 p = abs(fract(c.xxx + K.xyz) * 6.0 - K.www);
-		return (c.z + t) * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), 2.0*t / c.z);
-	}
++`vec3 accumulator = vec3(0.0);
+vec2 dim_step = vec2(1.0/480.0) * 1.4;
 
-	void main(void)
-	{`
-		/* Read a group of texels, doing a box blur */
+for (int i = -2; i < 2; ++i) {
+for (int j = -2; j < 2; ++j) {
+accumulator += texture2D(map, vUv + dim_step * vec2(i, j)).rgb;
+}
+}
 
-		+`vec3 accumulator = vec3(0.0);
-		vec2 dim_step = vec2(1.0/480.0) * 1.4;
+vec3 blur = accumulator / 16.0;`
 
-		for (int i = -2; i < 2; ++i) {
-			for (int j = -2; j < 2; ++j) {
-				accumulator += texture2D(map, vUv + dim_step * vec2(i, j)).rgb;
-			}
-		}
+/* Convert (RGB source) to greyscale luminance, by taking the Y
+* component of YUV (multiplying by BT.709 coefficients) */
 
-		vec3 blur = accumulator / 16.0;`
++`vec3 coefficients = vec3(0.2126, 0.7152, 0.0722);
+float grey = dot(blur, coefficients);`
 
-		/* Convert (RGB source) to greyscale luminance, by taking the Y
-		 * component of YUV (multiplying by BT.709 coefficients) */
+/* Adjust brightness */
 
-		+`vec3 coefficients = vec3(0.2126, 0.7152, 0.0722);
-		float grey = dot(blur, coefficients);`
++`float brightness = 1.1;
+grey = clamp(grey * brightness, 0.0, 1.0);`
 
-		/* Adjust brightness */
+/* Posterize */
 
-		+`float brightness = 1.1;
-		grey = clamp(grey * brightness, 0.0, 1.0);`
++`float levels = (6.0) - 1.0;
+float posterized = floor((grey * levels) + 0.5) / levels;`
 
-		/* Posterize */
+/* Increase contrast */
 
-		+`float levels = (6.0) - 1.0;
-		float posterized = floor((grey * levels) + 0.5) / levels;`
++`float contrast = 1.4;
+float contrasted = clamp(contrast * (posterized - 0.5) + 0.5, 0.0, 1.0);`
 
-		/* Increase contrast */
+/* Colourize! Choose a particular hue/saturation, and then pick colours
+* by setting the lightness to the calculated value above */
 
-		+`float contrast = 1.4;
-		float contrasted = clamp(contrast * (posterized - 0.5) + 0.5, 0.0, 1.0);`
++`vec4 rgba = texture2D(map, vUv);
 
-		/* Colourize! Choose a particular hue/saturation, and then pick colours
-		 * by setting the lightness to the calculated value above */
+vec3 rgb = hsl2rgb(vec3(0.2, 0.4, contrasted));
+gl_FragColor = vec4(vec3(rgb), 1.0) * .09 + rgba * .93;`+
 
-		+`vec4 rgba = texture2D(map, vUv);
+//float darkness = .5 - (rgb.r+rgb.g+rgb.b)/3.;
 
-		vec3 rgb = hsl2rgb(vec3(0.2, 0.4, contrasted));
-		gl_FragColor = vec4(vec3(rgb), 1.0) * .09 + rgba * .93;`+
+//gl_FragColor.rgb *= 1.-darkness;
 
-		//float darkness = .5 - (rgb.r+rgb.g+rgb.b)/3.;
-
-		//gl_FragColor.rgb *= 1.-darkness;
-
-		`float grey2 = 0.21 * rgba.r + 0.71 * rgba.g + 0.07 * rgba.b;
-		gl_FragColor.rgb *= .25 + .75 * grey2;
-		gl_FragColor.a = opacity;
-	}
-`;
+`float grey2 = 0.21 * rgba.r + 0.71 * rgba.g + 0.07 * rgba.b;
+gl_FragColor.rgb *= .25 + .75 * grey2;
+gl_FragColor.a = opacity;
+}`;
