@@ -86,6 +86,10 @@ export default class Inventory {
 		// Remove marker from game world
 		marker.remove();
 
+		// Also remove from original JSON so it won't be back later
+		const idx = this.game.currentLevel.markers.findIndex(m => m.id == marker.id);
+		this.game.currentLevel.markers.splice(idx, 1);
+
 		// Cast any images to real image
 		marker._images = marker['images'].map(img => {
 			const image = new Image;

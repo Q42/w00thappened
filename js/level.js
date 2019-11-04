@@ -9,6 +9,7 @@ export default class Level {
 		this.level = null;
 		this.lastText = null;
 		this.tos = [];
+		this.markers = [];
 	}
 
 	activate(){
@@ -17,6 +18,9 @@ export default class Level {
 		fetch("/levels/" + this.micrio.id + ".json")
 			.then(response => response.json())
 			.then(json => this.startLevel(json));
+
+		if(this.micrio['modules']['markers'])
+			this.markers = this.micrio['modules']['markers']['data'];
 
 		if(this.micrio.id == 'UPbPS') {
 			this.micrio['THREE']['embeds']['add'](
