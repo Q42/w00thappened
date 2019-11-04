@@ -36,8 +36,8 @@ export default class Level {
 		this.level = level;
 
 		// only show intro text first time you enter the scene
-		if (level.dialog && this.game.hasPlayedIntroTexts.indexOf(this.micrio.id) === -1) {
-			this.showDialog(level.dialog);
+		if (level['dialog'] && this.game.hasPlayedIntroTexts.indexOf(this.micrio.id) === -1) {
+			this.showDialog(level['dialog']);
 			this.game.hasPlayedIntroTexts.push(this.micrio.id);
 		}
 	}
