@@ -1,13 +1,15 @@
 import Text from './text.js';
 
 const canvas = document.createElement("canvas");
-const size = drawSize();
-const height = size.height
-const width = size.width;
-const scale = size.scale;
-const boxSize = scale * (size.boxSize + size.padding);
-canvas.width = width * scale;
-canvas.height = height * scale;
+
+const scale = 4;
+const boxSize = 16 * scale;
+const paddingSize = 4 * scale;
+const fullBoxSize = boxSize + paddingSize;
+
+canvas.width = 5 * boxSize + 6 * paddingSize;
+canvas.height = 4 * boxSize + 5 * paddingSize;
+
 const ctx = canvas.getContext("2d");
 
 const THREE = window['THREE'];
@@ -31,7 +33,7 @@ export default class Inventory {
 	}
 
 	init() {
-		const ratio = width / height;
+		const ratio = canvas.width / canvas.height;
 
 		// Create 3d mesh
 		this.texture = new THREE['Texture'](canvas);
@@ -62,17 +64,16 @@ export default class Inventory {
 		if(this.mesh['parent']) this.mesh['parent'].remove(this.mesh);
 	}
 
-	clicked(x,y) {
-		const _x = Math.floor(x * canvas.width / boxSize);
-		const _y = Math.floor(y * canvas.height / boxSize);
+	/*clicked(x,y) {
+		const _x = Math.floor(x * canvas.width / fullBoxSize);
+		const _y = Math.floor(y * canvas.height / fullBoxSize);
 		const item = this.items[_y * 5 + _x];
 
 		if(item) {
 			console.log('use item!!')
 		}
-	}
+	}*/
 
-	// Dit komt straks uit Micrio
 	addItem(marker) {
 		const emptySlotIndex = this.items.findIndex(item => !item); // Find the first empty slots
 		this.items[emptySlotIndex] = marker;
@@ -125,54 +126,31 @@ export default class Inventory {
 	// Drawing logic
 	draw() {
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
-		const size = drawSize();
-		const height = size.height
-		const width = size.width;
-		const boxSize = size.boxSize;
-		const scale = size.scale;
-		const padding = size.padding;
-
 		ctx.fillStyle = 'brown';
-		ctx.fillRect(0, 0, width * scale, height * scale);
+		ctx.fillRect(0, 0, canvas.width, canvas.height);
+
 		// Draw boxes
-		let pos = {x: 0, y: padding * scale};
+		let pos = {x: 0, y: paddingSize};
 		for (let index = 0; index < this.items.length; index++) {
 			const item = this.items[index];
 
-			pos.x += boxSize * scale + padding * scale;
+			pos.x += fullBoxSize;
 			if (index % 5 == 0) {
 				// New row
-				pos.x = padding * scale;
-				if (index != 0) pos.y += boxSize * scale + padding * scale;
+				pos.x = paddingSize;
+				if (index != 0) pos.y += fullBoxSize;
 			}
 
 			// Draw box
 			ctx.fillStyle = 'black';
-			ctx.fillRect(pos.x, pos.y, boxSize * scale, boxSize * scale);
+			ctx.fillRect(pos.x, pos.y, boxSize, boxSize);
 
 			// Draw image
-			if(item && item._images[0]) {
-				ctx.drawImage(item._images[0], pos.x, pos.y, boxSize * scale, boxSize * scale);
-			}
-
+			if(item && item._images[0])
+				ctx.drawImage(item._images[0], pos.x, pos.y, boxSize, boxSize);
 		}
 
 		this.texture['needsUpdate'] = true;
 	}
 
-}
-
-function drawSize() {
-	const boxSize = 16;
-	const padding = 4;
-	const scale = 4;
-	const _width = 5 * boxSize + 6 * padding;
-	const _height = 4 * boxSize + 5 * padding;
-	return {
-		width: _width, 
-		height: _height,
-		boxSize: boxSize,
-		padding: padding,
-		scale: scale,
-	};
 }
