@@ -66,19 +66,16 @@ export default class Level {
 		if(!item) return;
 
 		//TODO: Render dialog with all conversation options
-		const replies = item['actions'].filter(action => {
-			// game.inventory.items = [MicrioMarker]
-			const myitems =  this.game.inventory.items.map(marker => marker.id);
 
-			return (action['notInInventoryFilter'] == undefined || !myitems.includes(action['notInInventoryFilter']))
-				&& (action['inventoryFilter'] == undefined || myitems.includes(action['inventoryFilter']))
-				&& ((idList != null && idList.includes(action.id)) || (idList == null && action['isDefault']));
-		})
-		.map(reply => reply['input']);
+		// game.inventory.items = [MicrioMarker]
+		const myitems =  this.game.inventory.items.map(marker => marker.id);
+		const replies = item['actions'].filter(action =>
+			(action['notInInventoryFilter'] == undefined || !myitems.includes(action['notInInventoryFilter']))
+			&& (action['inventoryFilter'] == undefined || myitems.includes(action['inventoryFilter']))
+			&& ((idList != null && idList.includes(action.id)) || (idList == null && action['isDefault']))
+		).map(reply => reply['input']);
 
-		if(marker._actions)
-			marker._actions.close();
-
+		if(marker._actions) marker._actions.close();
 		marker._actions = new ActionPopup(this, marker, replies);
 		marker._actions.open();
 	}
