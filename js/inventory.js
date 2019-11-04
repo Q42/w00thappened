@@ -29,6 +29,8 @@ export default class Inventory {
 		this.inventorySize = 20;
 		this.items = new Array(this.inventorySize);
 
+		this.to = null;
+
 		this.init();
 	}
 
@@ -110,9 +112,10 @@ export default class Inventory {
 	}
 
 	showHide(){
+		clearTimeout(this.to);
 		this.draw();
 		this.show();
-		setTimeout(() => this.hide(), 4000);
+		this.to = setTimeout(() => this.hide(), 4000);
 	}
 
 	removeItem(id) {
