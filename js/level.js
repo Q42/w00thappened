@@ -136,6 +136,8 @@ export default class Level {
 		if(this.lastText)
 			this.lastText.remove();
 
+		if(!string) return;
+
 		this.lastText = new Text(this.micrio, string, x, y);
 		this.tos.push(setTimeout(function(){ 
 			if(this.lastText)
