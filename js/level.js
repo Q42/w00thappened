@@ -13,7 +13,7 @@ export default class Level {
 	}
 
 	activate(){
-		fetch("/levels/" + this.micrio.id + ".json")
+		fetch("./levels/" + this.micrio.id + ".json")
 			.then(response => response.json())
 			.then(json => this.startLevel(json));
 
