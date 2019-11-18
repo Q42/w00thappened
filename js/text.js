@@ -90,7 +90,6 @@ export default class Text {
 
         lines.forEach(l => {
             this.measuredWidth = Math.max(ctx.measureText(l).width, this.measuredWidth);
-
         })
 
         this.canvas.width = this.measuredWidth;

@@ -24,7 +24,9 @@ export default class ActionPopup {
             console.log(text.canvas.width / 8);
             widestText = Math.max(text.canvas.width / 8, widestText);
         })
+
         console.log(widestText);
+
         this.mesh = new THREE['Mesh'](
             new THREE['PlaneBufferGeometry'](widestText + 5, height + 5),
             new THREE['MeshBasicMaterial']({
@@ -49,10 +51,10 @@ export default class ActionPopup {
                 this.close();
             }
 
-            widestText = Math.max(text.canvas.width, widestText)
+
         })
 
-        console.log(widestText);
+
 
         this.mesh['renderOrder'] = 119;
     }
