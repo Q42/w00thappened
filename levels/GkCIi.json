@@ -9,29 +9,27 @@
         "the Irony",
         "Where am I! …., I’m cold….\nBetter get my ass moving!"
     ],
-    "items":[
-        {
+    "items": [{
             "micrioId": "ebe82a23-0f81-0493-8179-632b3ea87a51",
-            "name":"Buttons",
-            "actions":[
-                {
+            "name": "Buttons",
+            "actions": [{
                     "input": "Look at object",
-                    "output": "It looks like buttons, maybe I can press them",
+                    "output": "oiugoiugoiugo",
                     "isDefault": true,
-                    "continue": [1,2,3]
+                    "continue": [1, 2, 3]
                 },
                 {
-                    "id":1,
+                    "id": 1,
                     "input": "Press the green button",
                     "output": "This one says: 'BEEP'"
                 },
                 {
-                    "id":2,
+                    "id": 2,
                     "input": "Press the orange button",
                     "output": "This one says: 'BOOP'"
                 },
                 {
-                    "id":3,
+                    "id": 3,
                     "input": "Press the red button",
                     "output": "NEVER PRESS THE RED BUTTON!!!"
                 }
@@ -40,9 +38,8 @@
         },
         {
             "micrioId": "76ec868c-cf0b-f36c-a10e-fedc04617d77",
-            "name":"Device",
-            "actions":[
-                {
+            "name": "Device",
+            "actions": [{
                     "input": "Look at object",
                     "output": "Some sort of storage device it seems...",
                     "isDefault": true
@@ -57,9 +54,8 @@
         },
         {
             "micrioId": "76ec868c-cf0b-f36c-a10e-fedc04617d77",
-            "name":"Badge",
-            "actions":[
-                {
+            "name": "Badge",
+            "actions": [{
                     "input": "Look at object",
                     "output": "It's a name tag",
                     "isDefault": true
@@ -74,9 +70,8 @@
         },
         {
             "micrioId": "6a39aedb-f55d-9060-5d78-6b8a949b938f",
-            "name":"Sky",
-            "actions":[
-                {
+            "name": "Sky",
+            "actions": [{
                     "input": "Look at sky",
                     "output": "It raining",
                     "isDefault": true
@@ -85,15 +80,14 @@
                     "input": "Climb out",
                     "output": "Let's do that",
                     "isDefault": true,
-                    "navigateTo":"CXbqx"
+                    "navigateTo": "CXbqx"
                 }
             ]
         },
         {
             "micrioId": "27384ed2-023e-5678-1b97-d0c673f87769",
-            "name":"Bunker door",
-            "actions":[
-                {
+            "name": "Bunker door",
+            "actions": [{
                     "input": "Look into bunker",
                     "output": "You find a door that's bolted with a chain.\nDoesn’t seem too sturdy though...",
                     "isDefault": true
@@ -102,16 +96,15 @@
                     "input": "Enter bunker",
                     "output": "That saw went through the lock like butter!",
                     "isDefault": true,
-                    "navigateTo":"xXIfd",
+                    "navigateTo": "xXIfd",
                     "inventoryFilter": "a8fcbea0-26d0-9cb1-0e4e-3c92ae90657f"
                 }
             ]
         },
         {
             "micrioId": "70326b66-8ee2-2a24-8869-238f611a5132",
-            "name":"Medkit",
-            "actions":[
-                {
+            "name": "Medkit",
+            "actions": [{
                     "input": "Look at object",
                     "output": "It's a medkit, it seems untouched",
                     "isDefault": true
@@ -126,9 +119,8 @@
         },
         {
             "micrioId": "3adc28fc-6890-91bc-39b8-3422f448848e",
-            "name":"Bottle",
-            "actions":[
-                {
+            "name": "Bottle",
+            "actions": [{
                     "input": "Look at object",
                     "output": "A bottle of whiskey",
                     "isDefault": true,
@@ -145,12 +137,11 @@
         {
             "micrioId": "7dea9d15-28bd-b416-3a10-c90a9727ab0f",
             "name": "Beer coaster",
-            "actions":[
-                {
+            "actions": [{
                     "input": "Look at object",
                     "output": "A coaster from a bar named ZETA\nthere is a number written on the back",
                     "isDefault": true,
-                    "continue":[1]
+                    "continue": [1]
                 },
                 {
                     "input": "Pick up",
@@ -162,9 +153,8 @@
         },
         {
             "micrioId": "087faf64-90c6-4296-d930-ebc6de307ae9",
-            "name":"Slipper",
-            "actions":[
-                {
+            "name": "Slipper",
+            "actions": [{
                     "input": "Look at object",
                     "output": "You never walk alone\nwell I guess that wasn’t true, was it.. ",
                     "isDefault": true
