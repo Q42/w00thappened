@@ -1,16 +1,14 @@
-const canvas = document.createElement('canvas');
-
 const scale = 4;
 const slots = 1
 const padding = 2;
 
 const controllerboxSize = 4 * scale;
 
-canvas.width = controllerboxSize * slots;
-canvas.height = controllerboxSize;
 
-const ctx = canvas.getContext('2d');
+
+
 const THREE = window['THREE'];
+
 
 
 export default class Controller {
@@ -18,47 +16,65 @@ export default class Controller {
         this.game = game;
         this.micrio = game.micrio;
 
-        this.controllerboxMesh = null;
-        this.controllerboxTexture = null;
 
-        this.init()
+
+        // Internals
+        this.mesh = null;
+        this.texture = null;
+
+        this.init();
     }
 
     init() {
-        // const ratio = canvas.width / canvas.height;
 
+        this.canvas = document.createElement('canvas');
+
+        this.canvas.width = controllerboxSize * slots;
+        this.canvas.height = controllerboxSize;
+
+        this.ctx = this.canvas.getContext('2d');
         // Create 3d mesh
-        // this.controllerboxTexture = new THREE['Texture'](canvas);
-        this.controllerboxMesh = new THREE['Mesh'](
-            new THREE['PlaneBufferGeometry'](4, 4),
+        this.texture = new THREE['Texture'](this.canvas);
+        this.mesh = new THREE['Mesh'](
+            new THREE['PlaneBufferGeometry']((controllerboxSize / 8) * slots, controllerboxSize / 8),
             new THREE['MeshBasicMaterial']({
-                'color': 0x000000,
+                'map': this.texture,
+                'color': 0xffffff,
                 'depthWrite': false,
                 'depthTest': false,
                 'transparent': true,
             })
         );
+        this.texture['needsUpdate'] = true;
+        this.mesh['renderOrder'] = 119;
 
-        // this.controllerboxTexture['needsUpdate'] = true;
-        this.controllerboxMesh['renderOrder'] = 119;
-
-        this.controllerboxMesh['position']['set'](-15, -12, -15);
-        this.micrio['THREE']['_camera']['add'](this.controllerboxMesh);
+        this.mesh['position']['set'](-22, -12, -15);
+        this.micrio['THREE']['_camera']['add'](this.mesh);
     }
 
-    drawControllerbox() {
-        this.drawButton(null, 2);
-        this.update()
-    }
-
-    drawButton(color = 'white', x) {
-        ctx.fillStyle = color;
-        ctx.fillRect(x, padding, controllerboxSize - padding, controllerboxSize - padding);
-    }
-
-    update() {
+    render() {
         this.opened = true;
+
         this.micrio['camera']['render']();
+    }
+
+
+    display() {
+        this.draw();
+        this.render();
+    }
+
+
+    // Drawing logic
+    draw() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.ctx.fillStyle = 'brown';
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+        this.ctx.fillStyle = 'white';
+        this.ctx.fillRect(0, 0, 10, 50);
+
+        this.texture['needsUpdate'] = true;
     }
 
 }

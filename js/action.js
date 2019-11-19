@@ -19,13 +19,11 @@ export default class ActionPopup {
         const height = lineHeight * this.actions.length;
 
         this.actions.forEach(a => {
-            const text = new Text(this.micrio, a, null, null, '#ffff00', true);
-
-            console.log(text.canvas.width / 8);
+            const text = new Text(this.micrio, a, null, null, '#ffff00', true, null, false);
             widestText = Math.max(text.canvas.width / 8, widestText);
         })
 
-        console.log(widestText);
+
 
         this.mesh = new THREE['Mesh'](
             new THREE['PlaneBufferGeometry'](widestText + 5, height + 5),

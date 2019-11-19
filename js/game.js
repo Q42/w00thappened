@@ -59,8 +59,14 @@ export default class Game {
         // Create Controller Box
         this.controller = new Controller(this);
 
+
+
         // Create our first, main level
         this.setLevel(this.micrio);
+
+        this.controller.display();
+
+
 
     }
 
@@ -108,20 +114,39 @@ export default class Game {
             }
         }
 
-        /*if(this.inventory.opened) {
-        	const hit = this.micrio['THREE']['getCast']([e.clientX, e.clientY], [this.inventory.mesh])[0];
-        	if(hit) {
-        		this.inventory.clicked(hit['uv'].x,1-hit['uv'].y);
-        		return;
-        	}
-        }*/
+
+
+
+
+
+
+
+
+
+        if (this.inventory.opened) {
+            const hit = this.micrio['THREE']['getCast']([e.clientX, e.clientY], [this.inventory.mesh])[0];
+
+            if (hit) {
+                console.log(hit);
+                this.inventory.clicked(hit['uv'].x, 1 - hit['uv'].y);
+                return;
+            }
+        }
 
         // Otherwise check for marker click
         const marker = this.micrio['THREE']['getCast']([e.clientX, e.clientY])[0];
         if (marker) this.onclicked(marker);
 
-        // Otherwise clicked outside -> close any open popup
-        else if (this.currentPopup) this.currentPopup.close();
+        else {
+            const hit = this.micrio['THREE']['getCast']([e.clientX, e.clientY], [this.controller.mesh])[0];
+
+            if (hit) {
+                this.inventory.toggle();
+            }
+
+            // Otherwise clicked outside -> close any open popup
+            else if (this.currentPopup) this.currentPopup.close();
+        }
     }
 
     onclicked(hit) {

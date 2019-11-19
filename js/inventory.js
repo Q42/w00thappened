@@ -43,7 +43,7 @@ export default class Inventory {
             new THREE['PlaneBufferGeometry'](10 * ratio, 10),
             new THREE['MeshBasicMaterial']({
                 'map': this.texture,
-                'color': 0xff0000,
+                'color': 0xffffff,
                 'depthWrite': false,
                 'depthTest': false,
                 'transparent': true,
@@ -56,6 +56,7 @@ export default class Inventory {
     }
 
     show() {
+        this.draw();
         this.opened = true;
         this.micrio['THREE']['_camera']['add'](this.mesh);
         this.micrio['camera']['render']();
@@ -66,15 +67,15 @@ export default class Inventory {
         if (this.mesh['parent']) this.mesh['parent'].remove(this.mesh);
     }
 
-    /*clicked(x,y) {
-    	const _x = Math.floor(x * canvas.width / fullBoxSize);
-    	const _y = Math.floor(y * canvas.height / fullBoxSize);
-    	const item = this.items[_y * 5 + _x];
+    clicked(x, y) {
+        const _x = Math.floor(x * canvas.width / fullBoxSize);
+        const _y = Math.floor(y * canvas.height / fullBoxSize);
+        const item = this.items[_y * 5 + _x];
 
-    	if(item) {
-    		console.log('use item!!')
-    	}
-    }*/
+        if (item) {
+            console.log('use item!!')
+        }
+    }
 
     addItem(marker) {
         const emptySlotIndex = this.items.findIndex(item => !item); // Find the first empty slots
@@ -111,11 +112,19 @@ export default class Inventory {
         else this.showHide();
     }
 
+
     showHide() {
         clearTimeout(this.to);
-        this.draw();
         this.show();
         this.to = setTimeout(() => this.hide(), 4000);
+    }
+
+    toggle() {
+        if (this.opened) {
+            this.hide();
+        } else {
+            this.show();
+        }
     }
 
     removeItem(id) {

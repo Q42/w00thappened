@@ -1,5 +1,5 @@
 export default class Text {
-    constructor(micrio, text = '', x = .5, y = .5, color = '#ff0000', independent = false, isStatic = true) {
+    constructor(micrio, text = '', x = .5, y = .5, color = '#ff0000', independent = false, isStatic = true, automaticPlace = true) {
         this.micrio = micrio;
         this.text = text;
         this.x = x;
@@ -18,13 +18,13 @@ export default class Text {
         this.onload = null;
 
         this.drawCanvas();
-        this.place();
+        if (automaticPlace) this.place();
 
     }
 
     place() {
         const THREE = self['THREE'];
-
+        console.warn(this.text);
         this.texture = new THREE['Texture'](this.canvas);
 
         const w = this.canvas.width / 8;
