@@ -73,7 +73,7 @@ export default class Inventory {
         const item = this.items[_y * 5 + _x];
 
         if (item) {
-            console.log('use item!!')
+            this.game.hand.loadItem(item);
         }
     }
 
@@ -105,16 +105,16 @@ export default class Inventory {
             image.crossOrigin = 'anonymous';
             return image;
         })
-
+        console.log(marker._images);
         if (marker._images[0]) marker._images[0].onload = () => {
             this.showHide();
         }
         else this.showHide();
     }
 
-
     showHide() {
         clearTimeout(this.to);
+        this.draw();
         this.show();
         this.to = setTimeout(() => this.hide(), 4000);
     }
@@ -138,7 +138,7 @@ export default class Inventory {
     // Drawing logic
     draw() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = 'brown';
+        ctx.fillStyle = '#222222';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
         // Draw boxes
@@ -158,8 +158,9 @@ export default class Inventory {
             ctx.fillRect(pos.x, pos.y, boxSize, boxSize);
 
             // Draw image
-            if (item && item._images[0])
+            if (item && item._images[0]) {
                 ctx.drawImage(item._images[0], pos.x, pos.y, boxSize, boxSize);
+            }
         }
 
         this.texture['needsUpdate'] = true;

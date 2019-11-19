@@ -1,6 +1,7 @@
 import Level from './level.js';
 import Inventory from './inventory.js';
 import Controller from './controller.js';
+import Hand from './hand.js';
 import { fragmentShader } from './shader.js';
 
 window['Micrio'].prototype['forceGL'] = true;
@@ -59,12 +60,13 @@ export default class Game {
         // Create Controller Box
         this.controller = new Controller(this);
 
+        // Create Hand
+        this.hand = new Hand(this);
+
 
 
         // Create our first, main level
         this.setLevel(this.micrio);
-
-        this.controller.display();
 
 
 

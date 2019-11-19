@@ -74,8 +74,8 @@ export default class Level {
         // game.inventory.items = [MicrioMarker]
         const myitems = this.game.inventory.items.map(marker => marker.id);
         const replies = item['actions'].filter(action =>
-            (action['notInInventoryFilter'] == undefined || !myitems.includes(action['notInInventoryFilter'])) &&
-            (action['inventoryFilter'] == undefined || myitems.includes(action['inventoryFilter'])) &&
+            (action['notInInventoryFilter'] == undefined || !this.game.hand.heldItem.id == action['notInInventoryFilter']) &&
+            (action['inventoryFilter'] == undefined || this.game.hand.heldItem.id == action['inventoryFilter']) &&
             ((idList != null && idList.includes(action.id)) || (idList == null && action['isDefault']))
         ).map(reply => reply['input']);
 

@@ -34,7 +34,8 @@ export default class Controller {
 
         this.ctx = this.canvas.getContext('2d');
         // Create 3d mesh
-        this.texture = new THREE['Texture'](this.canvas);
+        this.texture = new THREE.TextureLoader().load('https://b.micr.io/LzKWd/assets/9cecb6b9-36b3-4d65-a24a-59afe666183a.64.png');
+
         this.mesh = new THREE['Mesh'](
             new THREE['PlaneBufferGeometry']((controllerboxSize / 8) * slots, controllerboxSize / 8),
             new THREE['MeshBasicMaterial']({
@@ -47,34 +48,10 @@ export default class Controller {
         );
         this.texture['needsUpdate'] = true;
         this.mesh['renderOrder'] = 119;
-
-        this.mesh['position']['set'](-22, -12, -15);
+        // this.mesh.rotation.set(0, 45, 0);
+        this.mesh['position']['set'](-28, -12, -15);
         this.micrio['THREE']['_camera']['add'](this.mesh);
-    }
-
-    render() {
-        this.opened = true;
-
         this.micrio['camera']['render']();
-    }
-
-
-    display() {
-        this.draw();
-        this.render();
-    }
-
-
-    // Drawing logic
-    draw() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.ctx.fillStyle = 'brown';
-        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-
-        this.ctx.fillStyle = 'white';
-        this.ctx.fillRect(0, 0, 10, 50);
-
-        this.texture['needsUpdate'] = true;
     }
 
 }
