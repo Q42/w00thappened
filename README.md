@@ -1,4 +1,4 @@
-# w00tcamp.PointNClickVR
-W00tcamp 2019 Point'n'click VR Game
+# W00t Happened
+A point'n'click VR Game built on top of micr.io
 
-http://www.w00thappened.com/
+Play the game at http://www.w00thappened.com/
