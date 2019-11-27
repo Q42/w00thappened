@@ -1,5 +1,5 @@
 # W00t Happened
-A point'n'click VR Game built on top of http://micr.io with the use of 360 real world footage.
+A point'n'click VR Game built on top of http://micr.io with the use of real world 360 footage.
 
 Play the game at http://www.w00thappened.com/
 
