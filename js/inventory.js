@@ -43,7 +43,7 @@ export default class Inventory {
 			new THREE['PlaneBufferGeometry'](10 * ratio, 10),
 			new THREE['MeshBasicMaterial']({
 				'map': this.texture,
-				'color': 0xff0000,
+				'color': 0xffffff,
 				'depthWrite': false,
 				'depthTest': false,
 				'transparent': true,
@@ -52,40 +52,40 @@ export default class Inventory {
 		this.texture['needsUpdate'] = true;
 		this.mesh['renderOrder'] = 119;
 
-		this.mesh['position']['set'](0,-8,-15);
+		this.mesh['position']['set'](0, -8, -15);
 	}
 
-	show(){
+	show() {
+		this.draw();
 		this.opened = true;
 		this.micrio['THREE']['_camera']['add'](this.mesh);
 		this.micrio['camera']['render']();
 	}
 
-	hide(){
+	hide() {
 		this.opened = false;
-		if(this.mesh['parent']) this.mesh['parent'].remove(this.mesh);
+		if (this.mesh['parent']) this.mesh['parent'].remove(this.mesh);
 	}
 
-	/*clicked(x,y) {
+	clicked(x, y) {
 		const _x = Math.floor(x * canvas.width / fullBoxSize);
 		const _y = Math.floor(y * canvas.height / fullBoxSize);
 		const item = this.items[_y * 5 + _x];
 
-		if(item) {
-			console.log('use item!!')
-		}
-	}*/
+		if (item && this.game.hand)
+			this.game.hand.loadItem(item);
+	}
 
 	addItem(marker) {
 		const emptySlotIndex = this.items.findIndex(item => !item); // Find the first empty slots
 		this.items[emptySlotIndex] = marker;
 
-		if(marker.title) {
+		if (marker.title) {
 			const txt = new Text(this.micrio, 'Picked up ' + marker.title, 0, -12, '#00ff00');
 			setTimeout(() => txt.remove(), 4000);
 		}
 
-		if(marker['audio'] && marker['audio']['fileUrl']) {
+		if (marker['audio'] && marker['audio']['fileUrl']) {
 			this._audio.src = marker['audio']['fileUrl'];
 			this._audio.play();
 		}
@@ -100,27 +100,35 @@ export default class Inventory {
 		// Cast any images to real image
 		marker._images = marker['images'].map(img => {
 			const image = new Image;
-			image.src = img.src.replace(/\.(jpg|png)/,'.64.$1');
+			image.src = img.src.replace(/\.(jpg|png)/, '.64.$1');
 			image.crossOrigin = 'anonymous';
 			return image;
 		})
 
-		if(marker._images[0]) marker._images[0].onload = () => {
+		if (marker._images[0]) marker._images[0].onload = () => {
 			this.showHide();
 		}
 		else this.showHide();
 	}
 
-	showHide(){
+	showHide() {
 		clearTimeout(this.to);
 		this.draw();
 		this.show();
 		this.to = setTimeout(() => this.hide(), 4000);
 	}
 
+	toggle() {
+		if (this.opened) {
+			this.hide();
+		} else {
+			this.show();
+		}
+	}
+
 	removeItem(id) {
 		const index = this.items.findIndex(m => m.id == id);
-		if(index >= 0) {
+		if (index >= 0) {
 			this.items.splice(index, 1);
 			this.draw();
 		}
@@ -129,11 +137,11 @@ export default class Inventory {
 	// Drawing logic
 	draw() {
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
-		ctx.fillStyle = 'brown';
+		ctx.fillStyle = '#222222';
 		ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 		// Draw boxes
-		let pos = {x: 0, y: paddingSize};
+		let pos = { x: 0, y: paddingSize };
 		for (let index = 0; index < this.items.length; index++) {
 			const item = this.items[index];
 
@@ -149,8 +157,9 @@ export default class Inventory {
 			ctx.fillRect(pos.x, pos.y, boxSize, boxSize);
 
 			// Draw image
-			if(item && item._images[0])
+			if (item && item._images[0]) {
 				ctx.drawImage(item._images[0], pos.x, pos.y, boxSize, boxSize);
+			}
 		}
 
 		this.texture['needsUpdate'] = true;

@@ -13,24 +13,31 @@ export default class ActionPopup {
 		this.opened = false;
 		this.hovered = null;
 
+		let widestText = 25;
+
 		const lineHeight = 10;
 		const height = lineHeight * this.actions.length;
 
+		this.actions.forEach(a => {
+			const text = new Text(this.micrio, a, null, null, '#ffff00', true, null, false);
+			widestText = Math.max(text.canvas.width / 8, widestText);
+		})
+
 		this.mesh = new THREE['Mesh'](
-			new THREE['PlaneBufferGeometry'](25, height+5),
+			new THREE['PlaneBufferGeometry'](widestText + 5, height + 5),
 			new THREE['MeshBasicMaterial']({
-				'color': 0x222222,
+				'color': 0x000000,
 				'depthWrite': false,
 				'depthTest': false,
 				'transparent': true,
-				'opacity': .5
+				'opacity': 1
 			})
 		);
 
-		let y = height/2;
+		let y = height / 2;
 		this.actions.forEach(a => {
-			const text = new Text(this.micrio, a, null, null, '#ff0000', true);
-			text.mesh['position'].y = y - lineHeight/2;
+			const text = new Text(this.micrio, a, null, null, '#ffff00', true);
+			text.mesh['position'].y = y - lineHeight / 2;
 			text.mesh['position'].z = -20;
 			text.mesh['material']['opacity'] = .75;
 			this.mesh.add(text.mesh);
@@ -39,33 +46,37 @@ export default class ActionPopup {
 				this.level.actionItem(this.item, a);
 				this.close();
 			}
+
+
 		})
+
+
 
 		this.mesh['renderOrder'] = 119;
 	}
 
-	toggle(){
-		if(this.opened) this.close();
+	toggle() {
+		if (this.opened) this.close();
 		else this.open();
 	}
 
-	open(){
-		if(this.opened) return;
+	open() {
+		if (this.opened) return;
 		this.opened = true;
 
-		if(this.level.game.currentPopup) this.level.game.currentPopup.close();
+		if (this.level.game.currentPopup) this.level.game.currentPopup.close();
 
 		this.level.game.currentPopup = this;
 		this.micrio['THREE']['intersect'] = this.mesh['children'];
 
 		const coo = this.micrio['THREE']['getPosition'](
-			this.item.x+.05,
+			this.item.x + .05,
 			this.item.y,
 			75
 		);
 
-		this.mesh['position']['set'](coo.x,coo.y,coo.z);
-		this.mesh['lookAt'](0,0,0);
+		this.mesh['position']['set'](coo.x, coo.y, coo.z);
+		this.mesh['lookAt'](0, 0, 0);
 
 		this.micrio['THREE']['_scene']['add'](this.mesh);
 		//this.micrio['camera']['render']();
@@ -73,7 +84,7 @@ export default class ActionPopup {
 	}
 
 	close() {
-		if(!this.opened) return;
+		if (!this.opened) return;
 		this.opened = false;
 
 		this.level.game.currentPopup = null;
