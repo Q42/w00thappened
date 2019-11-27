@@ -15,154 +15,154 @@ const ctx = canvas.getContext("2d");
 const THREE = window['THREE'];
 
 export default class Inventory {
-    constructor(game) {
-        this.game = game;
-        this.micrio = game.micrio;
+	constructor(game) {
+		this.game = game;
+		this.micrio = game.micrio;
 
-        this.opened = false;
-        this._audio = new Audio;
+		this.opened = false;
+		this._audio = new Audio;
 
-        // Internals
-        this.mesh = null;
-        this.texture = null;
+		// Internals
+		this.mesh = null;
+		this.texture = null;
 
-        this.inventorySize = 20;
-        this.items = new Array(this.inventorySize);
+		this.inventorySize = 20;
+		this.items = new Array(this.inventorySize);
 
-        this.to = null;
+		this.to = null;
 
-        this.init();
-    }
+		this.init();
+	}
 
-    init() {
-        const ratio = canvas.width / canvas.height;
+	init() {
+		const ratio = canvas.width / canvas.height;
 
-        // Create 3d mesh
-        this.texture = new THREE['Texture'](canvas);
-        this.mesh = new THREE['Mesh'](
-            new THREE['PlaneBufferGeometry'](10 * ratio, 10),
-            new THREE['MeshBasicMaterial']({
-                'map': this.texture,
-                'color': 0xffffff,
-                'depthWrite': false,
-                'depthTest': false,
-                'transparent': true,
-            })
-        );
-        this.texture['needsUpdate'] = true;
-        this.mesh['renderOrder'] = 119;
+		// Create 3d mesh
+		this.texture = new THREE['Texture'](canvas);
+		this.mesh = new THREE['Mesh'](
+			new THREE['PlaneBufferGeometry'](10 * ratio, 10),
+			new THREE['MeshBasicMaterial']({
+				'map': this.texture,
+				'color': 0xffffff,
+				'depthWrite': false,
+				'depthTest': false,
+				'transparent': true,
+			})
+		);
+		this.texture['needsUpdate'] = true;
+		this.mesh['renderOrder'] = 119;
 
-        this.mesh['position']['set'](0, -8, -15);
-    }
+		this.mesh['position']['set'](0, -8, -15);
+	}
 
-    show() {
-        this.draw();
-        this.opened = true;
-        this.micrio['THREE']['_camera']['add'](this.mesh);
-        this.micrio['camera']['render']();
-    }
+	show() {
+		this.draw();
+		this.opened = true;
+		this.micrio['THREE']['_camera']['add'](this.mesh);
+		this.micrio['camera']['render']();
+	}
 
-    hide() {
-        this.opened = false;
-        if (this.mesh['parent']) this.mesh['parent'].remove(this.mesh);
-    }
+	hide() {
+		this.opened = false;
+		if (this.mesh['parent']) this.mesh['parent'].remove(this.mesh);
+	}
 
-    clicked(x, y) {
-        const _x = Math.floor(x * canvas.width / fullBoxSize);
-        const _y = Math.floor(y * canvas.height / fullBoxSize);
-        const item = this.items[_y * 5 + _x];
+	clicked(x, y) {
+		const _x = Math.floor(x * canvas.width / fullBoxSize);
+		const _y = Math.floor(y * canvas.height / fullBoxSize);
+		const item = this.items[_y * 5 + _x];
 
-        if (item && this.game.hand)
-            this.game.hand.loadItem(item);
-    }
+		if (item && this.game.hand)
+			this.game.hand.loadItem(item);
+	}
 
-    addItem(marker) {
-        const emptySlotIndex = this.items.findIndex(item => !item); // Find the first empty slots
-        this.items[emptySlotIndex] = marker;
+	addItem(marker) {
+		const emptySlotIndex = this.items.findIndex(item => !item); // Find the first empty slots
+		this.items[emptySlotIndex] = marker;
 
-        if (marker.title) {
-            const txt = new Text(this.micrio, 'Picked up ' + marker.title, 0, -12, '#00ff00');
-            setTimeout(() => txt.remove(), 4000);
-        }
+		if (marker.title) {
+			const txt = new Text(this.micrio, 'Picked up ' + marker.title, 0, -12, '#00ff00');
+			setTimeout(() => txt.remove(), 4000);
+		}
 
-        if (marker['audio'] && marker['audio']['fileUrl']) {
-            this._audio.src = marker['audio']['fileUrl'];
-            this._audio.play();
-        }
+		if (marker['audio'] && marker['audio']['fileUrl']) {
+			this._audio.src = marker['audio']['fileUrl'];
+			this._audio.play();
+		}
 
-        // Remove marker from game world
-        marker.remove();
+		// Remove marker from game world
+		marker.remove();
 
-        // Also remove from original JSON so it won't be back later
-        const idx = this.game.currentLevel.markers.findIndex(m => m.id == marker.id);
-        this.game.currentLevel.markers.splice(idx, 1);
+		// Also remove from original JSON so it won't be back later
+		const idx = this.game.currentLevel.markers.findIndex(m => m.id == marker.id);
+		this.game.currentLevel.markers.splice(idx, 1);
 
-        // Cast any images to real image
-        marker._images = marker['images'].map(img => {
-            const image = new Image;
-            image.src = img.src.replace(/\.(jpg|png)/, '.64.$1');
-            image.crossOrigin = 'anonymous';
-            return image;
-        })
+		// Cast any images to real image
+		marker._images = marker['images'].map(img => {
+			const image = new Image;
+			image.src = img.src.replace(/\.(jpg|png)/, '.64.$1');
+			image.crossOrigin = 'anonymous';
+			return image;
+		})
 
-        if (marker._images[0]) marker._images[0].onload = () => {
-            this.showHide();
-        }
-        else this.showHide();
-    }
+		if (marker._images[0]) marker._images[0].onload = () => {
+			this.showHide();
+		}
+		else this.showHide();
+	}
 
-    showHide() {
-        clearTimeout(this.to);
-        this.draw();
-        this.show();
-        this.to = setTimeout(() => this.hide(), 4000);
-    }
+	showHide() {
+		clearTimeout(this.to);
+		this.draw();
+		this.show();
+		this.to = setTimeout(() => this.hide(), 4000);
+	}
 
-    toggle() {
-        if (this.opened) {
-            this.hide();
-        } else {
-            this.show();
-        }
-    }
+	toggle() {
+		if (this.opened) {
+			this.hide();
+		} else {
+			this.show();
+		}
+	}
 
-    removeItem(id) {
-        const index = this.items.findIndex(m => m.id == id);
-        if (index >= 0) {
-            this.items.splice(index, 1);
-            this.draw();
-        }
-    }
+	removeItem(id) {
+		const index = this.items.findIndex(m => m.id == id);
+		if (index >= 0) {
+			this.items.splice(index, 1);
+			this.draw();
+		}
+	}
 
-    // Drawing logic
-    draw() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = '#222222';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+	// Drawing logic
+	draw() {
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		ctx.fillStyle = '#222222';
+		ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        // Draw boxes
-        let pos = { x: 0, y: paddingSize };
-        for (let index = 0; index < this.items.length; index++) {
-            const item = this.items[index];
+		// Draw boxes
+		let pos = { x: 0, y: paddingSize };
+		for (let index = 0; index < this.items.length; index++) {
+			const item = this.items[index];
 
-            pos.x += fullBoxSize;
-            if (index % 5 == 0) {
-                // New row
-                pos.x = paddingSize;
-                if (index != 0) pos.y += fullBoxSize;
-            }
+			pos.x += fullBoxSize;
+			if (index % 5 == 0) {
+				// New row
+				pos.x = paddingSize;
+				if (index != 0) pos.y += fullBoxSize;
+			}
 
-            // Draw box
-            ctx.fillStyle = 'black';
-            ctx.fillRect(pos.x, pos.y, boxSize, boxSize);
+			// Draw box
+			ctx.fillStyle = 'black';
+			ctx.fillRect(pos.x, pos.y, boxSize, boxSize);
 
-            // Draw image
-            if (item && item._images[0]) {
-                ctx.drawImage(item._images[0], pos.x, pos.y, boxSize, boxSize);
-            }
-        }
+			// Draw image
+			if (item && item._images[0]) {
+				ctx.drawImage(item._images[0], pos.x, pos.y, boxSize, boxSize);
+			}
+		}
 
-        this.texture['needsUpdate'] = true;
-    }
+		this.texture['needsUpdate'] = true;
+	}
 
 }
