@@ -50,7 +50,7 @@
                 {
                     "id":3,
                     "input": "555-8039",
-                    "output": "How you doin'?"
+                    "output": "Hello? Is this the plumber?"
                 },
                 {
                     "input": "Answer the phone",
@@ -78,25 +78,26 @@
                 {
                     "id":7,
                     "input": "Ken sent me",
-                    "output": "Seriously… whoever comes up with this shit",
+                    "output": "Alright. You want Amy I guess, well bad luck... She left like an hour ago, but she left a message",
+                    "inventoryFilter": "1616a415-4204-58db-a8b5-5911b55220c7",
                     "continue":[8]
                 },
                 {
                     "id":8,
-                    "input": "Ken sent me",
-                    "output": "Alright. So yeah. You want Amy I guess, well bad luck... She left like an hour ago, but left a message",
+                    "input": "What message?",
+                    "output": "Come here, and collect it. You know the way or did it happen to you? ",
                     "continue":[9]
                 },
                 {
                     "id":9,
-                    "input": "What message?",
-                    "output": "Come here, and collect it. You know the way or did it happen to you? ",
-                    "continue":[10]
+                    "input": "did what happen to me?",
+                    "output": "Ah I see, poor thing. Address is Sir Lefty’s Road Avenue 42. Be careful!",
+                    "continue": [10]
                 },
                 {
                     "id":10,
-                    "input": "did what happen to me?",
-                    "output": "Ah I see, poor thing. Address is Sir Lefty’s Road Avenue 42. Be careful!"
+                    "input": "Find out more",
+                    "navigateTo":"kZtXa"
                 }
             ]
         },

@@ -58,7 +58,7 @@
                 },
                 {
                     "input": "Pick up",
-                    "output": "It might be some kind of code",
+                    "output": "It might be some kind of password",
                     "intentoryAdd": true,
                     "isDefault": true
                 }
