@@ -57,19 +57,14 @@ export default class Game {
         // Create inventory
         this.inventory = new Inventory(this);
 
-        // Create Controller Box
-        this.controller = new Controller(this);
+        // Create Controller Box -- disabled for now
+        //this.controller = new Controller(this);
 
-        // Create Hand
-        this.hand = new Hand(this);
-
-
+        // Create Hand -- not yet completed
+        //this.hand = new Hand(this);
 
         // Create our first, main level
         this.setLevel(this.micrio);
-
-
-
     }
 
     setLevel(eventOrMicrio) {
@@ -116,20 +111,10 @@ export default class Game {
             }
         }
 
-
-
-
-
-
-
-
-
-
-        if (this.inventory.opened) {
+        // If clickable inventory...
+        if (this.controller && this.inventory.opened) {
             const hit = this.micrio['THREE']['getCast']([e.clientX, e.clientY], [this.inventory.mesh])[0];
-
             if (hit) {
-                console.log(hit);
                 this.inventory.clicked(hit['uv'].x, 1 - hit['uv'].y);
                 return;
             }
@@ -140,10 +125,10 @@ export default class Game {
         if (marker) this.onclicked(marker);
 
         else {
-            const hit = this.micrio['THREE']['getCast']([e.clientX, e.clientY], [this.controller.mesh])[0];
-
-            if (hit) {
-                this.inventory.toggle();
+            // If inventory controller...
+            if(this.controller) {
+                const hit = this.micrio['THREE']['getCast']([e.clientX, e.clientY], [this.controller.mesh])[0];
+                if (hit) return this.inventory.toggle();
             }
 
             // Otherwise clicked outside -> close any open popup

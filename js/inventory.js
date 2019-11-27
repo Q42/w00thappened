@@ -72,9 +72,8 @@ export default class Inventory {
         const _y = Math.floor(y * canvas.height / fullBoxSize);
         const item = this.items[_y * 5 + _x];
 
-        if (item) {
+        if (item && this.game.hand)
             this.game.hand.loadItem(item);
-        }
     }
 
     addItem(marker) {
@@ -105,7 +104,7 @@ export default class Inventory {
             image.crossOrigin = 'anonymous';
             return image;
         })
-        console.log(marker._images);
+
         if (marker._images[0]) marker._images[0].onload = () => {
             this.showHide();
         }

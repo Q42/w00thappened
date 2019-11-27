@@ -24,7 +24,6 @@ export default class Text {
 
     place() {
         const THREE = self['THREE'];
-        console.warn(this.text);
         this.texture = new THREE['Texture'](this.canvas);
 
         const w = this.canvas.width / 8;

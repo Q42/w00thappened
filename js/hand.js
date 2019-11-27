@@ -1,3 +1,5 @@
+// This is still unfinished-- have fun with it :-)
+
 export default class Hand {
     constructor(game) {
         this.game = game;
@@ -71,7 +73,7 @@ export default class Hand {
                 // this.handMesh.rotation.set(9.9 - p, 30.2, 10);
                 this.handMesh['position']['set'](23, -8 - (p * index), -15);
                 this.micrio['camera']['render']();
-            } else if (p 100 <= 50) {
+            } else {
 
             }
 
