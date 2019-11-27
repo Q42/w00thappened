@@ -1,17 +1,18 @@
 // This is still unfinished-- have fun with it :-)
 
+const Micrio = window['Micrio'];
+const THREE = window['THREE'];
+
 export default class Hand {
 	constructor(game) {
 		this.game = game;
 		this.micrio = game.micrio;
 		this.held_item = null;
-		this.ani = new Micrio.Camera.Animate();
+		this.ani = new Micrio['Camera']['Animate']();
 
-		this.init();
-	}
+		this.heldItem = null;
 
-	init() {
-		this.handTexture = new THREE.TextureLoader().load('../images/hand.png');
+		this.handTexture = new THREE['TextureLoader']()['load']('../images/hand.png');
 
 		//DEBUG
 		//this.texture = new THREE.TextureLoader().load('https://b.micr.io/LzKWd/assets/1f29c0d8-5a98-4dfd-9fea-c938b8b6081c.64.png');
@@ -30,7 +31,7 @@ export default class Hand {
 		this.itemMesh = new THREE['Mesh'](
 			new THREE['PlaneBufferGeometry'](13, 5),
 			new THREE['MeshBasicMaterial']({
-				'map': this.texture,
+				//'map': this.texture,
 				'color': 0xffffff,
 				'depthWrite': false,
 				'depthTest': false,

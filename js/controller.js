@@ -14,10 +14,6 @@ export default class Controller {
 		this.mesh = null;
 		this.texture = null;
 
-		this.init();
-	}
-
-	init() {
 
 		this.canvas = document.createElement('canvas');
 

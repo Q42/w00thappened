@@ -18,6 +18,8 @@ export default class Game {
 		// Main container
 		this.micrio = null;
 		this._container = null;
+		this.controller = null;
+		this.hand = null;
 
 		// Function bindings
 		this.create = this.create.bind(this);
